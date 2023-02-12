@@ -26,6 +26,7 @@ function Link({ item }) {
 
     let navigate = useNavigate();
     let location = useLocation();
+    const background = "rgba(186, 215, 233, 0.5)";
     const [txtColor, setTxtColor] = useState("white");
 
     useLayoutEffect(() => {
@@ -46,34 +47,28 @@ function Link({ item }) {
         }} onClick={() => {
             navigate(item.link);
         }} sx={(location.pathname === `/dashboard/${item.name.toLowerCase()}`) ? {
-            width: "100%",
-            margin: "26px 0px",
             padding: "12px",
             display: "flex",
             justifyContent: "space-between",
             transition: "0.5s",
-            borderRadius: "8px",
-            background: "white",
+            background: background,
             "&:hover": {
                 cursor: "pointer",
-                background: "white"
+                background: background
             },
         } : {
-            width: "100%",
-            margin: "26px 0px",
             padding: "12px",
             display: "flex",
             justifyContent: "space-between",
             transition: "0.5s",
-            borderRadius: "8px",
             "&:hover": {
                 cursor: "pointer",
-                background: "white"
+                background: background
             },
         }}>
             <Typography sx={{
                 color: txtColor,
-                fontSize: "18px"
+                fontSize: "16px"
             }}>{item.name}</Typography>
             <Box><ArrowForwardIosIcon sx={{
                 color: txtColor
@@ -95,12 +90,14 @@ function Dashboard({ component }) {
                 height: "100%",
                 background: "#000C2A",
                 display: "flex",
-                justifyContent: "right"
+                justifyContent: "right",
+                background: "url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_1280.png)",
+                backgroundSize: "100% 100%"
             }}>
                 <Box sx={{
-                    width: "25%",
+                    width: "20%",
                     display: "flex",
-                    flexDirection: "column"
+                    flexDirection: "column",
                 }}>
                     <Box sx={{
                         height: "25%",
@@ -137,7 +134,11 @@ function Dashboard({ component }) {
                         justifyContent: "center"
                     }}>
                         <Box sx={{
-                            width: "70%"
+                            width: "90%",
+                            borderRadius: "16px",
+                            overflow: "hidden",
+                            height: "max-content",
+                            background: "#163172"
                         }}>
                             {
                                 links.map((item) => {
@@ -148,7 +149,7 @@ function Dashboard({ component }) {
                             }
                         </Box>
                     </Box>
-                    <Box sx={{
+                    {/* <Box sx={{
                         height: "10%",
                         padding: "16px",
                         borderTop: "1px solid white",
@@ -165,26 +166,31 @@ function Dashboard({ component }) {
                                 }
                             }} />
                         </Box>
-                    </Box>
+                    </Box> */}
                 </Box>
                 <Box sx={{
-                    width: "75%",
-                    background: "#E2EAFF",
+                    width: "80%",
+                    // background: "rgba(226, 234, 255, 0.5)",
+                    background: "rgba(0,0,0,0.2)",
                     margin: "16px 16px 16px 0px",
-                    borderRadius: "16px"
+                    borderRadius: "16px",
+                    display: "flex",
+                    flexDirection: "column"
                 }}>
                     <Box sx={{
                         display: "flex",
                         gap: "32px",
                         padding: "16px 32px",
                         justifyContent: "right",
-                        alignItems: "center"
+                        alignItems: "center",
+                        color: "black"
                     }}>
                         <NotificationsIcon />
                         <AccountCircleIcon fontSize='large' />
                     </Box>
                     <Box sx={{
-                        padding: "16px"
+                        padding: "16px",
+                        flexGrow: "1"
                     }}>
                         {component}
                     </Box>
