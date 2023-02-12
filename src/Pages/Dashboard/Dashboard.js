@@ -98,7 +98,8 @@ function Dashboard({ component }) {
                 <Box sx={{
                     height: "25%",
                     display: "flex",
-                    flexDirection: "column"
+                    flexDirection: "column",
+                    justifyContent: "flex-end"
                 }}>
                     <Box onClick={() => {
                         navigate("/dashboard");
