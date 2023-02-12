@@ -8,6 +8,10 @@ import AllState from './Redux/Global/AllState';
 import { useSelector } from 'react-redux';
 import Loader from './Components/Loader';
 import Lock from './Components/Lock';
+import Products from './Pages/Dashboard/components/Products';
+import Inventory from './Pages/Dashboard/components/Inventory';
+import Expense from './Pages/Dashboard/components/Expense';
+import Overview from './Pages/Dashboard/components/Overview';
 
 const theme = createTheme({
   palette: {
@@ -42,7 +46,10 @@ function App() {
           <Routes>
             <Route path='/' element={<Login />} />
             <Route path='/business' element={<Lock component={<Business/>} />} />
-            <Route path='/dashboard' element={<Lock component={<Dashboard/>} />} />
+            <Route path='/dashboard' element={<Lock component={<Dashboard component={<Overview/>}/>} />} />
+            <Route path='/dashboard/products' element={<Lock component={<Dashboard component={<Products/>}/>} />} />
+            <Route path='/dashboard/inventory' element={<Lock component={<Dashboard component={<Inventory/>}/>} />} />
+            <Route path='/dashboard/expense' element={<Lock component={<Dashboard component={<Expense/>}/>} />} />
           </Routes>
         </AllState>
       </BrowserRouter>
