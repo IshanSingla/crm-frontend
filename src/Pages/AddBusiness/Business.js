@@ -1,10 +1,10 @@
 import { Box, Button, IconButton, styled, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import LandingScreen from '../../Components/LandingScreen';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import AddIcon from '@mui/icons-material/Add';
 import { signoutUser } from '../../Redux/Actions/UserActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const TextInput = styled(TextField)(() => ({
@@ -13,8 +13,8 @@ const TextInput = styled(TextField)(() => ({
 
 function Card({name}){
 
-    let user = useSelector((state) => state.UserReducer);
-    let navigate = useNavigate();
+    // let user = useSelector((state) => state.UserReducer);
+    // let navigate = useNavigate();
     const [color, setColor] = useState("transparent");
     const [txtColor, setTxtColor] = useState("black");
 

@@ -15,7 +15,7 @@ function User({children}){
         }, (err) => {
             dispatch(fetchUserError(err));
         })
-    }, [])
+    }, []);
 
     return(
         <>
