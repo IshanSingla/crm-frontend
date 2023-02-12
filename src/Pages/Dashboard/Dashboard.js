@@ -95,12 +95,14 @@ function Dashboard({ component }) {
                 height: "100%",
                 background: "#000C2A",
                 display: "flex",
-                justifyContent: "right"
+                justifyContent: "right",
             }}>
                 <Box sx={{
                     width: "25%",
                     display: "flex",
-                    flexDirection: "column"
+                    flexDirection: "column",
+                    background: "url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_1280.png)",
+                    borderRadius: "16px"
                 }}>
                     <Box sx={{
                         height: "25%",
