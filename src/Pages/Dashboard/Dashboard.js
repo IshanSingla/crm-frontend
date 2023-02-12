@@ -26,6 +26,7 @@ function Link({ item }) {
 
     let navigate = useNavigate();
     let location = useLocation();
+    const background = "rgba(186, 215, 233, 0.5)";
     const [txtColor, setTxtColor] = useState("white");
 
     useLayoutEffect(() => {
@@ -46,34 +47,28 @@ function Link({ item }) {
         }} onClick={() => {
             navigate(item.link);
         }} sx={(location.pathname === `/dashboard/${item.name.toLowerCase()}`) ? {
-            width: "100%",
-            margin: "26px 0px",
             padding: "12px",
             display: "flex",
             justifyContent: "space-between",
             transition: "0.5s",
-            borderRadius: "8px",
-            background: "white",
+            background: background,
             "&:hover": {
                 cursor: "pointer",
-                background: "white"
+                background: background
             },
         } : {
-            width: "100%",
-            margin: "26px 0px",
             padding: "12px",
             display: "flex",
             justifyContent: "space-between",
             transition: "0.5s",
-            borderRadius: "8px",
             "&:hover": {
                 cursor: "pointer",
-                background: "white"
+                background: background
             },
         }}>
             <Typography sx={{
                 color: txtColor,
-                fontSize: "18px"
+                fontSize: "16px"
             }}>{item.name}</Typography>
             <Box><ArrowForwardIosIcon sx={{
                 color: txtColor
@@ -88,69 +83,69 @@ function Dashboard({ component }) {
 
     return (
         <Box sx={{
-            height: "100vh",
-            background: "#000C2A"
+            background: "#000C2A",
+            minHeight: "100vh",
+            display: "flex",
+            justifyContent: "right",
+            // background: "url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_1280.png)",
+            backgroundSize: "100% 100%"
         }}>
             <Box sx={{
-                height: "100%",
-                background: "#000C2A",
+                width: "20%",
                 display: "flex",
-                justifyContent: "right",
+                flexDirection: "column",
             }}>
                 <Box sx={{
-                    width: "25%",
+                    height: "25%",
                     display: "flex",
-                    flexDirection: "column",
-                    background: "url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_1280.png)",
-                    borderRadius: "16px"
+                    flexDirection: "column"
+                }}>
+                    <Box onClick={() => {
+                        navigate("/dashboard");
+                    }} sx={{
+                        padding: "12px",
+                        borderTop: "1px solid white",
+                        width: "100%",
+                        display: "flex",
+                        gap: "16px",
+                        alignItems: "center",
+                        "&:hover": {
+                            cursor: "pointer"
+                        },
+                    }}>
+                        <BarChartIcon sx={{
+                            color: "white"
+                        }} />
+                        <Typography sx={{
+                            color: "white",
+                            fontSize: "18px",
+                        }}>COMPANY OVERVIEW</Typography>
+                    </Box>
+                </Box>
+                <Box sx={{
+                    height: "65%",
+                    borderTop: "1px solid white",
+                    display: "flex",
+                    padding: "15% 16px 0px 16px",
+                    justifyContent: "center"
                 }}>
                     <Box sx={{
-                        height: "25%",
-                        display: "flex",
-                        alignItems: "flex-end"
+                        width: "90%",
+                        borderRadius: "16px",
+                        overflow: "hidden",
+                        height: "max-content",
+                        background: "#163172"
                     }}>
-                        <Box onClick={() => {
-                            navigate("/dashboard");
-                        }} sx={{
-                            padding: "12px",
-                            borderTop: "1px solid white",
-                            width: "100%",
-                            display: "flex",
-                            gap: "16px",
-                            alignItems: "center",
-                            "&:hover": {
-                                cursor: "pointer"
-                            },
-                        }}>
-                            <BarChartIcon sx={{
-                                color: "white"
-                            }} />
-                            <Typography sx={{
-                                color: "white",
-                                fontSize: "18px",
-                            }}>COMPANY OVERVIEW</Typography>
-                        </Box>
+                        {
+                            links.map((item) => {
+                                return (
+                                    <Link key={item.name} item={item} />
+                                )
+                            })
+                        }
                     </Box>
-                    <Box sx={{
-                        height: "65%",
-                        borderTop: "1px solid white",
-                        display: "flex",
-                        padding: "15% 16px 0px 16px",
-                        justifyContent: "center"
-                    }}>
-                        <Box sx={{
-                            width: "70%"
-                        }}>
-                            {
-                                links.map((item) => {
-                                    return (
-                                        <Link key={item.name} item={item} />
-                                    )
-                                })
-                            }
-                        </Box>
-                    </Box>
-                    <Box sx={{
+                </Box>
+                {/* <Box sx={{
                         height: "10%",
                         padding: "16px",
                         borderTop: "1px solid white",
@@ -167,29 +162,33 @@ function Dashboard({ component }) {
                                 }
                             }} />
                         </Box>
-                    </Box>
+                    </Box> */}
+            </Box>
+            <Box sx={{
+                width: "80%",
+                background: "rgba(226, 234, 255, 1)",
+                // background: "rgba(0,0,0,0.2)",
+                margin: "16px 16px 16px 0px",
+                borderRadius: "16px",
+                display: "flex",
+                flexDirection: "column"
+            }}>
+                <Box sx={{
+                    display: "flex",
+                    gap: "32px",
+                    padding: "16px 32px",
+                    justifyContent: "right",
+                    alignItems: "center",
+                    color: "black"
+                }}>
+                    <NotificationsIcon />
+                    <AccountCircleIcon fontSize='large' />
                 </Box>
                 <Box sx={{
-                    width: "75%",
-                    background: "#E2EAFF",
-                    margin: "16px 16px 16px 0px",
-                    borderRadius: "16px"
+                    height: "100%",
+                    padding: "16px",
                 }}>
-                    <Box sx={{
-                        display: "flex",
-                        gap: "32px",
-                        padding: "16px 32px",
-                        justifyContent: "right",
-                        alignItems: "center"
-                    }}>
-                        <NotificationsIcon />
-                        <AccountCircleIcon fontSize='large' />
-                    </Box>
-                    <Box sx={{
-                        padding: "16px"
-                    }}>
-                        {component}
-                    </Box>
+                    {component}
                 </Box>
             </Box>
         </Box>
