@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { Box, styled, Typography } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -11,19 +11,62 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 const links = [
     {
         name: "PRODUCTS",
-        link: "/dashboard/products"
+        link: "/dashboard/products",
+        drop: [
+            {
+                name: "PRODUCT LISTING",
+                link: "/dashboard/products"
+            },
+            {
+                name: "DISTRIBUTION",
+                link: "/dashboard/products"
+            }
+        ],
+        height: "97px"
     },
     {
         name: "INVENTORY",
-        link: "/dashboard/inventory"
+        link: "/dashboard/inventory",
+        drop: [
+            {
+                name: "STOCK LEVEL",
+                link: "/dashboard/inventory"
+            },
+            {
+                name: "STOCK ALERT",
+                link: "/dashboard/inventory"
+            }
+        ],
+        height: "97px"
     },
     {
         name: "EXPENSE",
-        link: "/dashboard/expense"
+        link: "/dashboard/expense",
+        drop: [
+            {
+                name: "ESTIMATE SELL",
+                link: "/dashboard/expense"
+            },
+            {
+                name: "SOLD",
+                link: "/dashboard/expense"
+            },
+            {
+                name: "LEFT STOCK",
+                link: "/dashboard/expense"
+            }
+        ],
+        height: "144.5px"
     },
-]
+];
 
-function Link({ item }) {
+const Container = styled(Box)(({ theme }) => ({
+    [theme.breakpoints.down("md")]: {
+        height: "100%"
+    }
+}))
+
+function DropDownLink({ name, data, display }) {
 
     let navigate = useNavigate();
     let location = useLocation();
@@ -31,7 +74,7 @@ function Link({ item }) {
     const [txtColor, setTxtColor] = useState("white");
 
     useLayoutEffect(() => {
-        if (location.pathname === `/dashboard/${item.name.toLowerCase()}`) {
+        if (location.pathname === `/dashboard/${name.toLowerCase()}/${data.name.toLowerCase()}`) {
             setTxtColor("#000C2A");
         } else {
             setTxtColor("white");
@@ -42,12 +85,10 @@ function Link({ item }) {
         <Box onMouseEnter={() => {
             setTxtColor("#000C2A");
         }} onMouseLeave={() => {
-            if (location.pathname !== `/dashboard/${item.name.toLowerCase()}`) {
+            if (location.pathname !== `/dashboard/${name.toLowerCase()}/${data.name.toLowerCase()}`) {
                 setTxtColor("white");
             }
-        }} onClick={() => {
-            navigate(item.link);
-        }} sx={(location.pathname === `/dashboard/${item.name.toLowerCase()}`) ? {
+        }} sx={(location.pathname === `/dashboard/${name.toLowerCase()}/${data.name.toLowerCase()}`) ? {
             padding: "12px",
             display: "flex",
             justifyContent: "space-between",
@@ -62,18 +103,118 @@ function Link({ item }) {
             display: "flex",
             justifyContent: "space-between",
             transition: "0.5s",
+            display: display,
             "&:hover": {
                 cursor: "pointer",
                 background: background
-            },
+            }
         }}>
             <Typography sx={{
                 color: txtColor,
-                fontSize: "16px"
-            }}>{item.name}</Typography>
-            <Box><ArrowForwardIosIcon sx={{
-                color: txtColor
-            }} /></Box>
+                fontSize: "14px"
+            }}>{data.name}</Typography>
+        </Box>
+    )
+}
+
+function Link({ item }) {
+
+    let navigate = useNavigate();
+    let location = useLocation();
+    const background = "rgba(186, 215, 233, 0.5)";
+    const [txtColor, setTxtColor] = useState("white");
+    const [dropdown, setDropdown] = useState(false);
+    const [style, setStyle] = useState({
+        height: "0px",
+        display: "none"
+    });
+    const [style2, setStyle2] = useState({
+        transform: "rotate(0deg)"
+    });
+
+    useLayoutEffect(() => {
+        if (location.pathname === `/dashboard/${item.name.toLowerCase()}`) {
+            setTxtColor("#000C2A");
+            setDropdown(true);
+        } else {
+            setTxtColor("white");
+            setDropdown(false);
+        }
+    }, [location.pathname]);
+
+    useEffect(() => {
+        if (dropdown) {
+            setStyle({
+                height: item.height,
+                display: "block"
+            });
+            setStyle2({
+                transform: "rotate(90deg)"
+            });
+        } else {
+            setStyle({
+                height: "0px",
+                display: "none"
+            })
+            setStyle2({
+                transform: "rotate(0deg)"
+            });
+        }
+    }, [dropdown]);
+
+    return (
+        <Box>
+            <Box onMouseEnter={() => {
+                setTxtColor("#000C2A");
+            }} onMouseLeave={() => {
+                if (location.pathname !== `/dashboard/${item.name.toLowerCase()}`) {
+                    setTxtColor("white");
+                }
+            }} onClick={() => {
+                navigate(item.link);
+                setDropdown(!dropdown);
+            }} sx={(location.pathname === `/dashboard/${item.name.toLowerCase()}`) ? {
+                padding: "12px",
+                display: "flex",
+                justifyContent: "space-between",
+                transition: "0.5s",
+                background: background,
+                "&:hover": {
+                    cursor: "pointer",
+                    background: background
+                },
+            } : {
+                padding: "12px",
+                display: "flex",
+                justifyContent: "space-between",
+                transition: "0.5s",
+                "&:hover": {
+                    cursor: "pointer",
+                    background: background
+                },
+            }}>
+                <Typography sx={{
+                    color: txtColor,
+                    fontSize: "16px"
+                }}>{item.name}</Typography>
+                <Box><ArrowForwardIosIcon sx={{
+                    color: txtColor,
+                    ...style2,
+                    transition: "0.3s"
+                }} /></Box>
+            </Box>
+            <Box sx={{
+                height: style.height,
+                transition: "0.3s"
+            }}>
+                {
+                    item.drop.map((data) => {
+                        return (
+                            <DropDownLink name={item.name} display={style.display} data={data} />
+                        )
+                    })
+                }
+            </Box>
         </Box>
     )
 }
@@ -89,7 +230,7 @@ function Dashboard({ component }) {
         opacity: "0",
         translate: "0px"
     });
-    const [drawer, setDrawer] = useState("0%");
+    const [drawer, setDrawer] = useState("-150%");
 
     return (
         <Box sx={{
@@ -100,16 +241,16 @@ function Dashboard({ component }) {
             // background: "url(https://cdn.pixabay.com/photo/2020/04/22/12/12/background-5077810_1280.png)",
             backgroundSize: "100% 100%"
         }}>
-            <Box sx={{
+            <Container sx={{
                 width: "300px",
                 background: "#000C2A",
                 backgroundSize: "100% 100%",
                 display: "flex",
                 flexDirection: "column",
-                position: {md: "relative", lg: "relative", xl: "relative", sm: "fixed", xs: "fixed"},
-                left: "0%",
+                position: { md: "relative", lg: "relative", xl: "relative", sm: "fixed", xs: "fixed" },
+                left: {xs: drawer, sm: drawer, md: "0%", lg: "0%", xl: "0%"},
                 top: "0%",
-                height: {sm: "100%", xs: "100%", md: "min-content", lg: "min-content", xl: "min-content"}
+                transition: "0.5s"
             }}>
                 <img style={{
                     position: "absolute",
@@ -236,9 +377,10 @@ function Dashboard({ component }) {
                 <Box sx={{
                     height: "75%",
                     minHeight: "200px",
+                    overflowY: "hidden",
                     borderTop: "1px solid white",
                     display: "flex",
-                    padding: "15% 16px 0px 16px",
+                    padding: "15% 16px 16px 16px",
                     justifyContent: "center",
                     zIndex: "20"
                 }}>
@@ -258,12 +400,12 @@ function Dashboard({ component }) {
                         }
                     </Box>
                 </Box>
-            </Box>
+            </Container>
             <Box sx={{
                 flexGrow: "1",
                 background: "rgba(226, 234, 255, 1)",
                 // background: "rgba(0,0,0,0.2)",
-                margin: {md: "16px 16px 16px 0px", lg: "16px 16px 16px 0px", xl: "16px 16px 16px 0px", sm: "16px", xs: "16px"},
+                margin: { md: "16px 16px 16px 0px", lg: "16px 16px 16px 0px", xl: "16px 16px 16px 0px", sm: "16px", xs: "16px" },
                 borderRadius: "16px",
                 display: "flex",
                 flexDirection: "column"
