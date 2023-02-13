@@ -12,7 +12,7 @@ function Loader(){
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: "20",
+            zIndex: "25",
             background: "#FFF8EF"
         }}>
             <Box sx={{
