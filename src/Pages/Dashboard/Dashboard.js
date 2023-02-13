@@ -109,7 +109,7 @@ function Dashboard({ component }) {
                 position: {md: "relative", lg: "relative", xl: "relative", sm: "fixed", xs: "fixed"},
                 left: "0%",
                 top: "0%",
-                height: {sm: "100%", xs: "100%", md: "100vh", lg: "100vh", xl: "100vh"}
+                height: {sm: "100%", xs: "100%", md: "min-content", lg: "min-content", xl: "min-content"}
             }}>
                 <img style={{
                     position: "absolute",
