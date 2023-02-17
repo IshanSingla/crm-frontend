@@ -59,8 +59,6 @@ function Business(){
     let dispatch = useDispatch();
     let navigate = useNavigate();
 
-    console.log(mongo);
-
     return(
         <LandingScreen component={
             <Box sx={{
