@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import LandingScreen from '../../Components/LandingScreen';
+import { getMongoData } from '../../Redux/Actions/MongoUserActions';
 import { fetchUser } from "../../Redux/Actions/UserActions";
 
 const TextInput = styled(TextField)(() => ({
@@ -21,7 +22,7 @@ function Login() {
     const handleSignIn = (e) => {
         e.preventDefault();
         if(email !== "" && password !== ""){
-            dispatch(fetchUser(email, password));
+            dispatch(fetchUser(email, password, getMongoData));
             navigate("/business");   
         }
         setEmail("");

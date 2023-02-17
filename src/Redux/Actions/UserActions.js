@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getIdToken, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../Config/firebase";
 
 export const FETCH_USER_REQUEST = "FETCH_USER_REQUEST";
@@ -23,11 +23,13 @@ export const fetchUserError = (error) => {
     }
 }
 
-export const fetchUser = (email, password) => {
+export const fetchUser = (email, password, getMongoData) => {
     return (dispatch) => {
         dispatch(fetchUserRequest());
-        signInWithEmailAndPassword(auth, email, password).then((userCreds) => {
+        signInWithEmailAndPassword(auth, email, password).then(async (userCreds) => {
             dispatch(fetchUserSuccess(userCreds));
+            let token = await getIdToken(userCreds.user);
+            dispatch(getMongoData(token));
         }).catch((err) => {
             dispatch(fetchUserError(err));
         })

@@ -12,6 +12,7 @@ import Products from './Pages/Dashboard/components/Products';
 import Inventory from './Pages/Dashboard/components/Inventory';
 import Expense from './Pages/Dashboard/components/Expense';
 import Overview from './Pages/Dashboard/components/Overview';
+import Signup from './Pages/Signup/Signup';
 
 const theme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ function App() {
           {(bool || flag) && <Loader/>}
           <Routes>
             <Route path='/' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
             <Route path='/business' element={<Lock component={<Business/>} />} />
             <Route path='/dashboard' element={<Lock component={<Dashboard component={<Overview/>}/>} />} />
             <Route path='/dashboard/products' element={<Lock component={<Dashboard component={<Products/>}/>} />} />

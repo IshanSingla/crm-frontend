@@ -4,7 +4,7 @@ import LandingScreen from '../../Components/LandingScreen';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import AddIcon from '@mui/icons-material/Add';
 import { signoutUser } from '../../Redux/Actions/UserActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const TextInput = styled(TextField)(() => ({
@@ -58,6 +58,8 @@ function Business(){
 
     let dispatch = useDispatch();
     let navigate = useNavigate();
+
+    console.log(mongo);
 
     return(
         <LandingScreen component={
