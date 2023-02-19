@@ -9,10 +9,10 @@ export default function SinglaBuissness({ match }) {
   return (
     <Dashboard>
       <Routes>
-        <Route path="./dashboard" element={<Overview />} />
-        <Route path="./products" element={<Overview />} />
-        <Route path="./inventory" element={<Inventory />} />
-        <Route path="./expense" element={<Expense />} />
+        <Route path="/dashboard" element={<Overview />} />
+        <Route path="/products" element={<Overview />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/expense" element={<Expense />} />
       </Routes>
     </Dashboard>
   );

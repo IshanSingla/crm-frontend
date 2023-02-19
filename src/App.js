@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  BrowserRouter,
-  Navigate,
-  redirect,
-  Route,
-  Routes,
-} from "react-router-dom";
-import Business from "./Pages/AllBusiness/AllBusiness";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AllState from "./Redux/Global/AllState";
 import { useSelector } from "react-redux";
 import Loader from "./Components/Loader";
 import Auth from "./Routes/Auth";
+import Business from "./Routes/Business";
 
 const theme = createTheme({
   palette: {

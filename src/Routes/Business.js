@@ -1,4 +1,3 @@
-import { Dashboard } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -19,8 +18,8 @@ export default function Business() {
   return (
     bool && (
       <Routes>
-        <Route path="./" element={<AllBusiness />} />
-        <Route path="./:id/*" element={<SinglaBuissness />} />
+        <Route path="/" element={<AllBusiness />} />
+        <Route path="/:id/*" element={<SinglaBuissness />} />
       </Routes>
     )
   );
