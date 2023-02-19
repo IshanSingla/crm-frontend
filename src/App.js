@@ -7,18 +7,11 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Login from "./Pages/Login/Login";
-import Business from "./Pages/AddBusiness/Business";
-import Dashboard from "./Pages/Dashboard/Dashboard";
+import Business from "./Pages/AllBusiness/AllBusiness";
 import AllState from "./Redux/Global/AllState";
 import { useSelector } from "react-redux";
 import Loader from "./Components/Loader";
-import Lock from "./Components/Lock";
-import Products from "./Pages/Dashboard/components/Products";
-import Inventory from "./Pages/Dashboard/components/Inventory";
-import Expense from "./Pages/Dashboard/components/Expense";
-import Overview from "./Pages/Dashboard/components/Overview";
-import Signup from "./Pages/Signup/Signup";
+import Auth from "./Routes/Auth";
 
 const theme = createTheme({
   palette: {
@@ -51,36 +44,8 @@ function App() {
           {(bool || flag) && <Loader />}
           <Routes>
             <Route path="/" element={<Navigate to="/auth/login" />} />
-            <Route path="/auth/login" element={<Login />} />
-            <Route path="/auth/signup" element={<Signup />} />
-            <Route
-              path="/business"
-              element={<Lock component={<Business />} />}
-            />
-            <Route
-              path="/business/dashboard"
-              element={
-                <Lock component={<Dashboard component={<Overview />} />} />
-              }
-            />
-            <Route
-              path="/business/dashboard/products"
-              element={
-                <Lock component={<Dashboard component={<Products />} />} />
-              }
-            />
-            <Route
-              path="/business/dashboard/inventory"
-              element={
-                <Lock component={<Dashboard component={<Inventory />} />} />
-              }
-            />
-            <Route
-              path="/business/dashboard/expense"
-              element={
-                <Lock component={<Dashboard component={<Expense />} />} />
-              }
-            />
+            <Route path="/auth/*" element={<Auth />} />
+            <Route path="/business/*" element={<Business />} />
           </Routes>
         </AllState>
       </BrowserRouter>
