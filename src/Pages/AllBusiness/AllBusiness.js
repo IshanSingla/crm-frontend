@@ -6,31 +6,79 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LandingScreen from "../../Components/LandingScreen";
 import AddIcon from "@mui/icons-material/Add";
 import { signoutUser } from "../../Redux/Actions/UserActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Card from "../../Components/Card";
+import { publicApi } from "../../Api";
+import { getIdToken } from "firebase/auth";
 
 const TextInput = styled(TextField)(() => ({
   flexGrow: "1",
 }));
 
 function AllBusiness() {
+  let user = useSelector((state) => state.UserReducer);
+
   const [business, setBusiness] = useState([]);
   const [name, setName] = useState("");
+  const [data, setData] = useState([]);
 
   let dispatch = useDispatch();
   let navigate = useNavigate();
+
+  const fetchData = () => {
+    // if (user.user) return;
+    console.log(user.user);
+    getIdToken(user.user).then((token) => {
+      publicApi
+        .get(
+          "/buissness",
+          {},
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data.buissness);
+        });
+    });
+  };
+
+  const handleSubmit = () => {
+    getIdToken(user.user).then((token) => {
+      publicApi.post(
+        "/buissness/create",
+        {
+          buissnessName: name,
+          buissnessGstNo: "123456",
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+    });
+    console.log("running");
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [user.user]);
 
   return (
     <LandingScreen
       component={
         <Box
           sx={{
-            width: "50%",
+            width: "80%",
           }}
         >
           <Box
@@ -48,20 +96,7 @@ function AllBusiness() {
               }}
             />
             <IconButton
-              onClick={() => {
-                let flag = true;
-                business.forEach((item) => {
-                  if (item === name) {
-                    flag = false;
-                  }
-                });
-                if (flag) {
-                  if (name !== "") {
-                    setBusiness((prevData) => [...prevData, name]);
-                  }
-                }
-                setName("");
-              }}
+              onClick={handleSubmit}
               sx={{
                 border: "4px solid #163172",
                 color: "#163172",
@@ -124,7 +159,7 @@ function AllBusiness() {
             }}
             variant="contained"
           >
-            Signout
+            Sign out
           </Button>
         </Box>
       }
