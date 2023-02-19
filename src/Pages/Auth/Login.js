@@ -1,19 +1,17 @@
 import { Box, Button, styled, TextField } from "@mui/material";
+import { getIdToken, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import LandingScreen from "../../Components/LandingScreen";
-import { getMongoData } from "../../Redux/Actions/MongoUserActions";
-import { fetchUser } from "../../Redux/Actions/UserActions";
-
+import { auth } from "../../Config/firebase";
 const TextInput = styled(TextField)(() => ({
   width: "100%",
   marginBottom: "16px",
 }));
 
-function Login() {
-  let user = useSelector((state) => state.UserReducer);
-  let dispatch = useDispatch();
+function Login({ currentUser }) {
+  // let dispatch = useDispatch();
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,18 +19,22 @@ function Login() {
   const handleSignIn = (e) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
-      dispatch(fetchUser(email, password, getMongoData));
+      signInWithEmailAndPassword(auth, email, password).then(async (userCreds) => {
+        const token = await getIdToken(userCreds.user);
+        console.log(token);
+
       navigate("/business");
+    });
     }
     setEmail("");
     setPassword("");
   };
 
   useEffect(() => {
-    if (user.user?.length !== 0 && user.user) {
+    if (currentUser?.length !== 0 && currentUser) {
       navigate("/business");
     }
-  }, [user.user]);
+  }, [currentUser]);
 
   return (
     <LandingScreen
@@ -58,7 +60,7 @@ function Login() {
             }}
           />
           <Button
-            disabled={user.loader}
+            // disabled={user.loader}
             onClick={handleSignIn}
             variant="contained"
             sx={{

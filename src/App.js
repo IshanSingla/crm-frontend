@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import AllState from "./Redux/Global/AllState";
-import { useSelector } from "react-redux";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Loader from "./Components/Loader";
 import Auth from "./Routes/Auth";
 import Business from "./Routes/Business";
+import { auth } from "./Config/firebase";
 
 const theme = createTheme({
   palette: {
@@ -16,34 +15,19 @@ const theme = createTheme({
 });
 
 function App() {
-  let user = useSelector((state) => state.UserReducer);
-  const [bool, setBool] = useState(true);
-  const [flag, setFlag] = useState(false);
-
-  useEffect(() => {
-    setBool(user.loader);
-  }, [user.loader]);
-
-  useEffect(() => {
-    setFlag(true);
-    setInterval(() => {
-      setFlag(false);
-    }, 4000);
-  }, []);
-
-  return (
+  const navigater = useNavigate();
+  const [loding, changeLoding] = useState(false);
+  const [currentUser, changeUser] = useState(auth.currentUser);
+  return loding ? (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <AllState>
-          {(bool || flag) && <Loader />}
-          <Routes>
-            <Route path="/" element={<Navigate to="/auth/login" />} />
-            <Route path="/auth/*" element={<Auth />} />
-            <Route path="/business/*" element={<Business />} />
-          </Routes>
-        </AllState>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/auth/login" />} currentUser={currentUser} />
+        <Route path="/auth/*" element={<Auth currentUser={currentUser}/>} />
+        <Route path="/business/*" element={<Business currentUser={currentUser}/>} />
+      </Routes>
     </ThemeProvider>
+  ) : (
+    <Loader changeLoding={changeLoding} changeUser={changeUser} />
   );
 }
 

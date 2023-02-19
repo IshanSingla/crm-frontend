@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AllBusiness from "../Pages/AllBusiness/AllBusiness";
 import SinglaBuissness from "./SinglaBuissness";
 
-export default function Business() {
-  let user = useSelector((state) => state.UserReducer);
+export default function Business({currentUser}) {
   let navigate = useNavigate();
-  const [bool, setBool] = useState(false);
-
   useEffect(() => {
-    setBool(user.user);
-    if (!user.user) {
+    if (!currentUser) {
       navigate("/");
     }
-  }, [user.user]);
+  }, [currentUser]);
   return (
-    bool && (
+    currentUser && (
       <Routes>
-        <Route path="/" element={<AllBusiness />} />
-        <Route path="/:id/*" element={<SinglaBuissness />} />
+        <Route path="/" element={<AllBusiness currentUser={currentUser}/>} />
+        <Route path="/:id/*" element={<SinglaBuissness currentUser={currentUser}/>} />
       </Routes>
     )
   );

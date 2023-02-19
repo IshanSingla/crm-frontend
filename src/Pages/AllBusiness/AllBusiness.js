@@ -9,8 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 import LandingScreen from "../../Components/LandingScreen";
 import AddIcon from "@mui/icons-material/Add";
-import { signoutUser } from "../../Redux/Actions/UserActions";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Card from "../../Components/Card";
 import { publicApi } from "../../Api";
@@ -20,20 +18,15 @@ const TextInput = styled(TextField)(() => ({
   flexGrow: "1",
 }));
 
-function AllBusiness() {
-  let user = useSelector((state) => state.UserReducer);
+function AllBusiness({ currentUser }) {
 
   const [business, setBusiness] = useState([]);
   const [name, setName] = useState("");
   const [data, setData] = useState([]);
-
-  let dispatch = useDispatch();
   let navigate = useNavigate();
 
   const fetchData = () => {
-    // if (user.user) return;
-    console.log(user.user);
-    getIdToken(user.user).then((token) => {
+    getIdToken(currentUser).then((token) => {
       publicApi
         .get(
           "/buissness",
@@ -52,7 +45,7 @@ function AllBusiness() {
   };
 
   const handleSubmit = () => {
-    getIdToken(user.user).then((token) => {
+    getIdToken(currentUser).then((token) => {
       publicApi.post(
         "/buissness/create",
         {
@@ -71,7 +64,7 @@ function AllBusiness() {
 
   useEffect(() => {
     fetchData();
-  }, [user.user]);
+  }, [currentUser]);
 
   return (
     <LandingScreen
@@ -154,7 +147,7 @@ function AllBusiness() {
           </Box>
           <Button
             onClick={() => {
-              dispatch(signoutUser());
+              // dispatch(signoutUser());
               navigate("/");
             }}
             variant="contained"
