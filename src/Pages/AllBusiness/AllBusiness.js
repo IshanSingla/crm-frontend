@@ -13,58 +13,38 @@ import { useNavigate } from "react-router-dom";
 import Card from "../../Components/Card";
 import { publicApi } from "../../Api";
 import { getIdToken } from "firebase/auth";
+import ListBusiness from "./components/ListBusiness";
 
 const TextInput = styled(TextField)(() => ({
   flexGrow: "1",
 }));
 
 function AllBusiness({ currentUser }) {
-
-  const [business, setBusiness] = useState([]);
   const [name, setName] = useState("");
-  const [data, setData] = useState([]);
-  let navigate = useNavigate();
 
-  const fetchData = () => {
-    getIdToken(currentUser).then((token) => {
+  const handleSubmit = () => {
+    currentUser.getIdToken().then((token) => {
       publicApi
-        .get(
-          "/buissness",
-          {},
+        .post(
+          "/buissness/create",
+          {
+            buissnessName: name,
+            buissnessGstNo: "123456",
+          },
           {
             headers: {
               authorization: token,
             },
           }
         )
-        .then((res) => {
-          console.log(res.data);
-          setData(res.data.buissness);
+        .then(() => {
+          setName("");
+        })
+        .catch((err) => {
+          console.log(err.message);
         });
     });
   };
-
-  const handleSubmit = () => {
-    getIdToken(currentUser).then((token) => {
-      publicApi.post(
-        "/buissness/create",
-        {
-          buissnessName: name,
-          buissnessGstNo: "123456",
-        },
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
-    });
-    console.log("running");
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [currentUser]);
 
   return (
     <LandingScreen
@@ -109,51 +89,8 @@ function AllBusiness({ currentUser }) {
           >
             Your Businesses:
           </Typography>
-          <Box
-            sx={{
-              height: "300px",
-              border: "1px solid black",
-              padding: "32px 16px 16px 16px",
-              overflowY: "scroll",
-              "&::-webkit-scrollbar": {
-                width: "5px",
-              },
-              "&::-webkit-scrollbar-track": {
-                background: "transparent",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                background: "rgb(0,12,42,0.2)",
-                borderRadius: "16px",
-              },
-              marginBottom: "16px",
-            }}
-          >
-            {business.length !== 0 ? (
-              business.map((item) => {
-                return <Card name={item} />;
-              })
-            ) : (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100%",
-                }}
-              >
-                <Typography>No Business Added</Typography>
-              </Box>
-            )}
-          </Box>
-          <Button
-            onClick={() => {
-              // dispatch(signoutUser());
-              navigate("/");
-            }}
-            variant="contained"
-          >
-            Sign out
-          </Button>
+
+          <ListBusiness currentUser={currentUser} name={name} />
         </Box>
       }
     />
