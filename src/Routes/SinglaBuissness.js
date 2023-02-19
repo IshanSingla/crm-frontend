@@ -1,32 +1,21 @@
 import Dashboard from "../Components/Dashboard";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Expense from "../Pages/Dashboard/Expense";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Inventory from "../Pages/Dashboard/Inventory";
-import Overview from "../Pages/Dashboard/Overview";
+import Expense from "../Pages/Dashboard/Expense";
 
-export default function SinglaBuissness({ match, currentUser }) {
-  console.log(match);
+export default function SinglaBuissness({ currentUser }) {
   return (
-    <Dashboard>
-      <Routes>
-        <Route
-          path="/dashboard"
-          element={<Overview currentUser={currentUser} />}
-        />
-        <Route
-          path="/products"
-          element={<Overview currentUser={currentUser} />}
-        />
-        <Route
-          path="/inventory"
-          element={<Inventory currentUser={currentUser} />}
-        />
-        <Route
-          path="/expense"
-          element={<Expense currentUser={currentUser} />}
-        />
-      </Routes>
-    </Dashboard>
+    <Dashboard
+      component={
+        <Routes>
+          <Route path="/" element={<Navigate to="./dashboard" />} />
+          <Route path="/dashboard" element={"dashboard"} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/expense" element={<Expense />} />
+          <Route path="/setting" element={"setting"} />
+        </Routes>
+      }
+    />
   );
 }

@@ -1,18 +1,9 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  styled,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, IconButton, styled, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
 import LandingScreen from "../../Components/LandingScreen";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
 import Card from "../../Components/Card";
 import { publicApi } from "../../Api";
-import { getIdToken } from "firebase/auth";
 import ListBusiness from "./components/ListBusiness";
 
 const TextInput = styled(TextField)(() => ({
@@ -26,7 +17,7 @@ function AllBusiness({ currentUser }) {
     currentUser.getIdToken().then((token) => {
       publicApi
         .post(
-          "/buissness/create",
+          "/buissness/create/",
           {
             buissnessName: name,
             buissnessGstNo: "123456",
