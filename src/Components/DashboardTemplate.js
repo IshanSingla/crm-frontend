@@ -478,7 +478,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Dashboard({ component }) {
+export default function DashboardTemplate({ component, id }) {
+  console.log(id);
   return (
     <div className="flex flex-row bg-[#000C2A] w-full h-screen py-3 pr-3 over">
       <div className="w-[16%] py-8">
@@ -499,11 +500,13 @@ export default function Dashboard({ component }) {
             />
             <p> Overview </p>
           </div>
-          <img
-            src={require("../Assets/setting.svg").default}
-            className="w-5 "
-            alt=""
-          />
+          <Link to={"./setting"}>
+            <img
+              src={require("../Assets/setting.svg").default}
+              className="w-5 "
+              alt=""
+            />
+          </Link>
         </div>
 
         {/* Links */}
@@ -541,14 +544,6 @@ export default function Dashboard({ component }) {
               alt=""
             />
           </Link>
-          {/* <div className="flex justify-between px-2 transition-all hover:bg-black hover:bg-opacity-30 rounded-b-2xl py-2">
-            <p>Customers</p>
-            <img
-              src={require("../Assets/rightArr.svg").default}
-              className="w-5 "
-              alt=""
-            />
-          </div> */}
         </div>
       </div>
 
@@ -565,7 +560,11 @@ export default function Dashboard({ component }) {
             alt=""
           />
         </div>
-        <div className=" mt-10 h-4/6 box-border">{component}</div>
+        <div className="ml-16 mt-10 h-fit box-border mb-6">
+          <div className="text-4xl font-normal capitalize mb-3">{id}</div>
+          <hr className="w-[90%] bg-black h-[2px]" />
+        </div>
+        {component}
       </div>
     </div>
   );

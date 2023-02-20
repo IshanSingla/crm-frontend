@@ -1,19 +1,23 @@
-import Dashboard from "../Components/Dashboard";
+import DashboardTemplate from "../Components/DashboardTemplate";
+import Dashboard from "../Pages/Buissness/Dashboard";
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import Inventory from "../Pages/Dashboard/Inventory";
-import Expense from "../Pages/Dashboard/Expense";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import Inventory from "../Pages/Buissness/Inventory";
+import Expense from "../Pages/Buissness/Expense";
 
 export default function SinglaBuissness({ currentUser }) {
+  const param = useParams();
+  const { id } = param;
   return (
-    <Dashboard
+    <DashboardTemplate
+      id ={param["*"]}
       component={
         <Routes>
-          <Route path="/" element={<Navigate to="./dashboard" />} />
-          <Route path="/dashboard" element={"dashboard"} />
-          <Route path="/inventory" element={<Inventory currentUser={currentUser}/>} />
-          <Route path="/expense" element={<Expense currentUser={currentUser}/>} />
+          <Route path="/dashboard" element={<Dashboard currentUser={currentUser} id={id} />} />
+          <Route path="/inventory" element={<Inventory currentUser={currentUser} id={id} />} />
+          <Route path="/expense" element={<Expense currentUser={currentUser} id={id} />} />
           <Route path="/setting" element={"setting"} />
+          <Route path="*" element={<Navigate to="./dashboard" />} />
         </Routes>
       }
     />

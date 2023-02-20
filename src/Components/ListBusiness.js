@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { publicApi } from "../../../Api";
+import { publicApi } from "../Api";
 
 const ListBusiness = ({ currentUser, name }) => {
   const [data, setData] = useState();

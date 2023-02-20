@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { publicApi } from "../../Api";
 
-function Inventory({ currentUser }) {
+function Inventory({ currentUser, id }) {
   const [from, setFrom] = useState(0);
   const [gap, setGap] = useState(10);
   const [pages, setPages] = useState(1);
@@ -16,7 +16,6 @@ function Inventory({ currentUser }) {
     "Transac.Count",
     "Transac. Details",
   ];
-  let id = "63f2d5dabc72720658ca8edc";
   useEffect(() => {
     currentUser.getIdToken().then((token) => {
       publicApi
@@ -123,7 +122,7 @@ function Inventory({ currentUser }) {
                 <tr className="border-b border-zinc-200" key={rowID}>
                   {val.map((row, rowID2) => (
                     <td className="" key={rowID2}>
-                      <div className="overflow-auto max-h-[35px] px-4 py-2 scroll">
+                      <div className="overflow-scroll max-h-[35px] px-4 py-2 scroll">
                         {row}
                       </div>
                     </td>

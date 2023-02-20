@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import AllBusiness from "../Pages/AllBusiness/AllBusiness";
+import AllBusiness from "../Pages/AllBusiness";
 import SinglaBuissness from "./SinglaBuissness";
 
-export default function Business({currentUser}) {
+export default function Business({ currentUser }) {
   let navigate = useNavigate();
   useEffect(() => {
     if (!currentUser) {
@@ -13,8 +13,11 @@ export default function Business({currentUser}) {
   return (
     currentUser && (
       <Routes>
-        <Route path="/" element={<AllBusiness currentUser={currentUser}/>} />
-        <Route path="/:id/*" element={<SinglaBuissness currentUser={currentUser}/>} />
+        <Route path="/" element={<AllBusiness currentUser={currentUser} />} />
+        <Route
+          path="/:id/*"
+          element={<SinglaBuissness currentUser={currentUser} />}
+        />
       </Routes>
     )
   );

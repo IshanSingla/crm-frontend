@@ -1,10 +1,9 @@
 import { Box, IconButton, styled, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import LandingScreen from "../../Components/LandingScreen";
+import LandingScreen from "../Components/LandingScreen";
 import AddIcon from "@mui/icons-material/Add";
-import Card from "../../Components/Card";
-import { publicApi } from "../../Api";
-import ListBusiness from "./components/ListBusiness";
+import { publicApi } from "../Api";
+import ListBusiness from "../Components/ListBusiness";
 
 const TextInput = styled(TextField)(() => ({
   flexGrow: "1",
