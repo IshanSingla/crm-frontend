@@ -11,8 +11,8 @@ export default function SinglaBuissness({ currentUser }) {
         <Routes>
           <Route path="/" element={<Navigate to="./dashboard" />} />
           <Route path="/dashboard" element={"dashboard"} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/expense" element={<Expense />} />
+          <Route path="/inventory" element={<Inventory currentUser={currentUser}/>} />
+          <Route path="/expense" element={<Expense currentUser={currentUser}/>} />
           <Route path="/setting" element={"setting"} />
         </Routes>
       }

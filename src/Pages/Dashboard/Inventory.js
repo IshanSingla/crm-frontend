@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import FullTable from "../../Components/FullTable";
+import { publicApi } from "../../Api";
 
-function Inventory() {
+function Inventory({ currentUser }) {
   const [from, setFrom] = useState(0);
   const [gap, setGap] = useState(10);
   const [pages, setPages] = useState(1);
+  const [body, setBody] = useState([]);
 
   let headings = [
     "SNo.",
@@ -15,7 +16,27 @@ function Inventory() {
     "Transac.Count",
     "Transac. Details",
   ];
-  let body = [];
+  let id = "63f2d5dabc72720658ca8edc";
+  useEffect(() => {
+    currentUser.getIdToken().then((token) => {
+      publicApi
+        .get(`/buissness/${id}/inventory?from=${from}&to=${from + gap}`, {
+          headers: {
+            authorization: token,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setPages(res.data.totalPage);
+
+          // setPages(Math.ceil(res.data.inventory.length / gap));
+          // setBody(res.data.inventory);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    });
+  }, [from, gap]);
 
   const handleNext = () => {
     if (from / gap > pages) return;
@@ -25,6 +46,31 @@ function Inventory() {
   const handlePrev = () => {
     if (from - gap < 1) return;
     setFrom(from - gap);
+  };
+  const handleAdd = () => {
+    currentUser.getIdToken().then((token) => {
+      publicApi
+        .post(
+          `/buissness/${id}/inventory/create`,
+          {
+            name: "test",
+            description: "test",
+            cost: 100,
+            quantity: 100,
+          },
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    });
   };
 
   useEffect(() => {
@@ -40,7 +86,10 @@ function Inventory() {
             placeholder="Search..."
             className="w-[75%] bg-zinc-100 rounded-md outline-none py-1 px-2"
           />
-          <button className="px-5 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">
+          <button
+            onClick={handleAdd}
+            className="px-5 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+          >
             Add data
           </button>
           <button>
