@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { publicApi } from "../../Api";
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddInventory from "../../Components/Modals/AddInventory";
 
 function Inventory({ currentUser, id }) {
   const [from, setFrom] = useState(0);
   const [gap, setGap] = useState(10);
   const [pages, setPages] = useState(1);
   const [body, setBody] = useState([]);
+  const [popup, setPopup] = useState(false);
+  const [reload, setReload] = useState(false);
 
   let headings = [
     "SNo.",
@@ -13,27 +18,32 @@ function Inventory({ currentUser, id }) {
     "Description",
     "Cost",
     "Quantity",
-    "Transac.Count",
     "Transac. Details",
+    "Actions"
   ];
 
   useEffect(() => {
-    currentUser.getIdToken().then((token) => {
-      publicApi
-        .get(`/buissness/${id}/inventory?from=${from}&to=${from + gap}`, {
-          headers: {
-            authorization: token,
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          setPages(res.data.totalPage);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    });
-  }, [from, gap]);
+    if(!popup){
+      setBody([]); //hta dena baad mae
+      currentUser.getIdToken().then((token) => {
+        publicApi
+          .get(`/buissness/${id}/inventory?from=${from}&to=${from + gap}`, {
+            headers: {
+              authorization: token,
+            },
+          })
+          .then((res) => {
+            setBody(res.data.inventory);
+            setPages(res.data.totalPage);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      });
+    }
+  }, [from, gap, popup, reload]);
+
+
 
   const handleNext = () => {
     if (from / gap > pages) return;
@@ -43,32 +53,6 @@ function Inventory({ currentUser, id }) {
   const handlePrev = () => {
     if (from - gap < 1) return;
     setFrom(from - gap);
-  };
-
-  const handleAdd = () => {
-    currentUser.getIdToken().then((token) => {
-      publicApi
-        .post(
-          `/buissness/${id}/inventory/create`,
-          {
-            name: "test",
-            description: "test",
-            cost: 100,
-            quantity: 100,
-          },
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    });
   };
 
   useEffect(() => {
@@ -85,12 +69,16 @@ function Inventory({ currentUser, id }) {
             className="w-[75%] bg-zinc-100 rounded-md outline-none py-1 px-2"
           />
           <button
-            onClick={handleAdd}
+            onClick={() => {
+              setPopup(true);
+            }}
             className="px-5 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
           >
             Add data
           </button>
-          <button>
+          <button onClick={() => {
+            setReload(!reload);
+          }}>
             <img
               className="w-4"
               src={require("../../Assets/reload.svg").default}
@@ -108,7 +96,7 @@ function Inventory({ currentUser, id }) {
         <div className="overflow-auto h-[22rem] scroll">
           <table className="w-full border-space font-pop text-zinc-500">
             <thead className="">
-              <tr className="font-semibold text-[13px] h-auto border-b border-zinc-200">
+              <tr className="font-semibold text-[13px] h-auto border-b border-zinc-200 text-center">
                 {headings.map((head, headID) => (
                   <td key={headID}>
                     <div className="px-4 pb-2 ">{head}</div>
@@ -116,18 +104,34 @@ function Inventory({ currentUser, id }) {
                 ))}
               </tr>
             </thead>
-            <tbody className="text-[12px]">
-              {body.map((val, rowID) => (
-                <tr className="border-b border-zinc-200" key={rowID}>
-                  {val.map((row, rowID2) => (
-                    <td className="" key={rowID2}>
-                      <div className="overflow-scroll max-h-[35px] px-4 py-2 scroll">
-                        {row}
-                      </div>
-                    </td>
-                  ))}
-                </tr>
-              ))}
+            <tbody className="text-[12px] text-center">
+              {
+                body.map((item, index) => {
+                  let details = [index + 1, item.inventoryName, item.inventoryDescription, item.inventoryCost.cost, item.inventoryQuantity, "Hello", [<CreateIcon fontSize="small" sx={{ "&:hover": { cursor: "pointer" } }}/>, <DeleteIcon fontSize="small" sx={{ "&:hover": { cursor: "pointer" } }}/>]];
+                  console.log(details);
+                  return(
+                    <tr className="p-2">
+                      {details.map((item2, key) => {
+                        return (
+                          <>
+                            {
+                              (key !== 6 && key !== 5) && <td>{item2}</td>
+                            }
+                            {
+                              (key === 5) && <td>
+                                <button>Show</button>
+                              </td>
+                            }
+                            {
+                              (key === 6) && <td className="flex justify-center gap-[8px]">{item2[0]}{item2[1]}</td>
+                            }
+                          </>
+                        )
+                      })}
+                    </tr>
+                  )
+                })
+              }
             </tbody>
           </table>
         </div>
@@ -172,6 +176,7 @@ function Inventory({ currentUser, id }) {
           </div>
         </div>
       </div>
+      {popup && <AddInventory id={id} currentUser={currentUser} setBool={setPopup} />}
     </div>
   );
 }

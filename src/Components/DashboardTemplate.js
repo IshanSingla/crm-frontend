@@ -547,7 +547,7 @@ export default function DashboardTemplate({ component, id }) {
         </div>
       </div>
 
-      <div className="bg-[#F6F7F9] w-[84%] rounded-3xl p-2 overflow-hidden">
+      <div className="relative bg-[#F6F7F9] w-[84%] rounded-3xl p-2 overflow-hidden">
         <div className=" flex flex-row items-center space-x-3 justify-end">
           <img
             src={require("../Assets/bell.svg").default}

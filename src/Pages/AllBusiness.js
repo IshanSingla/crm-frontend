@@ -41,7 +41,7 @@ function AllBusiness({ currentUser }) {
       component={
         <Box
           sx={{
-            width: "80%",
+            width: "80%"
           }}
         >
           <Box

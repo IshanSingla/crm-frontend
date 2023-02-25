@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { publicApi } from "../../Api";
+import AddExpense from "../../Components/Modals/AddExpense";
 
 function Expense({ currentUser, id }) {
   const [from, setFrom] = useState(0);
   const [gap, setGap] = useState(10);
   const [pages, setPages] = useState(1);
   const [body, setBody] = useState([]);
+  const [popup, setPopup] = useState(false);
+  const [reload, setReload] = useState(false);
 
   let headings = [
     "SNo.",
@@ -16,26 +19,27 @@ function Expense({ currentUser, id }) {
     "Transac.Count",
     "Transac. Details",
   ];
-  useEffect(() => {
-    currentUser.getIdToken().then((token) => {
-      publicApi
-        .get(`/buissness/${id}/expenses?from=${from}&to=${from + gap}`, {
-          headers: {
-            authorization: token,
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          setPages(res.data.totalPage);
 
-          // setPages(Math.ceil(res.data.inventory.length / gap));
-          // setBody(res.data.inventory);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    });
-  }, [from, gap]);
+  useEffect(() => {
+    if (!popup) {
+      setBody([]);
+      currentUser.getIdToken().then((token) => {
+        publicApi
+          .get(`/buissness/${id}/expenses?from=${from}&to=${from + gap}`, {
+            headers: {
+              authorization: token,
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            setPages(res.data.totalPage);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      });
+    }
+  }, [from, gap, popup, reload]);
 
   const handleNext = () => {
     if (from / gap > pages) return;
@@ -45,32 +49,6 @@ function Expense({ currentUser, id }) {
   const handlePrev = () => {
     if (from - gap < 1) return;
     setFrom(from - gap);
-  };
-  const handleAdd = () => {
-    currentUser.getIdToken().then((token) => {
-      publicApi
-        .post(
-          `/buissness/${id}/expenses/create`,
-          {
-            name: "test",
-            description: "test",
-            amount: 100,
-            quantity: 100,
-            expenseOn: "Bla Bla"
-          },
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    });
   };
 
   useEffect(() => {
@@ -87,12 +65,16 @@ function Expense({ currentUser, id }) {
             className="w-[75%] bg-zinc-100 rounded-md outline-none py-1 px-2"
           />
           <button
-            onClick={handleAdd}
+            onClick={() => {
+              setPopup(true);
+            }}
             className="px-5 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
           >
             Add data
           </button>
-          <button>
+          <button onClick={() => {
+            setReload(!reload);
+          }}>
             <img
               className="w-4"
               src={require("../../Assets/reload.svg").default}
@@ -174,6 +156,7 @@ function Expense({ currentUser, id }) {
           </div>
         </div>
       </div>
+      {popup && <AddExpense id={id} currentUser={currentUser} setBool={setPopup} />}
     </div>
   );
 }
