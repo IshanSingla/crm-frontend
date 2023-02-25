@@ -16,6 +16,7 @@ function Inventory({ currentUser, id }) {
     "Transac.Count",
     "Transac. Details",
   ];
+
   useEffect(() => {
     currentUser.getIdToken().then((token) => {
       publicApi
@@ -27,9 +28,6 @@ function Inventory({ currentUser, id }) {
         .then((res) => {
           console.log(res.data);
           setPages(res.data.totalPage);
-
-          // setPages(Math.ceil(res.data.inventory.length / gap));
-          // setBody(res.data.inventory);
         })
         .catch((err) => {
           console.log(err.message);
@@ -46,6 +44,7 @@ function Inventory({ currentUser, id }) {
     if (from - gap < 1) return;
     setFrom(from - gap);
   };
+
   const handleAdd = () => {
     currentUser.getIdToken().then((token) => {
       publicApi

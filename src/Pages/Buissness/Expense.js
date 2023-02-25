@@ -19,7 +19,7 @@ function Expense({ currentUser, id }) {
   useEffect(() => {
     currentUser.getIdToken().then((token) => {
       publicApi
-        .get(`/buissness/${id}/inventory?from=${from}&to=${from + gap}`, {
+        .get(`/buissness/${id}/expenses?from=${from}&to=${from + gap}`, {
           headers: {
             authorization: token,
           },
@@ -50,12 +50,13 @@ function Expense({ currentUser, id }) {
     currentUser.getIdToken().then((token) => {
       publicApi
         .post(
-          `/buissness/${id}/inventory/create`,
+          `/buissness/${id}/expenses/create`,
           {
             name: "test",
             description: "test",
-            cost: 100,
+            amount: 100,
             quantity: 100,
+            expenseOn: "Bla Bla"
           },
           {
             headers: {
