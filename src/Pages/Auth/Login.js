@@ -3,6 +3,7 @@ import { getIdToken, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import LandingScreen from "../../Components/LandingScreen";
 import { auth } from "../../Config/firebase";
 const TextInput = styled(TextField)(() => ({
@@ -19,12 +20,24 @@ function Login({ currentUser }) {
   const handleSignIn = (e) => {
     e.preventDefault();
     if (email !== "" && password !== "") {
-      signInWithEmailAndPassword(auth, email, password).then(async (userCreds) => {
-        const token = await getIdToken(userCreds.user);
-        console.log(token);
+      signInWithEmailAndPassword(auth, email, password)
+        .then(async (userCreds) => {
+          const token = await getIdToken(userCreds.user);
+          console.log(token);
 
-      navigate("/business");
-    });
+          navigate("/business");
+        })
+        .catch((error) => {
+          if (error.code === "auth/user-disabled") {
+            toast.error("User has been disabled");
+          } else if (error.code === "auth/user-not-found") {
+            toast.error("User not found");
+          } else if (error.code === "auth/wrong-password") {
+            toast.error("Wrong Password");
+          } else {
+            toast.error(error.message);
+          }
+        });
     }
     setEmail("");
     setPassword("");
@@ -34,7 +47,7 @@ function Login({ currentUser }) {
     if (currentUser?.length !== 0 && currentUser) {
       navigate("/business");
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   return (
     <LandingScreen

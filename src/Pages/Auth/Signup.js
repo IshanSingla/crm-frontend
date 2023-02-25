@@ -1,6 +1,7 @@
 import { Box, Button, styled, TextField } from "@mui/material";
 import { createUserWithEmailAndPassword, getIdToken } from "firebase/auth";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { publicApi } from "../../Api";
 import { auth } from "../../Config/firebase";
 
@@ -29,34 +30,37 @@ function Signup() {
     ) {
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCreds) => {
-          let token = await getIdToken(userCreds.user);
-          let response = await publicApi.post(
-            "/auth/create",
-            {
-              email: email,
-              name: name,
-              userGender: gender,
-              phoneNumber: phone,
-            },
-            {
-              headers: {
-                authorization: token,
-              },
-            }
-          );
-          console.log(response.data);
+          getIdToken(userCreds.user).then((token) => {
+            publicApi
+              .post(
+                "/auth/create",
+                {
+                  email: email,
+                  name: name,
+                  userGender: gender,
+                  phoneNumber: phone,
+                },
+                {
+                  headers: {
+                    authorization: token,
+                  },
+                }
+              )
+              .then((response) => {
+                toast.success("User Signup Successfully");
+              });
+          });
         })
         .catch((error) => {
           if (error.code === "auth/user-disabled") {
-            alert("User has been disabled");
+            toast.error("User has been disabled");
           } else if (error.code === "auth/user-not-found") {
-            alert("User not found");
+            toast.error("User not found");
           } else if (error.code === "auth/wrong-password") {
-            alert("Wrong Password");
+            toast.error("Wrong Password");
           } else {
-            alert(error.message);
+            toast.error(error.message);
           }
-          console.log(error);
         });
     }
     setName("");
