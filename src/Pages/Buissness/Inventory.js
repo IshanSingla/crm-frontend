@@ -10,7 +10,7 @@ import InventryTrans from "./InventryTrans";
 function Inventory({ currentUser, id }) {
   const [body, setBody] = useState([]);
   return (
-    <div className="flex">
+    <div className="md:flex">
       <CustomTable
         popupScreenFields={
           <div>

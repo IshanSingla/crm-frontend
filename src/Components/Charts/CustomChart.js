@@ -1,29 +1,41 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import React, { useRef, useState } from "react";
+import { Bar, getElementsAtEvent, Line } from "react-chartjs-2";
 import { Chart as Chartjs } from "chart.js/auto";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-export default function CustomChart({ data }) {
-  const [graph, setGraph] = useState(<Bar data={data} />);
-  useEffect(() => {
-    setGraph(<Bar data={data} />);
-  }, [data]);
-  const handle = (e) => {
-    if (e.target.value === "Bar") {
-      setGraph(<Bar data={data} />);
-    } else if (e.target.value === "Line") {
-      setGraph(<Line data={data} />);
-    } else {
-      setGraph(<Line data={data} />);
+export default function CustomChart({ data, id, type }) {
+  const navigate = useNavigate();
+  const chartRef = useRef();
+  const [chart, setChart] = useState("Bar");
+
+  const click = (e) => {
+    const getIndex = getElementsAtEvent(chartRef.current, e)[0];
+    if (getIndex) {
+      navigate(
+        `/business/${id}/dashboard/${type}/${
+          data.datasets[0].ids[getIndex.index]
+        }`
+      );
     }
   };
+
   return (
     <div>
-      <select onChange={handle}>
+      <select
+        onChange={(e) => {
+          setChart(e.target.value);
+        }}
+      >
         <option value="Bar">Bar</option>
         <option value="Line">Line</option>
       </select>
-      {graph}
+      {chart === "Bar" ? (
+        <Bar ref={chartRef} onClick={click} data={data} />
+      ) : (
+        <Line ref={chartRef} onClick={click} data={data} />
+      )}
     </div>
   );
 }
