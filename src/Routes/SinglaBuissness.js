@@ -16,8 +16,8 @@ export default function SinglaBuissness({ currentUser }) {
       component={
         <Routes>
           <Route path="/dashboard" element={<Dashboard currentUser={currentUser} id={id} />} />
-          <Route path="/inventory" element={<Inventory currentUser={currentUser} id={id} />} />
-          <Route path="/inventory/:inventoryid" element={<InventryTrans currentUser={currentUser} id={id} />} />
+          <Route path="/inventory/*" element={<Inventory currentUser={currentUser} id={id} />} />
+          
           <Route path="/expense" element={<Expense currentUser={currentUser} id={id} />} />
           <Route path="/setting" element={"setting"} />
           <Route path="*" element={<Navigate to="./dashboard" />} />

@@ -8,6 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 function Expense({ currentUser, id }) {
   const [body, setBody] = useState([]);
   return (
+    
     <CustomTable
       popupScreenFields={
         <div>
@@ -79,8 +80,9 @@ function Expense({ currentUser, id }) {
       link={`/buissness/${id}/expenses`}
       currentUser={currentUser}
       setBody={setBody}
-      headings="SNo., Name, Description, Cost,expense type, expense On, Actions"
+      headings="SNo., Name, Description, Cost,expense type, expense On, Date, Actions"
       tableData={body.map((item, index) => {
+        console.log(item);
         let details = [
           index + 1,
           item.expenseName,
@@ -88,6 +90,8 @@ function Expense({ currentUser, id }) {
           item.expenseAmount.count,
           item.expensetype,
           item.expenseOnType,
+          item.createdAt,
+
           <div className="flex justify-center gap-[10px]">
             <CreateIcon
               fontSize="small"
