@@ -25,12 +25,20 @@ function Inventory({ currentUser, id }) {
               placeholder="Description"
               className="w-full h-[150px] border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
             />
-            <input
-              id="cost"
-              type="number"
-              placeholder="Cost"
-              className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
-            />
+            <div className="flex">
+              <input
+                id="sellingPrice"
+                type="number"
+                placeholder="Selling Price"
+                className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+              />
+              <input
+                id="buyingPrice"
+                type="number"
+                placeholder="Buying Price"
+                className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+              />
+            </div>
             <input
               id="quantity"
               type="number"
@@ -43,22 +51,25 @@ function Inventory({ currentUser, id }) {
           e.preventDefault();
           let name = document.getElementById("name").value;
           let description = document.getElementById("description").value;
-          let cost = document.getElementById("cost").value;
+          let sellingPrice = document.getElementById("sellingPrice").value;
+          let buyingPrice = document.getElementById("buyingPrice").value;
           let quantity = document.getElementById("quantity").value;
           let token = await currentUser.getIdToken();
           if (
             name !== "" &&
             description !== "" &&
-            cost !== "" &&
+            sellingPrice !== "" &&
+            buyingPrice !== "" &&
             quantity !== ""
           ) {
             return publicApi.post(
               `/buissness/${id}/inventory/create`,
               {
-                name: name,
-                description: description,
-                cost: cost,
-                quantity: quantity,
+                name,
+                description,
+                sellingPrice,
+                buyingPrice,
+                quantity,
               },
               {
                 headers: {
@@ -73,20 +84,21 @@ function Inventory({ currentUser, id }) {
         link={`/buissness/${id}/inventory`}
         currentUser={currentUser}
         setBody={setBody}
-        headings="SNo., Name, Description, Cost,Quantity, Transac. Details, Actions"
+        headings="SNo., Name, Description, Selling/ Buying,Quantity, Details, Add/Remove, Actions"
         tableData={body.map((item, index) => {
           let details = [
             index + 1,
             item.inventoryName,
             item.inventoryDescription,
-            item.inventoryCost.count,
+            `${item.inventoryCost.sellingPrice}/ ${item.inventoryCost.buyingPrice}`,
             item.inventoryQuantity,
             <Link
               className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
               to={`./${item._id}`}
             >
-              Show Details
+              Details
             </Link>,
+            <button className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">+/-</button>,
             <div className="flex justify-center gap-[10px]">
               <CreateIcon
                 fontSize="small"

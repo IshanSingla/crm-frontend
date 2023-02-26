@@ -35,12 +35,20 @@ export default function Inventry({ currentUser, id }) {
             labels: res.data.inventory.map((data) => data.inventoryName),
             datasets: [
               {
-                label: "Cost",
+                label: "sellingPrice",
                 data: res.data.inventory.map(
-                  (data) => data.inventoryCost.count
+                  (data) => data.inventoryCost.sellingPrice
                 ),
                 ids: res.data.inventory.map((data) => data._id),
-                backgroundColor: "rgba(255, 0,0, 1)",
+                backgroundColor: "#00ff00",
+              },
+              {
+                label: "buyingPrice",
+                data: res.data.inventory.map(
+                  (data) => data.inventoryCost.buyingPrice
+                ),
+                ids: res.data.inventory.map((data) => data._id),
+                backgroundColor: "#ff0000",
               },
             ],
           });

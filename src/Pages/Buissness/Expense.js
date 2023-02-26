@@ -8,7 +8,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 function Expense({ currentUser, id }) {
   const [body, setBody] = useState([]);
   return (
-    
     <CustomTable
       popupScreenFields={
         <div>
@@ -35,12 +34,13 @@ function Expense({ currentUser, id }) {
             placeholder="Amount"
             className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
           />
-          <input
-            id="quantity"
-            type="number"
-            placeholder="Quantity"
+          <select
+            id="type"
             className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
-          />
+          >
+            <option value="CR">CR</option>
+            <option value="DR">DR</option>
+          </select>
         </div>
       }
       popupScreenHandler={async (e) => {
@@ -48,15 +48,15 @@ function Expense({ currentUser, id }) {
         let name = document.getElementById("name").value;
         let description = document.getElementById("description").value;
         let amount = document.getElementById("amount").value;
-        let quantity = document.getElementById("quantity").value;
         let expenseOn = document.getElementById("expenseOn").value;
+        let type = document.getElementById("type").value;
         let token = await currentUser.getIdToken();
         if (
           name !== "" &&
           description !== "" &&
           amount !== "" &&
-          quantity !== "" &&
-          expenseOn !== ""
+          expenseOn !== "" &&
+          type !== ""
         ) {
           return publicApi.post(
             `/buissness/${id}/expenses/create`,
@@ -64,8 +64,8 @@ function Expense({ currentUser, id }) {
               name: name,
               description: description,
               amount: amount,
-              quantity: quantity,
               expenseOn: expenseOn,
+              type: type,
             },
             {
               headers: {
@@ -90,7 +90,7 @@ function Expense({ currentUser, id }) {
           item.expenseAmount.count,
           item.expensetype,
           item.expenseOnType,
-          item.createdAt,
+          item.expenseTime,
 
           <div className="flex justify-center gap-[10px]">
             <CreateIcon
