@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Api from "../../Api";
+import { BuissnessApi } from "../../Api";
 import CustomChart from "./CustomChart";
 
-export default function Expense({ id }) {
+export default function Expense() {
   const [Quantity, setQuantity] = useState({
     labels: [],
     datasets: [],
@@ -13,9 +13,9 @@ export default function Expense({ id }) {
     datasets: [],
   });
   useEffect(() => {
-    Api().then((publicApi) => {
+    BuissnessApi().then((publicApi) => {
       publicApi
-        .get(`/buissness/${id}/expenses`)
+        .get(`/expenses`)
         .then((res) => {
           setQuantity({
             labels: res.data.inventory.map((data) => data.expenseName),
@@ -61,7 +61,7 @@ export default function Expense({ id }) {
           toast.error(err.message);
         });
     });
-  }, [id]);
+  }, []);
   return (
     <div className="p-6">
       <div className="flex justify-center items-center text-4xl mb-9 -mt-6 font-semibold">
@@ -69,10 +69,10 @@ export default function Expense({ id }) {
       </div>
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-6">
-          <CustomChart data={Quantity} id={id} type="expenses" />
+          <CustomChart data={Quantity} type="expenses" />
         </div>
         <div className="col-span-6">
-          <CustomChart data={Cost} id={id} type="expenses" />
+          <CustomChart data={Cost} type="expenses" />
         </div>
       </div>
     </div>

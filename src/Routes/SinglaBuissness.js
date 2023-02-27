@@ -9,16 +9,16 @@ import Settings from "../Pages/Buissness/Setting";
 export default function SinglaBuissness() {
   const param = useParams();
   const { id } = param;
+  localStorage.setItem("buissnessId", id);
   return (
     <DashboardTemplate
-      id={id} 
-      route ={param["*"]}
+      route={param["*"]}
       component={
         <Routes>
-          <Route path="/dashboard/*" element={<DashboardRoute  id={id} />} />
-          <Route path="/inventory/*" element={<Inventory id={id} />} />
-          <Route path="/expense" element={<Expense  id={id} />} />
-          <Route path="/setting" element={<Settings  id={id}/> } />
+          <Route path="/dashboard/*" element={<DashboardRoute />} />
+          <Route path="/inventory/*" element={<Inventory />} />
+          <Route path="/expense" element={<Expense />} />
+          <Route path="/setting" element={<Settings />} />
           <Route path="*" element={<Navigate to="./dashboard" />} />
         </Routes>
       }

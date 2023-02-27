@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Api from "../../Api";
+import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
 
-export default function Settings({ id }) {
+export default function Settings() {
 	const [data, setData] = useState();
 	useEffect(() => {
-		Api().then((publicApi) => {
+		BuissnessApi().then((publicApi) => {
 			publicApi
-				.get(`/buissness/${id}`)
+				.get(`/`)
 				.then((res) => {
 					setData(res.data.buissness);
 				})
@@ -15,7 +15,7 @@ export default function Settings({ id }) {
 					toast.error(err.message);
 				});
 		});
-	}, [id]);
+	}, []);
 	return data ? (
 		<div className="settings">
 			<div className="w-[100%] flex justify-center">

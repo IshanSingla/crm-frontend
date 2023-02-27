@@ -3,17 +3,17 @@ import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, Route, Routes } from "react-router-dom";
 import CustomTable from "../../Components/CustomTable";
-import Api from "../../Api";
+import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
 import InventryTrans from "./InventryTrans";
 
-function Inventory({ id }) {
+function Inventory() {
   const [body, setBody] = useState([]);
 
   const handleDelete = async (invid) => {
-    Api().then((publicApi) => {
+    BuissnessApi().then((publicApi) => {
       publicApi
-        .delete(`/buissness/${id}/inventory/${invid}/delete`)
+        .delete(`/inventory/${invid}/delete`)
         .then((res) => {
           toast.success("Deleted");
           setBody(body.filter((item) => item._id !== invid));
@@ -76,8 +76,8 @@ function Inventory({ id }) {
             buyingPrice !== "" &&
             quantity !== ""
           ) {
-            return Api().then((publicApi) => {
-              publicApi.post(`/buissness/${id}/inventory/create`, {
+            return BuissnessApi().then((publicApi) => {
+              publicApi.post(`/inventory/create`, {
                 name,
                 description,
                 sellingPrice,
@@ -89,7 +89,7 @@ function Inventory({ id }) {
             toast.error("Please fill all the fields");
           }
         }}
-        link={`/buissness/${id}/inventory`}
+        link={`/inventory`}
         setBody={setBody}
         headings="SNo., Name, Description, Selling/ Buying,Quantity, Details, Add/Remove, Actions"
         tableData={body.map((item, index) => {
@@ -130,7 +130,7 @@ function Inventory({ id }) {
         })}
       />
       <Routes>
-        <Route path="/:inventoryid" element={<InventryTrans id={id} />} />
+        <Route path="/:inventoryid" element={<InventryTrans />} />
       </Routes>
     </div>
   );

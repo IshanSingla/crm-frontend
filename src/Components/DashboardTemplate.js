@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function DashboardTemplate({ component, id, route }) {
+export default function DashboardTemplate({ component, route }) {
   const newid = route.split("/");
   const name = newid[0];
   const transid = newid[1];
+  const id = localStorage.getItem("buissnessId");
   return (
     <div className="flex flex-row bg-[#000C2A] w-full h-screen py-3 pr-3 over">
       <div className="w-[16%] py-8">

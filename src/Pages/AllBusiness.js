@@ -2,7 +2,7 @@ import { Box, IconButton, styled, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import LandingScreen from "../Components/LandingScreen";
 import AddIcon from "@mui/icons-material/Add";
-import Api from "../Api";
+import {Api} from "../Api";
 import ListBusiness from "../Components/ListBusiness";
 
 const TextInput = styled(TextField)(() => ({

@@ -5,7 +5,7 @@ export const publicApi = axios.create({
   baseURL: "https://crm.ishansingla.me/api/v1",
 });
 
-async function Api() {
+export async function Api() {
   let token = await auth.currentUser.getIdToken();
   return axios.create({
     baseURL: "https://crm.ishansingla.me/api/v1",
@@ -15,5 +15,18 @@ async function Api() {
     },
   });
 }
+export async function BuissnessApi() {
+  let id = localStorage.getItem("buissnessId");
+  if (!id) {
+    window.location.reload();
+  }
+  let token = await auth.currentUser.getIdToken();
+  return axios.create({
+    baseURL: `https://crm.ishansingla.me/api/v1/buissness/${id}`,
+    headers: {
+      authorization: token,
+      apiKey: "AIzaSy",
+    },
+  });
+}
 
-export default Api;

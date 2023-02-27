@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Api from "../Api";
+import  { BuissnessApi } from "../Api";
 
 export default function CustomTable({
   popupScreenFields = <></>,
@@ -23,7 +23,7 @@ export default function CustomTable({
       if (link === "") {
         return;
       }
-      Api().then((publicApi) => {
+      BuissnessApi().then((publicApi) => {
         publicApi
           .get(`${link}?from=${from}&to=${from + gap}`)
           .then((res) => {

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import Api from "../../Api";
+import { BuissnessApi } from "../../Api";
 import CustomTable from "../../Components/CustomTable";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function Expense({ id }) {
+function Expense() {
   const [body, setBody] = useState([]);
   const handleDelete = async (invid) => {
-    Api().then((publicApi) => {
+    BuissnessApi().then((publicApi) => {
       publicApi
-        .delete(`/buissness/${id}/expenses/${invid}/delete`)
+        .delete(`/expenses/${invid}/delete`)
         .then((res) => {
           toast.success("Deleted");
           setBody(body.filter((item) => item._id !== invid));
@@ -70,8 +70,8 @@ function Expense({ id }) {
           expenseOn !== "" &&
           type !== ""
         ) {
-          return Api().then((publicApi) => {
-            publicApi.post(`/buissness/${id}/expenses/create`, {
+          return BuissnessApi().then((publicApi) => {
+            publicApi.post(`/expenses/create`, {
               name: name,
               description: description,
               amount: amount,
@@ -83,7 +83,7 @@ function Expense({ id }) {
           toast.error("Please fill all the fields");
         }
       }}
-      link={`/buissness/${id}/expenses`}
+      link={`/expenses`}
       setBody={setBody}
       headings="SNo., Name, Description, Cost,expense type, expense On, Date, Actions"
       tableData={body.map((item, index) => {

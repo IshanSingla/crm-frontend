@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import Api from "../Api";
+import {Api} from "../Api";
 
 const ListBusiness = ({ name }) => {
   const [data, setData] = useState();
