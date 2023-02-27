@@ -82,7 +82,6 @@ function Expense({ currentUser, id }) {
       setBody={setBody}
       headings="SNo., Name, Description, Cost,expense type, expense On, Date, Actions"
       tableData={body.map((item, index) => {
-        console.log(item);
         let details = [
           index + 1,
           item.expenseName,
@@ -90,7 +89,7 @@ function Expense({ currentUser, id }) {
           item.expenseAmount.count,
           item.expensetype,
           item.expenseOnType,
-          item.expenseTime,
+          new Date(item.expenseTime).toLocaleString(),
 
           <div className="flex justify-center gap-[10px]">
             <CreateIcon

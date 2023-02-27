@@ -52,7 +52,6 @@ export default function Inventry({ currentUser, id }) {
               },
             ],
           });
-          console.log(res.data);
         })
         .catch((err) => {
           toast.error(err.message);

@@ -1,13 +1,16 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Signup from "../Pages/Auth/Signup";
 import Login from "../Pages/Auth/Login";
 
-export default function Auth({currentUser}) {
-  return (
+export default function Auth({ currentUser }) {
+  return currentUser?.length !== 0 && currentUser ? (
+    <Navigate to="/business" />
+  ) : (
     <Routes>
-      <Route path="/login" element={<Login currentUser={currentUser}/>} />
-      <Route path="/signup" element={<Signup currentUser={currentUser}/>} />
+      <Route path="/login" element={<Login currentUser={currentUser} />} />
+      <Route path="/signup" element={<Signup currentUser={currentUser} />} />
+      <Route path="*" element={<Navigate to="./login" />} />
     </Routes>
   );
 }

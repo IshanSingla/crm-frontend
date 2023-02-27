@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import { Bar, getElementsAtEvent, Line } from "react-chartjs-2";
 import { Chart as Chartjs } from "chart.js/auto";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 export default function CustomChart({ data, id, type }) {
   const navigate = useNavigate();
@@ -11,6 +10,7 @@ export default function CustomChart({ data, id, type }) {
   const [chart, setChart] = useState("Bar");
 
   const click = (e) => {
+    if (type === "expenses") return;
     const getIndex = getElementsAtEvent(chartRef.current, e)[0];
     if (getIndex) {
       navigate(
@@ -22,7 +22,7 @@ export default function CustomChart({ data, id, type }) {
   };
 
   return (
-    <div>
+    <>
       <select
         onChange={(e) => {
           setChart(e.target.value);
@@ -36,6 +36,6 @@ export default function CustomChart({ data, id, type }) {
       ) : (
         <Line ref={chartRef} onClick={click} data={data} />
       )}
-    </div>
+    </>
   );
 }
