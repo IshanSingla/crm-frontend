@@ -27,8 +27,8 @@ export default function CustomTable({
       currentUser.getIdToken().then((token) => {
         publicApi
           .get(`${link}?from=${from}&to=${from + gap}`, {
-            headers: {
-              authorization: token,
+            headers: { 
+                 authorization: token,
             },
           })
           .then((res) => {

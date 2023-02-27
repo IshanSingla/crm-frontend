@@ -9,17 +9,10 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Axios from "axios";
 
-// logEvent(analytics, "select_content", {
-//   content_type: "image",
-//   content_id: "P12453",
-//   items: [{ name: "Kittens" }],
-// });
-
 export const FirebaseAnalytics = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // track pageview with gtag / react-ga / react-ga4, for example:
     window.gtag("event", "page_view", {
       page_path: location.pathname + location.search,
     });

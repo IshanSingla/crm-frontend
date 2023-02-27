@@ -7,6 +7,22 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 function Expense({ currentUser, id }) {
   const [body, setBody] = useState([]);
+  const handleDelete = async (invid) => {
+    let token = await currentUser.getIdToken();
+    publicApi
+      .delete(`/buissness/${id}/expenses/${invid}/delete`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        toast.success("Deleted");
+        setBody(body.filter((item) => item._id !== invid));
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
+  };
   return (
     <CustomTable
       popupScreenFields={
@@ -97,6 +113,7 @@ function Expense({ currentUser, id }) {
               sx={{ "&:hover": { cursor: "pointer" } }}
             />
             <DeleteIcon
+              onClick={() => handleDelete(item._id)}
               fontSize="small"
               sx={{ "&:hover": { cursor: "pointer" } }}
             />

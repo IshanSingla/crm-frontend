@@ -9,6 +9,24 @@ import InventryTrans from "./InventryTrans";
 
 function Inventory({ currentUser, id }) {
   const [body, setBody] = useState([]);
+
+  const handleDelete = async (invid) => {
+    let token = await currentUser.getIdToken();
+    publicApi
+      .delete(`/buissness/${id}/inventory/${invid}/delete`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        toast.success("Deleted");
+        setBody(body.filter((item) => item._id !== invid));
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
+  };
+
   return (
     <div className="md:flex">
       <CustomTable
@@ -98,13 +116,16 @@ function Inventory({ currentUser, id }) {
             >
               Details
             </Link>,
-            <button className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">+/-</button>,
+            <button className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">
+              +/-
+            </button>,
             <div className="flex justify-center gap-[10px]">
               <CreateIcon
                 fontSize="small"
                 sx={{ "&:hover": { cursor: "pointer" } }}
               />
               <DeleteIcon
+                onClick={() => handleDelete(item._id)}
                 fontSize="small"
                 sx={{ "&:hover": { cursor: "pointer" } }}
               />
