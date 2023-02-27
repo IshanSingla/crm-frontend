@@ -6,7 +6,6 @@ import { publicApi } from "../../Api";
 import LandingScreen from "../../Components/LandingScreen";
 import { auth } from "../../Config/firebase";
 
-
 function Signup() {
   // let
   const [name, setName] = useState("");

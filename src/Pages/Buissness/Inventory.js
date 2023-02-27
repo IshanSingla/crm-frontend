@@ -3,28 +3,25 @@ import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, Route, Routes } from "react-router-dom";
 import CustomTable from "../../Components/CustomTable";
-import { publicApi } from "../../Api";
+import Api from "../../Api";
 import { toast } from "react-toastify";
 import InventryTrans from "./InventryTrans";
 
-function Inventory({ currentUser, id }) {
+function Inventory({ id }) {
   const [body, setBody] = useState([]);
 
   const handleDelete = async (invid) => {
-    let token = await currentUser.getIdToken();
-    publicApi
-      .delete(`/buissness/${id}/inventory/${invid}/delete`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        toast.success("Deleted");
-        setBody(body.filter((item) => item._id !== invid));
-      })
-      .catch((err) => {
-        toast.error("Something went wrong");
-      });
+    Api().then((publicApi) => {
+      publicApi
+        .delete(`/buissness/${id}/inventory/${invid}/delete`)
+        .then((res) => {
+          toast.success("Deleted");
+          setBody(body.filter((item) => item._id !== invid));
+        })
+        .catch((err) => {
+          toast.error("Something went wrong");
+        });
+    });
   };
 
   return (
@@ -72,7 +69,6 @@ function Inventory({ currentUser, id }) {
           let sellingPrice = document.getElementById("sellingPrice").value;
           let buyingPrice = document.getElementById("buyingPrice").value;
           let quantity = document.getElementById("quantity").value;
-          let token = await currentUser.getIdToken();
           if (
             name !== "" &&
             description !== "" &&
@@ -80,27 +76,20 @@ function Inventory({ currentUser, id }) {
             buyingPrice !== "" &&
             quantity !== ""
           ) {
-            return publicApi.post(
-              `/buissness/${id}/inventory/create`,
-              {
+            return Api().then((publicApi) => {
+              publicApi.post(`/buissness/${id}/inventory/create`, {
                 name,
                 description,
                 sellingPrice,
                 buyingPrice,
                 quantity,
-              },
-              {
-                headers: {
-                  authorization: token,
-                },
-              }
-            );
+              });
+            });
           } else {
             toast.error("Please fill all the fields");
           }
         }}
         link={`/buissness/${id}/inventory`}
-        currentUser={currentUser}
         setBody={setBody}
         headings="SNo., Name, Description, Selling/ Buying,Quantity, Details, Add/Remove, Actions"
         tableData={body.map((item, index) => {
@@ -141,10 +130,7 @@ function Inventory({ currentUser, id }) {
         })}
       />
       <Routes>
-        <Route
-          path="/:inventoryid"
-          element={<InventryTrans currentUser={currentUser} id={id} />}
-        />
+        <Route path="/:inventoryid" element={<InventryTrans id={id} />} />
       </Routes>
     </div>
   );

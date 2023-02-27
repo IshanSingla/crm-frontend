@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { publicApi } from "../../Api";
+import Api from "../../Api";
 import CustomChart from "./CustomChart";
 
-export default function Expense({ id, currentUser }) {
+export default function Expense({ id }) {
   const [Quantity, setQuantity] = useState({
     labels: [],
     datasets: [],
@@ -13,13 +13,9 @@ export default function Expense({ id, currentUser }) {
     datasets: [],
   });
   useEffect(() => {
-    currentUser.getIdToken().then((token) => {
+    Api().then((publicApi) => {
       publicApi
-        .get(`/buissness/${id}/expenses`, {
-          headers: {
-            authorization: token,
-          },
-        })
+        .get(`/buissness/${id}/expenses`)
         .then((res) => {
           setQuantity({
             labels: res.data.inventory.map((data) => data.expenseName),
@@ -42,7 +38,9 @@ export default function Expense({ id, currentUser }) {
           });
 
           setCost({
-            labels: res.data.inventory.map((data) => new Date(data.expenseTime).toLocaleString()),
+            labels: res.data.inventory.map((data) =>
+              new Date(data.expenseTime).toLocaleString()
+            ),
             datasets: [
               {
                 label: "CR",
@@ -56,7 +54,6 @@ export default function Expense({ id, currentUser }) {
                   data.expensetype === "DR" ? data.expenseAmount.count : null
                 ),
               },
-
             ],
           });
         })
@@ -64,7 +61,7 @@ export default function Expense({ id, currentUser }) {
           toast.error(err.message);
         });
     });
-  }, [currentUser, id]);
+  }, [id]);
   return (
     <div className="p-6">
       <div className="flex justify-center items-center text-4xl mb-9 -mt-6 font-semibold">

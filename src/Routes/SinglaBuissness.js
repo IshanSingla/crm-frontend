@@ -6,7 +6,7 @@ import Expense from "../Pages/Buissness/Expense";
 import DashboardRoute from "./Dashboard";
 import Settings from "../Pages/Buissness/Setting";
 
-export default function SinglaBuissness({ currentUser }) {
+export default function SinglaBuissness() {
   const param = useParams();
   const { id } = param;
   return (
@@ -15,10 +15,10 @@ export default function SinglaBuissness({ currentUser }) {
       route ={param["*"]}
       component={
         <Routes>
-          <Route path="/dashboard/*" element={<DashboardRoute currentUser={currentUser} id={id} />} />
-          <Route path="/inventory/*" element={<Inventory currentUser={currentUser} id={id} />} />
-          <Route path="/expense" element={<Expense currentUser={currentUser} id={id} />} />
-          <Route path="/setting" element={<Settings currentUser={currentUser} id={id}/> } />
+          <Route path="/dashboard/*" element={<DashboardRoute  id={id} />} />
+          <Route path="/inventory/*" element={<Inventory id={id} />} />
+          <Route path="/expense" element={<Expense  id={id} />} />
+          <Route path="/setting" element={<Settings  id={id}/> } />
           <Route path="*" element={<Navigate to="./dashboard" />} />
         </Routes>
       }

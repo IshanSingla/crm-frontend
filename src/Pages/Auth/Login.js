@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import LandingScreen from "../../Components/LandingScreen";
 import { auth } from "../../Config/firebase";
 
-function Login({ currentUser }) {
+function Login() {
   // let dispatch = useDispatch();
   let navigate = useNavigate();
   const [email, setEmail] = useState("");

@@ -7,9 +7,9 @@ import SinglaBuissness from "./SinglaBuissness";
 export default function Business({ currentUser }) {
   return currentUser ? (
     <Routes>
-      <Route path="/" element={<AllBusiness currentUser={currentUser} />} />
+      <Route path="/" element={<AllBusiness  />} />
       {/* <Route path="/hi" element={<ListBuissness currentUser={currentUser} />} /> */}
-      <Route path="/:id/*" element={<SinglaBuissness currentUser={currentUser} />} />
+      <Route path="/:id/*" element={<SinglaBuissness />} />
     </Routes>
   ) : (
     <Navigate to="/auth/login" />

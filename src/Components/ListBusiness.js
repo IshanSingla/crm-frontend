@@ -1,35 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { publicApi } from "../Api";
+import Api from "../Api";
 
-const ListBusiness = ({ currentUser, name }) => {
+const ListBusiness = ({ name }) => {
   const [data, setData] = useState();
   const [updater, setUpdater] = useState("");
 
   const handleDelete = (id) => {
-    currentUser.getIdToken().then((token) => {
-      publicApi
-        .delete(`/buissness/${id}/delete`, {
-          headers: {
-            authorization: token,
-          },
-        })
-        .then((res) => {
-          setUpdater("hgj");
-        });
+    Api().then((publicApi) => {
+      publicApi.delete(`/buissness/${id}/delete`).then((res) => {
+        setUpdater("hgj");
+      });
     });
   };
 
   useEffect(() => {
     if (name !== "") return;
-    currentUser.getIdToken().then((token) => {
+    Api().then((publicApi) => {
       publicApi
-        .get("/buissness/", {
-          headers: {
-            authorization: token,
-          },
-        })
+        .get("/buissness/", {})
         .then((res) => {
           setData(res.data.buissness);
         })
@@ -37,7 +27,7 @@ const ListBusiness = ({ currentUser, name }) => {
           toast.error(err.message);
         });
     });
-  }, [currentUser, name, updater]);
+  }, [name, updater]);
 
   return data ? (
     <div className="border border-zinc-400 py-4 px-3 rounded-md">

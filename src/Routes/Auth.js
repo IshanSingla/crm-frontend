@@ -8,8 +8,8 @@ export default function Auth({ currentUser }) {
     <Navigate to="/business" />
   ) : (
     <Routes>
-      <Route path="/login" element={<Login currentUser={currentUser} />} />
-      <Route path="/signup" element={<Signup currentUser={currentUser} />} />
+      <Route path="/login" element={<Login  />} />
+      <Route path="/signup" element={<Signup  />} />
       <Route path="*" element={<Navigate to="./login" />} />
     </Routes>
   );

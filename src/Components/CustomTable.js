@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { publicApi } from "../Api";
+import Api from "../Api";
 
 export default function CustomTable({
   popupScreenFields = <></>,
   popupScreenHandler = () => {},
   tableData = <></>,
-  currentUser,
   setBody = () => {},
   link = "",
   headings = "",
@@ -24,13 +23,9 @@ export default function CustomTable({
       if (link === "") {
         return;
       }
-      currentUser.getIdToken().then((token) => {
+      Api().then((publicApi) => {
         publicApi
-          .get(`${link}?from=${from}&to=${from + gap}`, {
-            headers: { 
-                 authorization: token,
-            },
-          })
+          .get(`${link}?from=${from}&to=${from + gap}`)
           .then((res) => {
             setBody(res.data.inventory);
             setPages(res.data.totalPage);

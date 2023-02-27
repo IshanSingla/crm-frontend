@@ -2,31 +2,23 @@ import { Box, IconButton, styled, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import LandingScreen from "../Components/LandingScreen";
 import AddIcon from "@mui/icons-material/Add";
-import { publicApi } from "../Api";
+import Api from "../Api";
 import ListBusiness from "../Components/ListBusiness";
 
 const TextInput = styled(TextField)(() => ({
   flexGrow: "1",
 }));
 
-function AllBusiness({ currentUser }) {
+function AllBusiness() {
   const [name, setName] = useState("");
 
   const handleSubmit = () => {
-    currentUser.getIdToken().then((token) => {
+    Api().then((publicApi) => {
       publicApi
-        .post(
-          "/buissness/create/",
-          {
-            buissnessName: name,
-            buissnessGstNo: "123456",
-          },
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        )
+        .post("/buissness/create/", {
+          buissnessName: name,
+          buissnessGstNo: "123456",
+        })
         .then(() => {
           setName("");
         })
@@ -34,6 +26,28 @@ function AllBusiness({ currentUser }) {
           console.log(err.message);
         });
     });
+
+    // currentUser.getIdToken().then((token) => {
+    //   publicApi
+    //     .post(
+    //       "/buissness/create/",
+    //       {
+    //         buissnessName: name,
+    //         buissnessGstNo: "123456",
+    //       },
+    //       {
+    //         headers: {
+    //           authorization: token,
+    //         },
+    //       }
+    //     )
+    //     .then(() => {
+    //       setName("");
+    //     })
+    //     .catch((err) => {
+    //       console.log(err.message);
+    //     });
+    // });
   };
 
   return (
@@ -41,7 +55,7 @@ function AllBusiness({ currentUser }) {
       component={
         <Box
           sx={{
-            width: "80%"
+            width: "80%",
           }}
         >
           <Box
@@ -80,7 +94,7 @@ function AllBusiness({ currentUser }) {
             Your Businesses:
           </Typography>
 
-          <ListBusiness currentUser={currentUser} name={name} />
+          <ListBusiness name={name} />
         </Box>
       }
     />

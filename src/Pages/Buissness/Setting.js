@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
-import { publicApi } from "../../Api";
+import Api from "../../Api";
 import { toast } from "react-toastify";
 
-export default function Settings({ currentUser, id }) {
+export default function Settings({ id }) {
 	const [data, setData] = useState();
-
 	useEffect(() => {
-		currentUser.getIdToken().then((token) => {
+		Api().then((publicApi) => {
 			publicApi
-				.get(`/buissness/${id}`, {
-					headers: {
-						authorization: token,
-					},
-				})
+				.get(`/buissness/${id}`)
 				.then((res) => {
 					setData(res.data.buissness);
 				})
@@ -20,7 +15,7 @@ export default function Settings({ currentUser, id }) {
 					toast.error(err.message);
 				});
 		});
-	}, [currentUser, id]);
+	}, [id]);
 	return data ? (
 		<div className="settings">
 			<div className="w-[100%] flex justify-center">
