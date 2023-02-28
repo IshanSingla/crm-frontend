@@ -68,18 +68,22 @@ function Signup() {
   return (
     <LandingScreen
       component={
-        <div className="flex flex-col">
+        <div className="flex flex-col space-y-8 py-8 w-[50%] md:w-[65%] xl:w-[60%]  ">
+          <div className="flex flex-col space-y-2">
+            <h1 className="text-4xl font-bold"> Sign up </h1>
+            <p className="text-[13px]">Get started with us!</p>
+          </div>
           <div className="flex flex-col gap-3">
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
               value={name}
-              placeholder="Nmae"
+              placeholder="Name"
               onChange={(e) => {
                 setName(e.target.value);
               }}
             />
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
               value={email}
               placeholder="Email"
               onChange={(e) => {
@@ -87,7 +91,7 @@ function Signup() {
               }}
             />
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
               value={gender}
               placeholder="Gender"
               onChange={(e) => {
@@ -95,7 +99,7 @@ function Signup() {
               }}
             />
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
               value={phone}
               placeholder="Phone"
               onChange={(e) => {
@@ -104,7 +108,7 @@ function Signup() {
               type="number"
             />
             <input
-              className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
               value={password}
               type="password"
               placeholder="Password"
@@ -112,6 +116,9 @@ function Signup() {
                 setPassword(e.target.value);
               }}
             />
+          </div>
+
+          <div>
             <button
               // disabled={user.loader}
               onClick={(e) => {
@@ -119,12 +126,13 @@ function Signup() {
                   handleSubmit(e);
                 }
               }}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
+              className="bg-orange-500 text-white w-full py-2 rounded-full text-[13px]"
             >
               Sign In
             </button>
           </div>
-          <div className="flex justify-center items-center mt-4">
+
+          <div className="flex justify-center items-center text-[13px]">
             <Link to="/auth/login" className="text-blue-500">
               Already have an account?
             </Link>
