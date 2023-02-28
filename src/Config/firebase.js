@@ -4,13 +4,13 @@ import { getAnalytics } from "firebase/analytics";
 import { getMessaging } from "firebase/messaging";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBe1hjgV3WQ8pUPUfPKd3J9oOKltgnwzzA",
-  authDomain: "crm-indusianassist.firebaseapp.com",
-  projectId: "crm-indusianassist",
-  storageBucket: "crm-indusianassist.appspot.com",
-  messagingSenderId: "55656936373",
-  appId: "1:55656936373:web:8dc3d2ad424cf600499ffc",
-  measurementId: "G-C9QQF977C0"
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
+	measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
