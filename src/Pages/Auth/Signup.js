@@ -75,7 +75,7 @@ function Signup() {
           </div>
           <div className="flex flex-col gap-3">
             <input
-              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-3 py-1 placeholder:text-[13px] rounded-full"
               value={name}
               placeholder="Name"
               onChange={(e) => {
@@ -83,7 +83,7 @@ function Signup() {
               }}
             />
             <input
-              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-3 py-1 placeholder:text-[13px] rounded-full"
               value={email}
               placeholder="Email"
               onChange={(e) => {
@@ -91,7 +91,7 @@ function Signup() {
               }}
             />
             <input
-              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-3 py-1 placeholder:text-[13px] rounded-full"
               value={gender}
               placeholder="Gender"
               onChange={(e) => {
@@ -99,7 +99,7 @@ function Signup() {
               }}
             />
             <input
-              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-3 py-1 placeholder:text-[13px] rounded-full"
               value={phone}
               placeholder="Phone"
               onChange={(e) => {
@@ -108,7 +108,7 @@ function Signup() {
               type="number"
             />
             <input
-              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
+              className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-3 py-1 placeholder:text-[13px] rounded-full"
               value={password}
               type="password"
               placeholder="Password"

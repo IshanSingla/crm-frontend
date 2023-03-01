@@ -91,7 +91,7 @@ function Login() {
                 Email
               </label>
               <input
-                className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
+                className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-3 py-1 placeholder:text-[13px] rounded-full"
                 value={email}
                 id="email"
                 placeholder="mail@website.com"
@@ -107,7 +107,7 @@ function Login() {
                 Password{" "}
               </label>
               <input
-                className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-2 py-1 placeholder:text-[13px] rounded-full"
+                className="border-2 border-zinc-400 bg-transparent outline-none focus:bg-gray-900 px-3 py-1 placeholder:text-[13px] rounded-full"
                 value={password}
                 id="pass"
                 type="password"

@@ -4,6 +4,7 @@ import Loader from "./Components/Loader";
 import Auth from "./Routes/Auth";
 import Business from "./Routes/Business";
 import { auth } from "./Config/firebase";
+import AdminRoute from "./Routes/AdminRoute";
 
 function App() {
   const [loding, changeLoding] = useState(false);
@@ -12,7 +13,11 @@ function App() {
     <Routes>
       <Route path="/" element={<Navigate to="/auth/login" />} />
       <Route path="/auth/*" element={<Auth currentUser={currentUser} />} />
-      <Route path="/business/*" element={<Business currentUser={currentUser} />}/>
+      <Route
+        path="/business/*"
+        element={<Business currentUser={currentUser} />}
+      />
+      <Route path="/admin" element={<AdminRoute />} />
     </Routes>
   ) : (
     <Loader changeLoding={changeLoding} changeUser={changeUser} />
