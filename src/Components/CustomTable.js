@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import  { BuissnessApi } from "../Api";
+import { BuissnessApi } from "../Api";
 
 export default function CustomTable({
   popupScreenFields = <></>,
@@ -57,12 +57,8 @@ export default function CustomTable({
               onClick={(e) => {
                 popupScreenHandler(e)
                   .then((res) => {
-                    if (res.status === 200) {
-                      toast.success("Added Successfully");
-                      setPopup(false);
-                    } else {
-                      toast.error(res.data.message);
-                    }
+                    toast.success("Added Successfully");
+                    setPopup(false);
                   })
                   .catch((err) => {
                     toast.error(err.message);

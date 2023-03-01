@@ -2,13 +2,13 @@ import axios from "axios";
 import { auth } from "./Config/firebase";
 
 export const publicApi = axios.create({
-  baseURL: "https://crm.ishansingla.me/api/v1",
+  baseURL: `${process.env.REACT_APP_API}/api/v1`,
 });
 
 export async function Api() {
   let token = await auth.currentUser.getIdToken();
   return axios.create({
-    baseURL: "https://crm.ishansingla.me/api/v1",
+    baseURL: `${process.env.REACT_APP_API}/api/v1`,
     headers: {
       authorization: token,
       apiKey: "AIzaSy",
@@ -22,7 +22,7 @@ export async function BuissnessApi() {
   }
   let token = await auth.currentUser.getIdToken();
   return axios.create({
-    baseURL: `https://crm.ishansingla.me/api/v1/buissness/${id}`,
+    baseURL: `${process.env.REACT_APP_API}/api/v1/buissness/${id}`,
     headers: {
       authorization: token,
       apiKey: "AIzaSy",
