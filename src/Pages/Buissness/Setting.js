@@ -7,7 +7,7 @@ export default function Settings() {
 	useEffect(() => {
 		BuissnessApi().then((publicApi) => {
 			publicApi
-				.get(`/`)
+				.get(`/one`)
 				.then((res) => {
 					setData(res.data.buissness);
 				})

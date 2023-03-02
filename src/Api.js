@@ -22,10 +22,11 @@ export async function BuissnessApi() {
   }
   let token = await auth.currentUser.getIdToken();
   return axios.create({
-    baseURL: `${process.env.REACT_APP_API}/api/v1/buissness/${id}`,
+    baseURL: `${process.env.REACT_APP_API}/api/v1/buissness/`,
     headers: {
       authorization: token,
       apiKey: "AIzaSy",
+      buissnessid: id,
     },
   });
 }
