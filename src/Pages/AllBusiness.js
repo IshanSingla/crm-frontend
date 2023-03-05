@@ -56,8 +56,9 @@ function AllBusiness() {
 
   return (
     <LandingScreen>
-      <div className="w-[80%] mx-auto">
-        <div className="flex flex-row items-center justify-between mb-6">
+      <div className="w-[80%] mx-auto ">
+        <div className="text-2xl mb-2">Create New Business:</div>
+        <div className="flex flex-row items-center justify-between mb-9">
           <input
             className="w-[80%] h-12 rounded-md border border-white px-3 bg-black"
             placeholder="Enter Business Name"
@@ -73,37 +74,44 @@ function AllBusiness() {
             +
           </button>
         </div>
-        <div className="text-4xl mb-2">Your Businesses:</div>
-        {data ? (
-          <div className="border border-zinc-400 py-4 px-3 rounded-md">
-            <div className="flex flex-col space-y-2">
-              {data.length === 0 ? (
+        <div className="text-2xl mb-2">Your Businesses:</div>
+        <div className="border border-zinc-400 py-4 px-3 rounded-md h-96">
+          <div className="flex flex-col space-y-2">
+            {data ? (
+              data.length === 0 ? (
                 <div className="">No Business Data Found!</div>
               ) : (
                 data.map((val) => {
                   return (
-                    <div key={val._id} className="flex flex-row ">
+                    <div
+                      key={val._id}
+                      className="flex flex-row rounded-md bg-gray-800"
+                    >
                       <Link
-                        className="border border-black p-2 w-[85%] rounded-md"
+                        className="p-2 w-[85%] rounded-md hover:bg-slate-800"
                         to={`/business/${val._id}/dashboard`}
                       >
                         {val.buissnessName}
                       </Link>
                       <button
                         onClick={() => handleDelete(val._id)}
-                        className="bg-red-500 w-[15%] rounded-md"
+                        className="bg-red-500 px-3 rounded-md hover:bg-red-700"
                       >
                         Delete
                       </button>
                     </div>
                   );
                 })
-              )}
-            </div>
+              )
+            ) : (
+              <div className="">
+                <div className="flex justify-center items-center">
+                  Loading...
+                </div>
+              </div>
+            )}
           </div>
-        ) : (
-          "Loading"
-        )}
+        </div>
       </div>
     </LandingScreen>
   );

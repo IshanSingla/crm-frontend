@@ -67,7 +67,7 @@ export default function Expense() {
       <div className="flex justify-center items-center text-4xl mb-9 -mt-6 font-semibold">
         Expenses
       </div>
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid md:grid-cols-12 grid-cols-6 gap-6">
         <div className="col-span-6">
           <CustomChart data={Quantity} type="expenses" />
         </div>

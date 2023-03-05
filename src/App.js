@@ -7,7 +7,7 @@ import { auth } from "./Config/firebase";
 import AdminRoute from "./Routes/AdminRoute";
 import Home from "./Routes/Home";
 
-function App() {
+export default function App() {
   const [loding, changeLoding] = useState(false);
   const [user, changeUser] = useState(auth.currentUser);
   return loding ? (
@@ -21,5 +21,3 @@ function App() {
     <Loader changeLoding={changeLoding} changeUser={changeUser} />
   );
 }
-
-export default App;

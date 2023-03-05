@@ -8,15 +8,13 @@ export default function DashboardTemplate({ children, route }) {
   const id = localStorage.getItem("buissnessId");
   return (
     <div className="flex flex-row bg-[#000C2A] w-full h-screen py-3 pr-3 over">
-      <div className="w-[16%] py-8">
-        <div className="flex space-x-2 p-2 text-white border-y border-blue-100">
-          <img
-            className="w-7 rounded-full"
-            src={require("../Assets/logo.png")}
-            alt=""
-          />
-          <p> Company </p>
-        </div>
+      <div className="w-[20%] py-8">
+        <Link
+          to="../"
+          className="flex space-x-2 p-2 px-6 text-white border-y border-blue-100 hover:bg-slate-800"
+        >
+          All Business
+        </Link>
         <div className="flex justify-between space-x-2 p-2 text-white border-b border-blue-100">
           <div className="flex flex-row space-x-3">
             <img
@@ -88,7 +86,10 @@ export default function DashboardTemplate({ children, route }) {
         </div>
         <div className="p-4 -mt-9">{id}</div>
         <div className="ml-16 mt-5 h-fit box-border mb-6">
-          <div className="text-4xl font-normal capitalize mb-3"><Link to="../">{name}</Link>{transid? ` / ${transid}`: ""}</div>
+          <div className="text-4xl font-normal capitalize mb-3">
+            <Link to="../">{name}</Link>
+            {transid ? ` / ${transid}` : ""}
+          </div>
           <hr className="w-[90%] bg-black h-[2px]" />
         </div>
         {children}
