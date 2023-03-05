@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function DashboardTemplate({ component, route }) {
+export default function DashboardTemplate({ children, route }) {
   const newid = route.split("/");
   const name = newid[0];
   const transid = newid[1];
@@ -91,7 +91,7 @@ export default function DashboardTemplate({ component, route }) {
           <div className="text-4xl font-normal capitalize mb-3"><Link to="../">{name}</Link>{transid? ` / ${transid}`: ""}</div>
           <hr className="w-[90%] bg-black h-[2px]" />
         </div>
-        {component}
+        {children}
       </div>
     </div>
   );

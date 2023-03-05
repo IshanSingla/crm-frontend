@@ -11,17 +11,14 @@ export default function SinglaBuissness() {
   const { id } = param;
   localStorage.setItem("buissnessId", id);
   return (
-    <DashboardTemplate
-      route={param["*"]}
-      component={
-        <Routes>
-          <Route path="/dashboard/*" element={<DashboardRoute />} />
-          <Route path="/inventory/*" element={<Inventory />} />
-          <Route path="/expense" element={<Expense />} />
-          <Route path="/setting" element={<Settings />} />
-          <Route path="*" element={<Navigate to="./dashboard" />} />
-        </Routes>
-      }
-    />
+    <DashboardTemplate route={param["*"]}>
+      <Routes>
+        <Route path="/dashboard/*" element={<DashboardRoute />} />
+        <Route path="/inventory/*" element={<Inventory />} />
+        <Route path="/expense" element={<Expense />} />
+        <Route path="/setting" element={<Settings />} />
+        <Route path="*" element={<Navigate to="./dashboard" />} />
+      </Routes>
+    </DashboardTemplate>
   );
 }
