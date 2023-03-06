@@ -79,15 +79,15 @@ function Inventory() {
             buyingPrice !== "" &&
             quantity !== ""
           ) {
-            return BuissnessApi().then((publicApi) => {
+            return BuissnessApi().then((publicApi) =>
               publicApi.post(`/inventory/create`, {
                 name,
                 description,
                 sellingPrice,
                 buyingPrice,
                 quantity,
-              });
-            });
+              })
+            );
           } else {
             toast.error("Please fill all the fields");
           }

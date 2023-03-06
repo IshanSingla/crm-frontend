@@ -1,19 +1,43 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function AdminTemp({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex flex-row">
       {/* Sidebar */}
-      <div className="md:w-3/12 min-h-screen hidden md:flex flex-col items-center bg-black px-2 py-3 text-white">
-        Sidebar
-      </div>
 
+      <div className="bg-[#000C2A] hidden md:flex flex-col min-h-screen p-6 items-center justify-center gap-7 w-72">
+        <Link
+          to="./dashboard"
+          className="hidden md:flex flex-col items-center hover:bg-slate-800 w-full px-2 py-3 text-white"
+        >
+          dashboard
+        </Link>
+        <Link
+          to="./addRoles"
+          className=" hidden md:flex flex-col items-center hover:bg-slate-800 w-full px-2 py-3 text-white"
+        >
+          addRoles
+        </Link>
+        <Link
+          to="./addAdmin"
+          className=" hidden md:flex flex-col items-center hover:bg-slate-800 w-full px-2 py-3 text-white"
+        >
+          addAdmin
+        </Link>
+        <Link
+          to="./addBuissnessRoles"
+          className=" hidden md:flex flex-col items-center hover:bg-slate-800 w-full px-2 py-3 text-white"
+        >
+          addBuissnessRoles
+        </Link>
+      </div>
       {/* Hamburger */}
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden absolute top-2 right-2 bg-black p-2 text-white"
+        className="md:hidden absolute top-2 right-2 bg-[#000C2A] p-2 text-white"
       >
         open
       </button>
@@ -21,9 +45,32 @@ export default function AdminTemp({ children }) {
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
-          className="md:hidden z-10 absolute h-screen w-1/3 bg-black bg- px-2 py-3 text-white"
+          className="md:hidden z-10 absolute h-screen w-1/3 bg-[#000C2A] bg- px-2 py-3 text-white flex flex-col items-center justify-center gap-9"
         >
-          <div className="flex flex-col items-center">Sidebar</div>
+          <Link
+            to="./dashboard"
+            className="flex flex-col items-center  px-2 py-3  hover:bg-slate-800 w-full"
+          >
+            dashboard
+          </Link>
+          <Link
+            to="./addRoles"
+            className="flex flex-col items-center px-2 py-3 hover:bg-slate-800 w-full"
+          >
+            addRoles
+          </Link>
+          <Link
+            to="./addAdmin"
+            className="flex flex-col items-center  px-2 py-3 hover:bg-slate-800 w-full"
+          >
+            addAdmin
+          </Link>
+          <Link
+            to="./addBuissnessRoles"
+            className="flex flex-col items-center  px-2 py-3 hover:bg-slate-800 w-full"
+          >
+            addBuissnessRoles
+          </Link>
         </div>
       )}
 

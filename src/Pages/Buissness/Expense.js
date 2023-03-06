@@ -73,15 +73,15 @@ function Expense() {
           expenseOn !== "" &&
           type !== ""
         ) {
-          return BuissnessApi().then((publicApi) => {
+          return BuissnessApi().then((publicApi) =>
             publicApi.post(`/expenses/create`, {
               name: name,
               description: description,
               amount: amount,
               expenseOn: expenseOn,
               type: type,
-            });
-          });
+            })
+          );
         } else {
           toast.error("Please fill all the fields");
         }

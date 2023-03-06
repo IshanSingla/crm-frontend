@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
+import CustomTable from "../../Components/CustomTable";
+import CreateIcon from "@mui/icons-material/Create";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Settings() {
   const [data, setData] = useState();
+  const [update, setUpdate] = useState(false);
   useEffect(() => {
+    setData(null);
     BuissnessApi().then((publicApi) => {
       publicApi
         .get(`/one`)
@@ -15,11 +20,11 @@ export default function Settings() {
           toast.error(err.message);
         });
     });
-  }, []);
+  }, [update]);
   return data ? (
-    <div className="settings">
-      <div className="w-[100%] flex flex-wrap justify-center gap-5">
-        <div className="w-fit bg-white shadow-xl rounded-2xl">
+    <div className="settings flex flex-col gap-6">
+      <div className="w-[100%] flex justify-center">
+        <div className="w-[70%] bg-white shadow-xl rounded-2xl">
           <div className="p-5 h-full">
             <div className="grid-cols-2 grid gap-10">
               <div className="name font-bold">Name</div>
@@ -55,59 +60,69 @@ export default function Settings() {
             </div>
           </div>
         </div>
-        <EmailAccess />
       </div>
+      <CustomTable
+        popupScreenFields={
+          <div>
+            <input
+              id="email"
+              type="text"
+              placeholder="Email"
+              className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+            />
+            <select
+              id="type"
+              className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+            >
+              <option value="Owner">Owner</option>
+              <option value="Manager">Manager</option>
+              <option value="Viewer">Viewer</option>
+            </select>
+          </div>
+        }
+        popupScreenHandler={async (e) => {
+          e.preventDefault();
+          let email = document.getElementById("email").value;
+          let type = document.getElementById("type").value;
+          if (email !== "" && type !== "") {
+            return BuissnessApi().then((publicApi) =>
+              publicApi.post(`/adduser`, {
+                email,
+                type: type,
+              })
+            );
+          } else {
+            toast.error("Please fill all the fields");
+          }
+        }}
+        headings="SNo, Email, Role, Actions"
+        tableData={data.users.map((email, index) => {
+          let details = [
+            index + 1,
+            email,
+            data.roles[index],
+            <div className="flex justify-center gap-[10px]">
+              <CreateIcon
+                fontSize="small"
+                sx={{ "&:hover": { cursor: "pointer" } }}
+              />
+              <DeleteIcon
+                fontSize="small"
+                sx={{ "&:hover": { cursor: "pointer" } }}
+              />
+            </div>,
+          ];
+          return (
+            <tr key={email._id} className="p-2">
+              {details.map((item2, key) => {
+                return <td key={`${email}`}>{item2}</td>;
+              })}
+            </tr>
+          );
+        })}
+      />
     </div>
   ) : (
     <div className="h-fit justify-center items-center flex ">Loader</div>
   );
 }
-
-const EmailAccess = () => {
-  const [email, setEmail] = useState("");
-  const Handle = () => {
-    if (email === "") {
-      toast.error("Email is required");
-      return;
-    }
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .post(`/adduser`, {
-          email,
-        })
-        .then((res) => {
-          toast.success(res.data.message);
-        })
-        .catch((err) => {
-          if (err.request.status) {
-            return toast.error(err.response.data.message);
-          }
-          toast.error(err.message);
-        });
-    });
-  };
-  return (
-    <div className="w-fit bg-white shadow-xl rounded-2xl">
-      <div className="p-5 h-full flex flex-col justify-center">
-        <div className="border border-slate-500 mb-4">
-          <input
-            value={email}
-            placeholder="Enter Email"
-            className="p-3"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <button
-            onClick={Handle}
-            className="text-xl bg-amber-400 p-1 px-3 rounded-md"
-          >
-            Submit
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};

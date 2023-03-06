@@ -15,7 +15,7 @@ export default function App() {
       <Route path="/" element={<Home currentUser={user} />} />
       <Route path="/auth/*" element={<Auth currentUser={user} />} />
       <Route path="/business/*" element={<Business currentUser={user} />} />
-      <Route path="/admin" element={<AdminRoute currentUser={user} />} />
+      <Route path="/admin/*" element={<AdminRoute currentUser={user} />} />
     </Routes>
   ) : (
     <Loader changeLoding={changeLoding} changeUser={changeUser} />

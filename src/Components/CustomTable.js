@@ -64,12 +64,15 @@ export default function CustomTable({
                     setPopup(false);
                   })
                   .catch((err) => {
+                    if (err.request.status) {
+                      return toast.error(err.response.data.message);
+                    }
                     toast.error(err.message);
                   });
               }}
               className="w-full bg-[#000C2A] text-white p-[8px] rounded-[20px]"
             >
-              {" "}
+       
               Add
             </button>
           </div>
