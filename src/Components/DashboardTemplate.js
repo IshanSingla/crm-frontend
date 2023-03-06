@@ -7,7 +7,7 @@ export default function DashboardTemplate({ children, route }) {
   const transid = newid[1];
   const id = localStorage.getItem("buissnessId");
   return (
-    <div className="flex flex-row bg-[#000C2A] w-full h-screen py-3 pr-3 over">
+    <div className="flex flex-row bg-[#000C2A] w-full h-screen p-2 over">
       <div className="w-[20%] py-8">
         <Link
           to="../"
@@ -92,7 +92,7 @@ export default function DashboardTemplate({ children, route }) {
           </div>
           <hr className="w-[90%] bg-black h-[2px]" />
         </div>
-        {children}
+        <div className=" overflow-auto h-[90%]">{children}</div>
       </div>
     </div>
   );

@@ -19,6 +19,9 @@ function Inventory() {
           setBody(body.filter((item) => item._id !== invid));
         })
         .catch((err) => {
+          if (err.request.status) {
+            return toast.error(err.response.data.message);
+          }
           toast.error("Something went wrong");
         });
     });
