@@ -5,20 +5,21 @@ import Inventory from "../Pages/Buissness/Inventory";
 import Expense from "../Pages/Buissness/Expense";
 import DashboardRoute from "./Dashboard";
 import Settings from "../Pages/Buissness/Setting";
+import AdminTemp from "../Components/AdminTemp";
 
 export default function SinglaBuissness() {
   const param = useParams();
   const { id } = param;
   localStorage.setItem("buissnessId", id);
   return (
-    <DashboardTemplate route={param["*"]}>
+    <AdminTemp route={param["*"]}>
       <Routes>
         <Route path="/dashboard/*" element={<DashboardRoute />} />
         <Route path="/inventory/*" element={<Inventory />} />
         <Route path="/expense" element={<Expense />} />
-        <Route path="/setting" element={<Settings />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="./dashboard" />} />
       </Routes>
-    </DashboardTemplate>
+    </AdminTemp>
   );
 }

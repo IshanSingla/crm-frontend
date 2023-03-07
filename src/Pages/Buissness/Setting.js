@@ -85,6 +85,7 @@ export default function Settings() {
           let email = document.getElementById("email").value;
           let type = document.getElementById("type").value;
           if (email !== "" && type !== "") {
+            setUpdate(!update);
             return BuissnessApi().then((publicApi) =>
               publicApi.post(`/adduser`, {
                 email,
