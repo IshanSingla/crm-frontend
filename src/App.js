@@ -5,14 +5,14 @@ import Auth from "./Routes/Auth";
 import Business from "./Routes/Business";
 import { auth } from "./Config/firebase";
 import AdminRoute from "./Routes/AdminRoute";
-import Home from "./Routes/Home";
+import HomeRoute from "./Routes/HomeRoute";
 
 export default function App() {
   const [loding, changeLoding] = useState(false);
   const [user, changeUser] = useState(auth.currentUser);
   return loding ? (
     <Routes>
-      <Route path="/" element={<Home currentUser={user} />} />
+      <Route path="/" element={<HomeRoute currentUser={user} />} />
       <Route path="/auth/*" element={<Auth currentUser={user} />} />
       <Route path="/business/*" element={<Business currentUser={user} />} />
       <Route path="/admin/*" element={<AdminRoute currentUser={user} />} />

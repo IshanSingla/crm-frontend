@@ -8,12 +8,12 @@ export default function Auth({ currentUser }) {
   return currentUser?.length !== 0 && currentUser ? (
     <Navigate to="/business" />
   ) : (
-    <LandingScreen>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<Navigate to="./login" />} />
-      </Routes>
-    </LandingScreen>
+    // <LandingScreen>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="*" element={<Navigate to="./login" />} />
+    </Routes>
+    // </LandingScreen>
   );
 }
