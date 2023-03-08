@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import AdminTemp from "../Components/AdminTemp";
+import DashboardTemp from "../Components/DashboardTemp";
 import {
   AddAdmin,
   AddBuissnessRoles,
@@ -10,7 +10,7 @@ import {
 
 export default function AdminRoute({ currentUser }) {
   return currentUser ? (
-    <AdminTemp>
+    <DashboardTemp>
       <Routes>
         <Route path="/dashboard" element={<AdminHome />} />
         <Route path="/addRoles" element={<AddRoles />} />
@@ -18,7 +18,7 @@ export default function AdminRoute({ currentUser }) {
         <Route path="/addBuissnessRoles" element={<AddBuissnessRoles />} />
         <Route path="*" element={<Navigate to="./dashboard" />} />
       </Routes>
-    </AdminTemp>
+    </DashboardTemp>
   ) : (
     <Navigate to="/auth/login" />
   );

@@ -51,126 +51,120 @@ export default function CustomTable({
   };
 
   return (
-    <div className="flex flex-col justify-between py-2 shadow-md bg-white rounded-xl w-full md:w-[60%] container mx-auto">
-      {popup && (
-        <>
-          <div className="w-[30%] bg-white absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-20 p-[32px]">
-            {popupScreenFields}
-            <button
-              onClick={(e) => {
-                popupScreenHandler(e)
-                  .then((res) => {
-                    toast.success("Added Successfully");
-                    setPopup(false);
-                  })
-                  .catch((err) => {
-                    if (err.request.status) {
-                      return toast.error(err.response.data.message);
-                    }
-                    toast.error(err.message);
-                  });
+    <div className="flex justify-center items-center h-full w-full">
+      <div className="flex flex-col justify-between py-2 shadow-md bg-white rounded-xl lg:w-full sm:w-[80%] w-[45%] container">
+        {popup && (
+          <>
+            <div className="lg:w-[30%] sm:w-[50%] w-[70%] bg-white absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-20 p-[32px]">
+              {popupScreenFields}
+              <button
+                onClick={(e) => {
+                  popupScreenHandler(e)
+                    .then((res) => {
+                      toast.success("Added Successfully");
+                      setPopup(false);
+                    })
+                    .catch((err) => {
+                      if (err.request.status) {
+                        return toast.error(err.response.data.message);
+                      }
+                      toast.error(err.message);
+                    });
+                }}
+                className="w-full bg-[#000C2A] text-white p-[8px] rounded-[20px]"
+              >
+                Add
+              </button>
+            </div>
+            <div
+              onClick={() => {
+                setPopup(false);
               }}
-              className="w-full bg-[#000C2A] text-white p-[8px] rounded-[20px]"
-            >
-       
-              Add
-            </button>
-          </div>
-          <div
+              className="absolute w-full h-full top-[0%] left-[0%] bg-black/20 z-13"
+            ></div>
+          </>
+        )}
+        <div className="flex flex-row py-3 px-4 justify-between">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-[70%] bg-zinc-100 rounded-md outline-none py-1 px-2"
+          />
+          <button
             onClick={() => {
-              setPopup(false);
+              setPopup(true);
             }}
-            className="absolute w-[100%] h-[100%] top-[0%] left-[0%] bg-[rgb(0,0,0,0.2)] z-13"
-          ></div>
-        </>
-      )}
-      <div className="flex flex-row py-3 px-4 justify-between">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="w-[75%] bg-zinc-100 rounded-md outline-none py-1 px-2"
-        />
-        <button
-          onClick={() => {
-            setPopup(true);
-          }}
-          className="px-5 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
-        >
-          Add data
-        </button>
-        <button
-          onClick={() => {
-            setReload(!reload);
-          }}
-        >
-          <img
-            className="w-4"
-            src={require("../Assets/reload.svg").default}
-            alt=""
-          />
-        </button>
-        <button>
-          <img
-            className="w-5"
-            src={require("../Assets/more.svg").default}
-            alt=""
-          />
-        </button>
-      </div>
-      <div className="overflow-auto h-[22rem] scroll">
-        <table className="w-full border-space font-pop text-zinc-500">
-          <thead className="">
-            <tr className="font-semibold text-[13px] h-auto border-b border-zinc-200">
-              {headings.split(",").map((head, headID) => (
-                <td key={head}>
-                  <div className="px-4 pb-2 ">{head}</div>
-                </td>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="text-[12px] text-center">{tableData}</tbody>
-        </table>
-      </div>
-
-      {/* Table Down Bar */}
-      <div className="flex flex-row justify-between px-4 py-2 font-pop text-[12px] border-t border-zinc-200">
-        <div className="flex flex-row items-center space-x-1 ">
-          <div>Rows per page</div>
-          <div>
-            <select
-              value={gap}
-              onChange={(e) => setGap(parseInt(e.target.value))}
-              className="bg-zinc-100 p-1 rounded-md cursor-pointer outline-none border-none"
-            >
-              <option value={10}> 10 </option>
-              <option value={20}> 20 </option>
-              <option value={30}> 30 </option>
-            </select>
-          </div>
+            className="px-3 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+          >
+            Add data
+          </button>
+          <button
+            onClick={() => {
+              setReload(!reload);
+            }}
+          >
+            <img
+              className="w-4"
+              src={require("../Assets/reload.svg").default}
+              alt=""
+            />
+          </button>
+        </div>
+        <div className="overflow-auto h-[29rem] scroll">
+          <table className="w-full border-space font-pop text-zinc-500">
+            <thead className="">
+              <tr className="font-semibold text-[13px] h-auto border-b border-zinc-200">
+                {headings.split(",").map((head, headID) => (
+                  <td key={head}>
+                    <div className="px-4 pb-2 ">{head}</div>
+                  </td>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="text-[12px] text-center">{tableData}</tbody>
+          </table>
         </div>
 
-        {/* Arrows */}
-        <div className="flex flex-row">
-          <button
-            onClick={handlePrev}
-            className="hover:bg-zinc-100 rounded-full transition-all"
-          >
-            <img
-              className="w-8"
-              src={require("../Assets/leftArr2.svg").default}
-              alt=""
-            />
-          </button>
-          <button
-            onClick={handleNext}
-            className="hover:bg-zinc-100 rounded-full transition-all"
-          >
-            <img
-              className="w-8"
-              src={require("../Assets/rightArr2.svg").default}
-              alt=""
-            />
-          </button>
+        {/* Table Down Bar */}
+        <div className="flex flex-row justify-between px-4 py-2 font-pop text-[12px] border-t border-zinc-200">
+          <div className="flex flex-row items-center space-x-1 ">
+            <div>Rows per page</div>
+            <div>
+              <select
+                value={gap}
+                onChange={(e) => setGap(parseInt(e.target.value))}
+                className="bg-zinc-100 p-1 rounded-md cursor-pointer outline-none border-none"
+              >
+                <option value={10}> 10 </option>
+                <option value={20}> 20 </option>
+                <option value={30}> 30 </option>
+              </select>
+            </div>
+          </div>
+
+          {/* Arrows */}
+          <div className="flex flex-row">
+            <button
+              onClick={handlePrev}
+              className="hover:bg-zinc-100 rounded-full transition-all"
+            >
+              <img
+                className="w-8"
+                src={require("../Assets/leftArr2.svg").default}
+                alt=""
+              />
+            </button>
+            <button
+              onClick={handleNext}
+              className="hover:bg-zinc-100 rounded-full transition-all"
+            >
+              <img
+                className="w-8"
+                src={require("../Assets/rightArr2.svg").default}
+                alt=""
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>

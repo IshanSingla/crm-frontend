@@ -28,7 +28,7 @@ function Inventory() {
   };
 
   return (
-    <div className="md:flex">
+    <div className="flex lg:flex-row flex-col overflow-auto h-full w-full">
       <CustomTable
         popupScreenFields={
           <div>
