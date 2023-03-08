@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 
 export default function HomeRoute({ currentUser }) {
@@ -9,9 +9,5 @@ export default function HomeRoute({ currentUser }) {
   //   <Navigate to="/auth/login" />
   // );
 
-  return (
-    <div>
-      <Home />
-    </div>
-  );
+  return <Home />;
 }

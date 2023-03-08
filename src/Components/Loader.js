@@ -1,12 +1,22 @@
 import { onAuthStateChanged } from "firebase/auth";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Api } from "../Api";
 import { auth } from "../Config/firebase";
 
 export default function Loader({ changeUser, changeLoding }) {
+  const navigate = useNavigate();
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      await user.reload();
-      await changeUser(user);
+      try{
+      let api = await Api();
+      await api.get("/user/profile")
+      changeUser(user);
+      }catch(err){
+        user.delete();
+        navigate("/auth/login");
+      }
     }
     changeLoding(true);
   });

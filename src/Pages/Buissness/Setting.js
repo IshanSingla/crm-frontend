@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
 import CustomTable from "../../Components/CustomTable";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { DeleteIcons, EditIcons } from "../../Components/Icons";
 
 export default function Settings() {
   const [data, setData] = useState();
@@ -102,16 +101,10 @@ export default function Settings() {
             index + 1,
             email,
             data.roles[index],
-            <div className="flex justify-center gap-[10px]">
-              <CreateIcon
-                fontSize="small"
-                sx={{ "&:hover": { cursor: "pointer" } }}
-              />
-              <DeleteIcon
-                fontSize="small"
-                sx={{ "&:hover": { cursor: "pointer" } }}
-              />
-            </div>,
+            <div className="flex justify-center gap-[12px]">
+            <EditIcons className="cursor-pointer" />
+            <DeleteIcons className="cursor-pointer" />
+          </div>,
           ];
           return (
             <tr key={email._id} className="p-2">

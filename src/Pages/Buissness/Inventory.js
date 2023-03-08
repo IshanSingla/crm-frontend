@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, Route, Routes } from "react-router-dom";
 import CustomTable from "../../Components/CustomTable";
 import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
 import InventryTrans from "./InventryTrans";
+import { DeleteIcons, EditIcons } from "../../Components/Icons";
 
 function Inventory() {
   const [body, setBody] = useState([]);
@@ -111,15 +110,11 @@ function Inventory() {
             <button className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">
               +/-
             </button>,
-            <div className="flex justify-center gap-[10px]">
-              <CreateIcon
-                fontSize="small"
-                sx={{ "&:hover": { cursor: "pointer" } }}
-              />
-              <DeleteIcon
+            <div className="flex justify-center gap-[12px]">
+              <EditIcons className="cursor-pointer" />
+              <DeleteIcons
+                className="cursor-pointer"
                 onClick={() => handleDelete(item._id)}
-                fontSize="small"
-                sx={{ "&:hover": { cursor: "pointer" } }}
               />
             </div>,
           ];

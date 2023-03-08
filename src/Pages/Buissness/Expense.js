@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../../Api";
 import CustomTable from "../../Components/CustomTable";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { DeleteIcons, EditIcons } from "../../Components/Icons";
 
 function Expense() {
   const [body, setBody] = useState([]);
@@ -88,7 +87,7 @@ function Expense() {
       }}
       link={`/expenses`}
       setBody={setBody}
-      headings="SNo., Name, Description, Cost,expense type, expense On, Date, Actions"
+      headings="SNo., Name, Description, Cost, type, expense On, Date, Actions"
       tableData={body.map((item, index) => {
         let details = [
           index + 1,
@@ -98,16 +97,11 @@ function Expense() {
           item.expensetype,
           item.expenseOnType,
           new Date(item.expenseTime).toLocaleString(),
-
-          <div className="flex justify-center gap-[10px]">
-            <CreateIcon
-              fontSize="small"
-              sx={{ "&:hover": { cursor: "pointer" } }}
-            />
-            <DeleteIcon
+          <div className="flex justify-center gap-[12px]">
+            <EditIcons className="cursor-pointer" />
+            <DeleteIcons
+              className="cursor-pointer"
               onClick={() => handleDelete(item._id)}
-              fontSize="small"
-              sx={{ "&:hover": { cursor: "pointer" } }}
             />
           </div>,
         ];
