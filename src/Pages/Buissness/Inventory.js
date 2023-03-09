@@ -23,6 +23,8 @@ function Inventory() {
           }
           toast.error("Something went wrong");
         });
+    }).catch((err) => {
+      toast.error(err.message);
     });
   };
 

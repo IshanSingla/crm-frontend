@@ -1,21 +1,17 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, sendEmailVerification } from "firebase/auth";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Api } from "../Api";
 import { auth } from "../Config/firebase";
 
 export default function Loader({ changeUser, changeLoding }) {
-  const navigate = useNavigate();
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      try{
-      let api = await Api();
-      await api.get("/user/profile")
-      changeUser(user);
-      }catch(err){
-        user.delete();
-        navigate("/auth/login");
+      if (user.emailVerified) {
+        changeUser(user);
+      } else {
+        await sendEmailVerification(user);
+        await auth.signOut();
+        toast.success("Verification link has been sent to your email");
       }
     }
     changeLoding(true);

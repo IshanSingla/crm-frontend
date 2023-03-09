@@ -3,6 +3,7 @@ import LandingScreen from "../Components/LandingScreen";
 import { BuissnessApi } from "../Api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { auth } from "../Config/firebase";
 
 function AllBusiness() {
   const [name, setName] = useState("");
@@ -10,48 +11,69 @@ function AllBusiness() {
   const [updater, setUpdater] = useState(true);
 
   const handleDelete = (id) => {
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .delete(`/delete`, { headers: { buissnessid: id } })
-        .then((res) => {
-          toast.success("Deleted Successfully");
-          setUpdater(!updater);
-        })
-        .catch((err) => {
-          toast.error(err.message);
-        });
-    });
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .delete(`/delete`, { headers: { buissnessid: id } })
+          .then((res) => {
+            toast.success("Deleted Successfully");
+            setUpdater(!updater);
+          })
+          .catch((err) => {
+            if (err.response) {
+              return toast.error(err.response.data.message);
+            }
+            toast.error(err.message);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   const handleSubmit = () => {
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .post("/create", {
-          buissnessName: name,
-          buissnessGstNo: "123456",
-        })
-        .then(() => {
-          setName("");
-          toast.success("Created Successfully");
-          setUpdater(!updater);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    });
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .post("/create", {
+            buissnessName: name,
+            buissnessGstNo: "123456",
+          })
+          .then(() => {
+            setName("");
+            toast.success("Created Successfully");
+            setUpdater(!updater);
+          })
+          .catch((err) => {
+            if (err.response) {
+              return toast.error(err.response.data.message);
+            }
+            console.log(err.message);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   useEffect(() => {
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .get("/all", {})
-        .then((res) => {
-          setData(res.data.buissness);
-        })
-        .catch((err) => {
-          toast.error(err.message);
-        });
-    });
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .get("/all", {})
+          .then((res) => {
+            setData(res.data.buissness);
+          })
+          .catch((err) => {
+            if (err.response) {
+              return toast.error(err.response.data.message);
+            }
+            toast.error(err.message);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   }, [updater]);
 
   return (
@@ -73,6 +95,16 @@ function AllBusiness() {
           >
             +
           </button>
+          <Link
+            to="/auth"
+            onClick={() => {
+              // auth.signOut();
+              auth.currentUser.delete();
+            }}
+            className="w-[15%] h-12 rounded-md border border-white  bg-black text-4xl"
+          >
+            Delete
+          </Link>
         </div>
         <div className="text-2xl mb-2">Your Businesses:</div>
         <div className="border border-zinc-400 py-4 px-3 rounded-md h-96">

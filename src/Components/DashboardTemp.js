@@ -39,20 +39,24 @@ export default function DashboardTemp({ children, type = "buissness" }) {
   ];
   useEffect(() => {
     if (type === "buissness") {
-      BuissnessApi().then((publicApi) => {
-        publicApi
-          .get("/one")
-          .then((res) => {
-            setData(res.data.buissness);
-          })
-          .catch((err) => {
-            console.log(err);
-            if (err.request.status) {
-              return toast.error(err.response.data.message);
-            }
-            return toast.error(err.message);
-          });
-      });
+      BuissnessApi()
+        .then((publicApi) => {
+          publicApi
+            .get("/one")
+            .then((res) => {
+              setData(res.data.buissness);
+            })
+            .catch((err) => {
+              console.log(err);
+              if (err.request.status) {
+                return toast.error(err.response.data.message);
+              }
+              return toast.error(err.message);
+            });
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
     }
     Menus.forEach((Menu, index) => {
       if (Menu.route === route) {
@@ -62,27 +66,36 @@ export default function DashboardTemp({ children, type = "buissness" }) {
   }, [route]);
 
   const handleLogout = () => {
-    auth.signOut().then(() => {
-      toast.success("Logged Out");
-      navigator("/auth");
-    });
+    auth
+      .signOut()
+      .then(() => {
+        toast.success("Logged Out");
+        navigator("/auth");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   const handleDelete = () => {
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .delete("/delete")
-        .then((res) => {
-          toast.success(res.data.message);
-          navigator("/business");
-        })
-        .catch((err) => {
-          if (err.request.status) {
-            return toast.error(err.response.data.message);
-          }
-          return toast.error(err.message);
-        });
-    });
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .delete("/delete")
+          .then((res) => {
+            toast.success(res.data.message);
+            navigator("/business");
+          })
+          .catch((err) => {
+            if (err.request.status) {
+              return toast.error(err.response.data.message);
+            }
+            return toast.error(err.message);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   return (

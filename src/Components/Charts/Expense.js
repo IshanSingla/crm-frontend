@@ -13,54 +13,58 @@ export default function Expense() {
     datasets: [],
   });
   useEffect(() => {
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .get(`/expenses`)
-        .then((res) => {
-          setQuantity({
-            labels: res.data.inventory.map((data) => data.expenseName),
-            datasets: [
-              {
-                label: "CR",
-                data: res.data.inventory.map((data) =>
-                  data.expensetype === "CR" ? data.expenseAmount.count : null
-                ),
-                ids: res.data.inventory.map((data) => data._id),
-              },
-              {
-                label: "DR",
-                data: res.data.inventory.map((data) =>
-                  data.expensetype === "DR" ? data.expenseAmount.count : null
-                ),
-                ids: res.data.inventory.map((data) => data._id),
-              },
-            ],
-          });
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .get(`/expenses`)
+          .then((res) => {
+            setQuantity({
+              labels: res.data.inventory.map((data) => data.expenseName),
+              datasets: [
+                {
+                  label: "CR",
+                  data: res.data.inventory.map((data) =>
+                    data.expensetype === "CR" ? data.expenseAmount.count : null
+                  ),
+                  ids: res.data.inventory.map((data) => data._id),
+                },
+                {
+                  label: "DR",
+                  data: res.data.inventory.map((data) =>
+                    data.expensetype === "DR" ? data.expenseAmount.count : null
+                  ),
+                  ids: res.data.inventory.map((data) => data._id),
+                },
+              ],
+            });
 
-          setCost({
-            labels: res.data.inventory.map((data) =>
-              new Date(data.expenseTime).toLocaleString()
-            ),
-            datasets: [
-              {
-                label: "CR",
-                data: res.data.inventory.map((data) =>
-                  data.expensetype === "CR" ? data.expenseAmount.count : null
-                ),
-              },
-              {
-                label: "DR",
-                data: res.data.inventory.map((data) =>
-                  data.expensetype === "DR" ? data.expenseAmount.count : null
-                ),
-              },
-            ],
+            setCost({
+              labels: res.data.inventory.map((data) =>
+                new Date(data.expenseTime).toLocaleString()
+              ),
+              datasets: [
+                {
+                  label: "CR",
+                  data: res.data.inventory.map((data) =>
+                    data.expensetype === "CR" ? data.expenseAmount.count : null
+                  ),
+                },
+                {
+                  label: "DR",
+                  data: res.data.inventory.map((data) =>
+                    data.expensetype === "DR" ? data.expenseAmount.count : null
+                  ),
+                },
+              ],
+            });
+          })
+          .catch((err) => {
+            toast.error(err.message);
           });
-        })
-        .catch((err) => {
-          toast.error(err.message);
-        });
-    });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   }, []);
   return (
     <div className="p-6">

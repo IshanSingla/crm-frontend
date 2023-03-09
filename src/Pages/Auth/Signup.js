@@ -1,8 +1,8 @@
-import { createUserWithEmailAndPassword, getIdToken } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { publicApi } from "../../Api";
+import { Api } from "../../Api";
 import { auth } from "../../Config/firebase";
 
 function Signup() {
@@ -24,34 +24,29 @@ function Signup() {
     ) {
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCreds) => {
-          getIdToken(userCreds.user).then((token) => {
-            publicApi
-              .post(
-                "/auth/create",
-                {
+          Api()
+            .then((publicApi) => {
+              publicApi
+                .post("/auth/create", {
                   email: email,
                   name: name,
                   userGender: gender,
                   phoneNumber: phone,
-                },
-                {
-                  headers: {
-                    authorization: token,
-                  },
-                }
-              )
-              .then((response) => {
-                setLoader(false);
-                toast.success("User Signup Successfully");
-              })
-              .catch((err) => {
-                setLoader(!loader);
-                if (err.request.status) {
-                  return toast.error(err.response.data.message);
-                }
-                toast.error(err.message);
-              });
-          });
+                })
+                .then((response) => {
+                  setLoader(false);
+                })
+                .catch((err) => {
+                  setLoader(!loader);
+                  if (err.request.status) {
+                    return toast.error(err.response.data.message);
+                  }
+                  toast.error(err.message);
+                });
+            })
+            .catch((err) => {
+              toast.error(err.message);
+            });
         })
         .catch((error) => {
           setLoader(false);
@@ -117,7 +112,9 @@ function Signup() {
           <button
             disabled={loader}
             onClick={handleSubmit}
-            className={`${loader?"bg-slate-600":"bg-black"} text-white w-full py-2 rounded-md text-[14px]`}
+            className={`${
+              loader ? "bg-slate-600" : "bg-black"
+            } text-white w-full py-2 rounded-md text-[14px]`}
           >
             Continue
           </button>

@@ -23,20 +23,24 @@ export default function CustomTable({
       if (link === "") {
         return;
       }
-      BuissnessApi().then((publicApi) => {
-        publicApi
-          .get(`${link}?from=${from}&to=${from + gap}`)
-          .then((res) => {
-            setBody(res.data.inventory);
-            setPages(res.data.totalPage);
-          })
-          .catch((err) => {
-            if (err.request.status) {
-              return toast.error(err.response.data.message);
-            }
-            toast.error(err.message);
-          });
-      });
+      BuissnessApi()
+        .then((publicApi) => {
+          publicApi
+            .get(`${link}?from=${from}&to=${from + gap}`)
+            .then((res) => {
+              setBody(res.data.inventory);
+              setPages(res.data.totalPage);
+            })
+            .catch((err) => {
+              if (err.request.status) {
+                return toast.error(err.response.data.message);
+              }
+              toast.error(err.message);
+            });
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
     }
   }, [from, gap, popup, reload]);
 

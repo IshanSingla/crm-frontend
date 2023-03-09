@@ -20,6 +20,8 @@ function Expense() {
           }
           toast.error("Something went wrong");
         });
+    }).catch((err) => {
+      toast.error(err.message);
     });
   };
   return (

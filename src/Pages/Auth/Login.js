@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Api } from "../../Api";
 import { auth } from "../../Config/firebase";
 
 function Login() {
@@ -16,10 +17,17 @@ function Login() {
     let password = document.getElementById("password").value;
     if (email !== "" && password !== "") {
       signInWithEmailAndPassword(auth, email, password)
-        .then(async (userCreds) => {
-          setLoader(false);
-          toast.success("User Login Successfully");
-          navigate("/business");
+        .then(async (user) => {
+          try {
+            let api = await Api();
+            await api.get("/user/profile");
+            setLoader(false);
+            toast.success("User Login Successfully");
+            navigate("/business");
+          } catch (err) {
+            user.delete();
+            navigate("/auth/login");
+          }
         })
         .catch((error) => {
           setLoader(false);
@@ -35,8 +43,6 @@ function Login() {
             toast.error("Weak Password");
           } else if (error.code === "auth/email-already-in-use") {
             toast.error("Email already in use");
-          } else if (error.code === "auth/invalid-email") {
-            toast.error("Invalid Email");
           } else if (error.code === "auth/operation-not-allowed") {
             toast.error("Operation not allowed");
           } else if (error.code === "auth/argument-error") {
@@ -76,7 +82,9 @@ function Login() {
           <button
             disabled={loader}
             onClick={handleSignIn}
-            className={`${loader?"bg-slate-600":"bg-black"} text-white w-full py-2 rounded-md text-[14px]`}
+            className={`${
+              loader ? "bg-slate-600" : "bg-black"
+            } text-white w-full py-2 rounded-md text-[14px]`}
           >
             Continue
           </button>

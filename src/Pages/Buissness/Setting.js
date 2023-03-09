@@ -18,6 +18,8 @@ export default function Settings() {
         .catch((err) => {
           toast.error(err.message);
         });
+    }).catch((err) => {
+      toast.error(err.message);
     });
   }, [update]);
   return data ? (

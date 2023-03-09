@@ -52,6 +52,8 @@ export default function Inventry() {
         .catch((err) => {
           toast.error(err.message);
         });
+    }).catch((err) => {
+      toast.error(err.message);
     });
   }, []);
   return (
