@@ -59,7 +59,10 @@ function Login() {
       <div>
         <h1 className="text-center font-pop font-black text-4xl">Login</h1>
       </div>
-      <div className="flex flex-col space-y-3 text-[15px]">
+      <form
+        onSubmit={handleSignIn}
+        className="flex flex-col space-y-3 text-[15px]"
+      >
         <div className="flex flex-col space-y-1">
           <input
             className=" border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
@@ -76,12 +79,10 @@ function Login() {
             placeholder="Password"
           />
         </div>
-      </div>
-      <div className="flex flex-col items-center space-y-3">
         <div className="w-full">
           <button
             disabled={loader}
-            onClick={handleSignIn}
+            // onClick={handleSignIn}
             className={`${
               loader ? "bg-slate-600" : "bg-black"
             } text-white w-full py-2 rounded-md text-[14px]`}
@@ -89,6 +90,8 @@ function Login() {
             Continue
           </button>
         </div>
+      </form>
+      <div className="flex flex-col items-center space-y-3">
         <div className="flex justify-center items-center text-[13px] ">
           <p>
             Don't have an account?&nbsp;
