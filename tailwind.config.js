@@ -5,10 +5,11 @@ module.exports = {
     extend: {
       fontFamily: {
         pop: "'Poppins', sans-serif",
+        mon: "'Montserrat', sans-serif",
       },
       boxShadow: {
-        'boxshadow': '10px 10px 20px #dde2ff80',
-      }
+        boxshadow: "10px 10px 20px #dde2ff80",
+      },
     },
   },
   plugins: [],
