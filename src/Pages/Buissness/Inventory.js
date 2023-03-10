@@ -11,19 +11,14 @@ function Inventory() {
   const [body, setBody] = useState([]);
   const [loader, setLoader] = useState(false);
 
-  const handleAdd = async (inventoryId, inventoryName, sellingPrice, buyingPrice) => {
+  const handleAdd = async (inventoryId) => {
     setLoader(true);
     BuissnessApi()
       .then((publicApi) => {
         publicApi
-          .post("/cart/update/push", {
-            inventoryId: inventoryId,
-            inventoryName,
-            sellingPrice,
-            buyingPrice
-          })
-          .then(() => {
-            toast.success("Item added to cart");
+          .put(`/cart/update?type=PUSH&inventoryId=${inventoryId}`)
+          .then((res) => {
+            toast.success(res.data.message);
             setLoader(false);
           })
           .catch((error) => {
@@ -142,11 +137,13 @@ function Inventory() {
             >
               Details
             </Link>,
-            <button onClick={() => {
-              if(!loader){
-                handleAdd(item._id, item.inventoryName, item.inventoryCost.sellingPrice, item.inventoryCost.buyingPrice);
-              }
-            }} className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">
+            <button
+              disabled={loader}
+              onClick={() => {
+                handleAdd(item._id);
+              }}
+              className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+            >
               Add to cart
             </button>,
             <div className="flex justify-center gap-[12px]">
