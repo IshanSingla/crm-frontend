@@ -5,7 +5,6 @@ import { BuissnessApi } from "../../Api";
 function Cart() {
   const [inventoryData, setInventoryData] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [flag, setFlag] = useState(false);
   const [cart, setCart] = useState([]);
   const [popup, setPopup] = useState(false);
 
@@ -20,12 +19,14 @@ function Cart() {
           })
           .then(() => {
             toast.success("Item added to cart");
-            setFlag(true);
             setLoader(false);
           })
-          .catch(() => {
-            toast.error("Server error");
+          .catch((error) => {
             setLoader(false);
+            if (error.request.status) {
+              return toast.error(error.response.data.message);
+            }
+            toast.error(error.messaga);
           });
       })
       .catch((err) => {
@@ -34,46 +35,41 @@ function Cart() {
   };
 
   useEffect(() => {
-    BuissnessApi()
-      .then((publicApi) => {
-        publicApi
-          .get(`/inventory`)
-          .then((res) => {
-            setInventoryData(res.data.inventory);
-          })
-          .catch((err) => {
-            if (err.request.status) {
-              return toast.error(err.response.data.message);
-            }
-            toast.error(err.message);
-          });
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
-    setFlag(true);
-  }, []);
-
-  if (flag) {
-    BuissnessApi()
-      .then((publicApi) => {
-        publicApi
-          .get("/cart")
-          .then((res) => {
-            // console.log(res.data);
-            if (res.data.cart) {
-              setCart(res.data.cart);
-            }
-          })
-          .catch(() => {
-            toast.error("Server error");
-          });
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
-    setFlag(false);
-  }
+    if (popup) {
+      BuissnessApi()
+        .then((publicApi) => {
+          publicApi
+            .get(`/inventory`)
+            .then((res) => {
+              setInventoryData(res.data.inventory);
+              publicApi
+                .get("/cart")
+                .then((res) => {
+                  if (res.data.cart) {
+                    setCart(res.data.cart);
+                  }
+                })
+                .catch((error) => {
+                  setLoader(false);
+                  if (error.request.status) {
+                    return toast.error(error.response.data.message);
+                  }
+                  toast.error(error.messaga);
+                });
+            })
+            .catch((error) => {
+              setLoader(false);
+              if (error.request.status) {
+                return toast.error(error.response.data.message);
+              }
+              toast.error(error.messaga);
+            });
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    }
+  }, [popup]);
 
   return (
     <>
