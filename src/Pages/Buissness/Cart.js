@@ -11,13 +11,9 @@ function CartCard({ item, setFlag }) {
     BuissnessApi()
       .then((publicApi) => {
         publicApi
-          .post(`/cart/update/${type}`, {
-            inventoryId: item.inventory_id,
-            inventoryName: item.inventoryName,
-            sellingPrice: item.inventoryCost.sellingPrice,
-            buyingPrice: item.inventoryCost.buyingPrice
-          })
-          .then(() => {
+          .put(`/cart/update?type=${type}&inventoryId=${item.inventory_id}`)
+          .then((res) => {
+            toast.success(res.data.message);
             setFlag(true);
             setLoader(false);
           })
@@ -39,27 +35,34 @@ function CartCard({ item, setFlag }) {
   }, [item.quantity]);
 
   return (
-    <div className="p-[16px] flex gap-[8px]">
+    <div className="p-[16px] flex gap-[20px]">
       <div>{item.inventoryName}</div>
       <div>{count}</div>
-      <div>{item.inventoryCost.sellingPrice}</div>
-      <div>{item.inventoryCost.buyingPrice}</div>
-      <button onClick={() => {
-        if (!loader) {
-          handleAdd("add");
-        }
-      }} className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">+</button>
-      <button onClick={() => {
-        if (!loader) {
-          if (count > 1) {
-            handleAdd("subtract");
-          } else if(count == 1){
-            handleAdd("remove");
-          }
-        }
-      }} className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">-</button>
+      <div>
+        {item.inventoryCost.sellingPrice}/{item.inventoryCost.buyingPrice}
+      </div>
+      <div>
+        <button
+          disabled={loader}
+          onClick={() => {
+            handleAdd("INCRIMENT");
+          }}
+          className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+        >
+          +
+        </button>
+        <button
+          disabled={loader}
+          onClick={() => {
+            handleAdd("DECREMENT");
+          }}
+          className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+        >
+          -
+        </button>
+      </div>
     </div>
-  )
+  );
 }
 
 function Cart() {
@@ -79,8 +82,8 @@ function Cart() {
         publicApi
           .get("/cart")
           .then((res) => {
-            if (res.data.cart) {
-              setCart(res.data.cart);
+            if (res.data.data) {
+              setCart(res.data.data);
             }
           })
           .catch((error) => {
@@ -110,16 +113,15 @@ function Cart() {
       </div>
       {popup && (
         <div>
-          <div className="fixed bg-[#ffffff] w-[70%] h-[90%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[15]">
+          <div className="fixed bg-[#ffffff] w-[50%] h-[50%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[15]">
             <div></div>
             <div className="flex flex-col h-[100%] p-[32px]">
-              {
-                cart?.inventory?.map((item) => {
-                  return (
-                    <CartCard key={item._id} item={item} setFlag={setFlag} />
-                  )
-                })
-              }
+              {cart?.inventory?.map((item) => {
+                console.log(item);
+                return (
+                  <CartCard key={item._id} item={item} setFlag={setFlag} />
+                );
+              })}
               {/* <div className="flex flex-col gap-[8px] h-[50%] p-[32px] overflow-y-scroll">
                 {inventoryData.map((item, index) => {
                   let details = [

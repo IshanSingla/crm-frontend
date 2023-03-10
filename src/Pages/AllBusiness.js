@@ -78,8 +78,7 @@ function AllBusiness() {
   }, [updater]);
 
   return (
-    <div>
-      <Navbar2 />
+    <LandingScreen>
       <div className="w-[80%] mx-auto ">
         <div className="text-2xl mb-2">Create New Business:</div>
         <div className="flex flex-row items-center justify-between mb-9">
@@ -97,16 +96,6 @@ function AllBusiness() {
           >
             +
           </button>
-          <Link
-            to="/auth"
-            onClick={() => {
-              // auth.signOut();
-              auth.currentUser.delete();
-            }}
-            className="w-[15%] h-12 rounded-md border border-white text-4xl"
-          >
-            Delete
-          </Link>
         </div>
         <div className="text-2xl mb-2">Your Businesses:</div>
         <div className="border border-zinc-400 py-4 px-3 rounded-md h-96">
@@ -147,7 +136,7 @@ function AllBusiness() {
           </div>
         </div>
       </div>
-    </div>
+    </LandingScreen>
 
     // <div className="relative">
     //   {/* CRM Background */}
