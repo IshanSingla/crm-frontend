@@ -98,12 +98,11 @@ function AllBusiness() {
           <Link
             to="/auth"
             onClick={() => {
-              // auth.signOut();
-              auth.currentUser.delete();
+              auth.signOut();
             }}
             className="w-[15%] h-12 rounded-md border border-white  bg-black text-4xl"
           >
-            Delete
+            X
           </Link>
         </div>
         <div className="text-2xl mb-2">Your Businesses:</div>
