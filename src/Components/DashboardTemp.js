@@ -201,7 +201,7 @@ export default function DashboardTemp({ children, type = "buissness" }) {
           !isOpen && "md:hidden block h-[98%] w-[97%] bg-black/20 absolute "
         }
       ></div>
-      <div className="w-full p-6 flex flex-col items-center bg-white  rounded-2xl">
+      <div className="relative w-full p-6 flex flex-col items-center bg-white  rounded-2xl">
         <nav className="w-full flex justify-between fix rounded-xl border-1 px-6 shadow-c items-center h-[6%] shadow-boxshadow">
           <MenuIcon
             className="md:hidden block cursor-pointer"

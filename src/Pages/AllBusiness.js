@@ -154,6 +154,22 @@ function AllBusiness() {
             }
             alt=""
           />
+
+          <button
+            className="w-[15%] h-12 rounded-md border border-white  bg-black text-4xl"
+            onClick={handleSubmit}
+          >
+            +
+          </button>
+          <Link
+            to="/auth"
+            onClick={() => {
+              auth.signOut();
+            }}
+            className="w-[15%] h-12 rounded-md border border-white  bg-black text-4xl"
+          >
+            X
+          </Link>
         </div>
 
         <div className="h-64">

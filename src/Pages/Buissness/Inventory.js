@@ -5,31 +5,35 @@ import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
 import InventryTrans from "./InventryTrans";
 import { DeleteIcons, EditIcons } from "../../Components/Icons";
+import Cart from "./Cart";
 
 function Inventory() {
   const [body, setBody] = useState([]);
 
   const handleDelete = async (invid) => {
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .delete(`/inventory/${invid}/delete`)
-        .then((res) => {
-          toast.success("Deleted");
-          setBody(body.filter((item) => item._id !== invid));
-        })
-        .catch((err) => {
-          if (err.request.status) {
-            return toast.error(err.response.data.message);
-          }
-          toast.error("Something went wrong");
-        });
-    }).catch((err) => {
-      toast.error(err.message);
-    });
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .delete(`/inventory/${invid}/delete`)
+          .then((res) => {
+            toast.success("Deleted");
+            setBody(body.filter((item) => item._id !== invid));
+          })
+          .catch((err) => {
+            if (err.request.status) {
+              return toast.error(err.response.data.message);
+            }
+            toast.error("Something went wrong");
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   return (
-    <div className="flex lg:flex-row flex-col overflow-auto h-full w-full">
+    <div className="flex lg:flex-col flex-col overflow-auto h-full w-full">
+      <Cart />
       <CustomTable
         popupScreenFields={
           <div>

@@ -90,7 +90,7 @@ export default function Settings() {
             return BuissnessApi().then((publicApi) =>
               publicApi.post(`/adduser`, {
                 email,
-                type: type,
+                type,
               })
             );
           } else {
@@ -98,20 +98,20 @@ export default function Settings() {
           }
         }}
         headings="SNo, Email, Role, Actions"
-        tableData={data.users.map((email, index) => {
+        tableData={data.users.map((data, index) => {
           let details = [
             index + 1,
-            email,
-            data.roles[index],
+            data.email,
+            data.roleName,
             <div className="flex justify-center gap-[12px]">
             <EditIcons className="cursor-pointer" />
             <DeleteIcons className="cursor-pointer" />
           </div>,
           ];
           return (
-            <tr key={email._id} className="p-2">
+            <tr key={data._id} className="p-2">
               {details.map((item2, key) => {
-                return <td key={`${email}`}>{item2}</td>;
+                return <td key={`${data._id}`}>{item2}</td>;
               })}
             </tr>
           );
