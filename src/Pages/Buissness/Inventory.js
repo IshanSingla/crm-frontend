@@ -5,9 +5,11 @@ import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
 import InventryTrans from "./InventryTrans";
 import { DeleteIcons, EditIcons } from "../../Components/Icons";
+import Cart from "./Cart";
 
 function Inventory() {
   const [body, setBody] = useState([]);
+  const [popup, setPopup] = useState(false);
 
   const handleDelete = async (invid) => {
     BuissnessApi().then((publicApi) => {
@@ -29,7 +31,15 @@ function Inventory() {
   };
 
   return (
-    <div className="flex lg:flex-row flex-col overflow-auto h-full w-full">
+    <div className="flex lg:flex-col flex-col overflow-auto h-full w-full">
+      <div className="flex justify-center">
+        <button onClick={() => {
+          setPopup(true);
+        }} className="bg-[#ff1243] w-[max-content] text-white p-[8px] rounded-[10px]">
+          Transaction
+        </button>
+      </div>
+      {popup && <Cart setPopup={setPopup}/>}
       <CustomTable
         popupScreenFields={
           <div>
