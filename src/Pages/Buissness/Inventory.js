@@ -9,6 +9,30 @@ import Cart from "./Cart";
 
 function Inventory() {
   const [body, setBody] = useState([]);
+  const [loader, setLoader] = useState(false);
+
+  const handleAdd = async (inventoryId) => {
+    setLoader(true);
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .put(`/cart/update?type=PUSH&inventoryId=${inventoryId}`)
+          .then((res) => {
+            toast.success(res.data.message);
+            setLoader(false);
+          })
+          .catch((error) => {
+            setLoader(false);
+            if (error.request.status) {
+              return toast.error(error.response.data.message);
+            }
+            toast.error(error.messaga);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
 
   const handleDelete = async (invid) => {
     BuissnessApi()
@@ -113,8 +137,14 @@ function Inventory() {
             >
               Details
             </Link>,
-            <button className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold">
-              +/-
+            <button
+              disabled={loader}
+              onClick={() => {
+                handleAdd(item._id);
+              }}
+              className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+            >
+              Add to cart
             </button>,
             <div className="flex justify-center gap-[12px]">
               <EditIcons className="cursor-pointer" />
