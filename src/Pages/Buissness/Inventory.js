@@ -60,37 +60,37 @@ function Inventory() {
       <Cart />
       <CustomTable
         popupScreenFields={
-          <div>
+          <div className="flex flex-col space-y-3">
             <input
               id="name"
               type="text"
               placeholder="Name"
-              className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+              className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
             />
             <textarea
               id="description"
               placeholder="Description"
-              className="w-full h-[150px] border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+              className="h-[150px] border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
             />
-            <div className="flex">
+            <div className="flex space-x-2">
+              <input
+                id="buyingPrice"
+                type="number"
+                placeholder="Cost Price"
+                className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
+              />
               <input
                 id="sellingPrice"
                 type="number"
                 placeholder="Selling Price"
-                className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
-              />
-              <input
-                id="buyingPrice"
-                type="number"
-                placeholder="Buying Price"
-                className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+                className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
               />
             </div>
             <input
               id="quantity"
               type="number"
               placeholder="Quantity"
-              className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+              className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
             />
           </div>
         }

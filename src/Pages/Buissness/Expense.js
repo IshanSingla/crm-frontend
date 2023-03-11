@@ -7,53 +7,55 @@ import { DeleteIcons, EditIcons } from "../../Components/Icons";
 function Expense() {
   const [body, setBody] = useState([]);
   const handleDelete = async (invid) => {
-    BuissnessApi().then((publicApi) => {
-      publicApi
-        .delete(`/expenses/${invid}/delete`)
-        .then((res) => {
-          toast.success("Deleted");
-          setBody(body.filter((item) => item._id !== invid));
-        })
-        .catch((err) => {
-          if (err.request.status) {
-            return toast.error(err.response.data.message);
-          }
-          toast.error("Something went wrong");
-        });
-    }).catch((err) => {
-      toast.error(err.message);
-    });
+    BuissnessApi()
+      .then((publicApi) => {
+        publicApi
+          .delete(`/expenses/${invid}/delete`)
+          .then((res) => {
+            toast.success("Deleted");
+            setBody(body.filter((item) => item._id !== invid));
+          })
+          .catch((err) => {
+            if (err.request.status) {
+              return toast.error(err.response.data.message);
+            }
+            toast.error("Something went wrong");
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
   return (
     <CustomTable
       popupScreenFields={
-        <div>
+        <div className="flex flex-col space-y-3">
           <input
             id="name"
             type="text"
             placeholder="Name"
-            className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+            className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
           />
           <textarea
             id="description"
             placeholder="Description"
-            className="w-full h-[150px] border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+            className="w-full h-[150px] border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
           />
           <input
             id="expenseOn"
             type="text"
             placeholder="expense On"
-            className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+            className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
           />
           <input
             id="amount"
             type="number"
             placeholder="Amount"
-            className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+            className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
           />
           <select
             id="type"
-            className="w-full border-2 border-solid p-[8px] bg-[transparent] border-1 border-black mb-[16px] focus:outline-0"
+            className="w-full border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
           >
             <option value="CR">CR</option>
             <option value="DR">DR</option>

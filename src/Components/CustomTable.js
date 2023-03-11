@@ -56,10 +56,10 @@ export default function CustomTable({
 
   return (
     <div className="flex justify-center items-center h-full w-full">
-      <div className="flex flex-col justify-between py-2 shadow-md bg-white rounded-xl lg:w-full sm:w-[80%] w-[45%] container">
+      <div className="flex flex-col justify-between py-2 shadow-md bg-white rounded-xl w-full ">
         {popup && (
           <>
-            <div className="lg:w-[30%] sm:w-[50%] w-[70%] bg-white absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-20 p-[32px]">
+            <div className="w-72 md:w-80 bg-white rounded-md absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-20 p-3">
               {popupScreenFields}
               <button
                 onClick={(e) => {
@@ -75,7 +75,7 @@ export default function CustomTable({
                       toast.error(err.message);
                     });
                 }}
-                className="w-full bg-[#000C2A] text-white p-[8px] rounded-[20px]"
+                className="w-full bg-primBlack text-white p-[8px] rounded-md mt-3"
               >
                 Add
               </button>

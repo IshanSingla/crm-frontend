@@ -23,8 +23,9 @@ export default function CustomChart({ data, type }) {
   };
 
   return (
-    <>
+    <div className="bg-secBlack rounded-md p-2">
       <select
+        className="rounded-md"
         onChange={(e) => {
           setChart(e.target.value);
         }}
@@ -37,6 +38,6 @@ export default function CustomChart({ data, type }) {
       ) : (
         <Line ref={chartRef} onClick={click} data={data} />
       )}
-    </>
+    </div>
   );
 }
