@@ -68,7 +68,7 @@ export default function Expense() {
   }, []);
   return (
     <div className="p-6">
-      <div className="flex justify-center items-center text-4xl mb-9 -mt-6 font-semibold">
+      <div className="flex justify-center items-center text-4xl text-white mb-9 -mt-6 font-semibold">
         Expenses
       </div>
       <div className="grid md:grid-cols-12 grid-cols-6 gap-6">

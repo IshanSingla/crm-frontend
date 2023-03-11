@@ -10,6 +10,10 @@ module.exports = {
       boxShadow: {
         boxshadow: "10px 10px 20px #dde2ff80",
       },
+      colors: {
+        primBlack: "#171821",
+        secBlack: "#21222D",
+      },
     },
   },
   plugins: [],

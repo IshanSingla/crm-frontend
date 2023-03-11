@@ -4,7 +4,7 @@ import Inventry from "../../Components/Charts/Inventry";
 
 export default function Dashboard() {
   return (
-    <div>
+    <div className="w-full">
       <Inventry />
       <Expense />
     </div>
