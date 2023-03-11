@@ -3,8 +3,6 @@ import LandingScreen from "../Components/LandingScreen";
 import { BuissnessApi } from "../Api";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { auth } from "../Config/firebase";
-import Navbar2 from "../Components/Navbar2";
 
 function AllBusiness() {
   const [name, setName] = useState("");
