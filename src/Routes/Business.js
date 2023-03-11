@@ -9,6 +9,7 @@ export default function Business({ currentUser }) {
       <Routes>
         <Route path="/" element={<AllBusiness currentUser={currentUser} />} />
         <Route path="/:id/*" element={<SinglaBuissness />} />
+        <Route path="*" element={<Navigate to="./" />} />
       </Routes>
     </>
   ) : (

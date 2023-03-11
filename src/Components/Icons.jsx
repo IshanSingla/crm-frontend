@@ -18,6 +18,24 @@ export function UpdateIcon({ className = "", onclick = () => {} }) {
     </svg>
   );
 }
+export function ArrowIcons() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="white"
+      class="w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+      />
+    </svg>
+  );
+}
 
 export function ForwardArrow({ className = "", onClick = () => {} }) {
   return (
@@ -151,9 +169,16 @@ export function DeleteIcons({ className = "", onClick = () => {} }) {
       onClick={onClick}
     >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+        d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6"
+        stroke="#DF1463"
+        stroke-width="1.7"
+        stroke-linecap="round"
+      />
+      <path
+        d="M5.7372 6.54395V18.9857C5.7372 19.7449 6.35269 20.3604 7.11194 20.3604H16.8894C17.6487 20.3604 18.2642 19.7449 18.2642 18.9857V6.54395M2.90918 6.54395H21.091"
+        stroke="#1C1C1C"
+        stroke-width="1.7"
+        stroke-linecap="round"
       />
     </svg>
   );
@@ -323,3 +348,87 @@ export function EditIcons({ className = "", onClick = () => {} }) {
     </svg>
   );
 }
+
+export function Instagram({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M20.445 5h-8.891A6.559 6.559 0 0 0 5 11.554v8.891A6.559 6.559 0 0 0 11.554 27h8.891a6.56 6.56 0 0 0 6.554-6.555v-8.891A6.557 6.557 0 0 0 20.445 5zm4.342 15.445a4.343 4.343 0 0 1-4.342 4.342h-8.891a4.341 4.341 0 0 1-4.341-4.342v-8.891a4.34 4.34 0 0 1 4.341-4.341h8.891a4.342 4.342 0 0 1 4.341 4.341l.001 8.891z" />
+      <path d="M16 10.312c-3.138 0-5.688 2.551-5.688 5.688s2.551 5.688 5.688 5.688 5.688-2.551 5.688-5.688-2.55-5.688-5.688-5.688zm0 9.163a3.475 3.475 0 1 1-.001-6.95 3.475 3.475 0 0 1 .001 6.95zM21.7 8.991a1.363 1.363 0 1 1-1.364 1.364c0-.752.51-1.364 1.364-1.364z" />
+    </svg>
+  );
+}
+
+export function Linkedin({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
+      viewBox="0 0 192 192"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+    >
+      <rect
+        width="132"
+        height="132"
+        x="30"
+        y="30"
+        stroke="#000000"
+        stroke-width="12"
+        rx="16"
+      />
+      <path
+        stroke="#000000"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="12"
+        d="M66 86v44"
+      />
+      <circle cx="66" cy="64" r="8" fill="#000000" />
+      <path
+        stroke="#000000"
+        stroke-linecap="round"
+        stroke-width="12"
+        d="M126 130v-26c0-9.941-8.059-18-18-18v0c-9.941 0-18 8.059-18 18v26"
+      />
+    </svg>
+  );
+}
+
+export function Twitter({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
+      viewBox="0 0 192 192"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+    >
+      <path
+        stroke="#000000"
+        stroke-linejoin="round"
+        stroke-width="12"
+        d="M126 38c-14.359 0-26 11.64-26 26a25.89 25.89 0 0 0 2.929 12C72 76 56 70 30 46c0 39.5 10 66 34 81-8 11.2-29.333 14.333-42 14.5 0 0 14 13.5 46 13.5 56 0 84-46.783 84-91l18-20h-27.386A25.892 25.892 0 0 0 126 38Z"
+      />
+    </svg>
+  );
+}
+
+export function WhatsApp({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
+      viewBox="0 0 16 16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z" />
+      <path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z" />
+    </svg>
+  );
+}
+

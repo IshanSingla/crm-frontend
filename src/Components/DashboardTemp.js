@@ -13,30 +13,19 @@ import {
   DeleteIcons,
   SetingIcons,
   SupportIcon,
-  AnalyticsIcon,
-  HomeIcon,
-  MoneyIcon,
-  CalculatorIcon,
 } from "./Icons";
 
-export default function DashboardTemp({ children, type = "buissness" }) {
+export default function DashboardTemp({
+  children,
+  type = "buissness",
+  Menus = [],
+}) {
   const navigator = useNavigate();
   const route = useLocation().pathname.split("/").pop();
   const [newindex, setIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
   const [open, setOpen] = useState(true);
   const [data, setData] = useState();
-  const Menus = [
-    { title: "Dashboard", icon: <HomeIcon />, route: "dashboard" },
-    { title: "Analytics", icon: <AnalyticsIcon />, route: "analytics" },
-    {
-      title: "Inventory",
-      icon: <CalculatorIcon />,
-      route: "inventory",
-      gap: true,
-    },
-    { title: "Expenses", icon: <MoneyIcon />, route: "expense" },
-  ];
   useEffect(() => {
     if (type === "buissness") {
       BuissnessApi()
@@ -177,7 +166,7 @@ export default function DashboardTemp({ children, type = "buissness" }) {
               onClick={handleDelete}
               className="flex rounded-md p-2 cursor-pointer hover:bg-indigo-800 text-gray-300 text-sm items-center gap-x-4 border-b-2"
             >
-              <DeleteIcons />
+              <DeleteIcons className="bg-white rounded-full" />
               {open && (
                 <span className="origin-left duration-200 text-xl">Delete</span>
               )}

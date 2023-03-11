@@ -19,13 +19,17 @@ export async function BuissnessApi(
   user = auth.currentUser,
   id = localStorage.getItem("buissnessId")
 ) {
-  let token = await user.getIdToken();
-  return axios.create({
-    baseURL: `${process.env.REACT_APP_API}/api/v1/buissness/`,
-    headers: {
-      authorization: token,
-      apiKey: "AIzaSy",
-      buissnessid: id,
-    },
-  });
+  if (user) {
+    let token = await user.getIdToken();
+    return axios.create({
+      baseURL: `${process.env.REACT_APP_API}/api/v1/buissness/`,
+      headers: {
+        authorization: token,
+        apiKey: "AIzaSy",
+        buissnessid: id,
+      },
+    });
+  }else{
+    throw new Error("User not found")
+  }
 }
