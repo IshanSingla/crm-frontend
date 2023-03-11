@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 import { auth } from "../../Config/firebase";
 import Navbar2 from "../../Components/Navbar2";
 import BusinessCard from "./Components/BusinessCard";
+import Lottie from "lottie-react";
+import loading from "../../Assets/Lotties/loading.json";
+import CreateDg from "./Components/CreateDg";
 
 function AllBusiness() {
   const [name, setName] = useState("");
   const [data, setData] = useState();
   const [updater, setUpdater] = useState(true);
+  const [isShow, setIsShow] = useState(false);
 
   const handleDelete = (id) => {
     BuissnessApi()
@@ -34,28 +38,33 @@ function AllBusiness() {
   };
 
   const handleSubmit = () => {
-    BuissnessApi()
-      .then((publicApi) => {
-        publicApi
-          .post("/create", {
-            buissnessName: name,
-            buissnessGstNo: "123456",
-          })
-          .then(() => {
-            setName("");
-            toast.success("Created Successfully");
-            setUpdater(!updater);
-          })
-          .catch((err) => {
-            if (err.response) {
-              return toast.error(err.response.data.message);
-            }
-            console.log(err.message);
-          });
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+    if (name) {
+      BuissnessApi()
+        .then((publicApi) => {
+          publicApi
+            .post("/create", {
+              buissnessName: name,
+              buissnessGstNo: "123456",
+            })
+            .then(() => {
+              setName("");
+              toast.success("Created Successfully");
+              setUpdater(!updater);
+              setIsShow(false);
+            })
+            .catch((err) => {
+              if (err.response) {
+                return toast.error(err.response.data.message);
+              }
+              console.log(err.message);
+            });
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    } else {
+      alert("Field is empty!");
+    }
   };
 
   useEffect(() => {
@@ -79,77 +88,6 @@ function AllBusiness() {
   }, [updater]);
 
   return (
-    // <div>
-    //   <Navbar2 />
-    //   <div className="w-[80%] mx-auto ">
-    //     <div className="text-2xl mb-2">Create New Business:</div>
-    //     <div className="flex flex-row items-center justify-between mb-9">
-    //       <input
-    //         className="w-[80%] h-12 rounded-md border border-black px-3 bg-"
-    //         placeholder="Enter Business Name"
-    //         value={name}
-    //         onChange={(e) => {
-    //           setName(e.target.value);
-    //         }}
-    //       />
-    //       <button
-    //         className="w-[15%] h-12 rounded-md border border-white  bg- text-4xl"
-    //         onClick={handleSubmit}
-    //       >
-    //         +
-    //       </button>
-    //       <Link
-    //         to="/auth"
-    //         onClick={() => {
-    //           // auth.signOut();
-    //           auth.currentUser.delete();
-    //         }}
-    //         className="w-[15%] h-12 rounded-md border border-white text-4xl"
-    //       >
-    //         Delete
-    //       </Link>
-    //     </div>
-    //     <div className="text-2xl mb-2">Your Businesses:</div>
-    //     <div className="border border-zinc-400 py-4 px-3 rounded-md h-96">
-    //       <div className="flex flex-col space-y-2">
-    // {data ? (
-    //   data.length === 0 ? (
-    //     <div className="">No Business Data Found!</div>
-    //   ) : (
-    //     data.map((val) => {
-    //       return (
-    //         <div
-    //           key={val._id}
-    //           className="flex flex-row rounded-md bg-gray-800 text-white"
-    //         >
-    //           <Link
-    //             className="p-2 w-[85%] rounded-md hover:bg-slate-800"
-    //             to={`/business/${val._id}/dashboard`}
-    //           >
-    //             {val.buissnessName}
-    //           </Link>
-    //           <button
-    //             onClick={() => handleDelete(val._id)}
-    //             className="bg-red-500 px-3 rounded-md hover:bg-red-700"
-    //           >
-    //             Delete
-    //           </button>
-    //         </div>
-    //       );
-    //     })
-    //   )
-    // ) : (
-    //   <div className="">
-    //     <div className="flex justify-center items-center">
-    //       Loading...
-    //     </div>
-    //   </div>
-    // )}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-
     <div className="relative">
       <Navbar2 />
       {/* CRM Background */}
@@ -182,28 +120,8 @@ function AllBusiness() {
       </div>
 
       {/* Main */}
-      <main className="flex justify-center items-center -mt-24">
+      <main className="flex justify-center items-center -mt-24 mb-16">
         <div className="w-[20rem] md:w-[30rem] lg:w-[45rem] flex flex-col space-y-10">
-          {/* create */}
-          <div className="shadow-xl flex flex-col space-y-5 p-4 bg-white rounded-xl">
-            <h1 className="text-md"> Create new business </h1>
-            <input
-              className=" border border-[#cccccc] bg-[#f8f9fa] outline-none focus:border-black rounded-md px-2 py-2 transition-all ease-linear"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your Business name"
-            />
-            <button
-              onClick={handleSubmit}
-              className="bg-orange-400 rounded-md py-2 px-4"
-            >
-              Add
-            </button>
-          </div>
-
-          <hr className="border-t border-zinc-300" />
-
           <div>
             {data ? (
               data.length === 0 ? (
@@ -214,25 +132,22 @@ function AllBusiness() {
                 </div>
               ) : (
                 <div className="flex flex-wrap gap-5">
+                  {/* add */}
+                  <button
+                    onClick={() => setIsShow(true)}
+                    className="w-full md:w-56 h-56 rounded-md bg-white hover:bg-orange-100 transition-all ease-out shadow-md shadow-zinc-300"
+                  >
+                    <div className="flex flex-col items-center">
+                      <img
+                        className="w-10"
+                        src={require("../../Assets/plus.svg").default}
+                        alt=""
+                      />
+                      <p> Add </p>
+                    </div>
+                  </button>
                   {data.map((val) => {
                     return (
-                      // <div
-                      //   key={val._id}
-                      //   className="flex flex-row rounded-md bg-gray-800 text-white"
-                      // >
-                      //   <Link
-                      //     className="p-2 w-[85%] rounded-md hover:bg-slate-800"
-                      //     to={`/business/${val._id}/dashboard`}
-                      //   >
-                      //     {val.buissnessName}
-                      //   </Link>
-                      //   <button
-                      //     onClick={() => handleDelete(val._id)}
-                      //     className="bg-red-500 px-3 rounded-md hover:bg-red-700"
-                      //   >
-                      //     Delete
-                      //   </button>
-                      // </div>
                       <BusinessCard
                         key={val.id}
                         val={val}
@@ -243,12 +158,28 @@ function AllBusiness() {
                 </div>
               )
             ) : (
-              <div className="shadow-md p-4 rounded-xl">
-                <p className="text-center font-medium">Fetching data...</p>
+              <div className="w-full flex justify-center mt-14">
+                {/* <p className="text-center font-medium">Fetching data...</p> */}
+                <div className="bg-white flex justify-center items-center rounded-full shadow-2xl">
+                  <Lottie
+                    className="w-20 h-20"
+                    animationData={loading}
+                    loop={true}
+                  />
+                </div>
               </div>
             )}
           </div>
         </div>
+
+        {isShow && (
+          <CreateDg
+            setIsShow={setIsShow}
+            handleSubmit={handleSubmit}
+            name={name}
+            setName={setName}
+          />
+        )}
       </main>
     </div>
   );

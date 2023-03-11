@@ -7,7 +7,7 @@ export default function Business({ currentUser }) {
   return currentUser ? (
     <>
       <Routes>
-        <Route path="/" element={<AllBusiness />} />
+        <Route path="/" element={<AllBusiness currentUser={currentUser} />} />
         <Route path="/:id/*" element={<SinglaBuissness />} />
       </Routes>
     </>

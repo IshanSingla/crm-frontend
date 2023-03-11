@@ -99,11 +99,11 @@ export default function DashboardTemp({ children, type = "buissness" }) {
   };
 
   return (
-    <div className="flex flex-row overflow-hidden bg-[#000C2A] h-screen w-screen p-3 md:gap-2">
+    <div className="flex flex-row overflow-hidden bg-[#000C2A] h-screen w-screen p- md:gap-2">
       <div
         className={`${
           open ? "md:w-[25%] w-[70%]" : "md:w-[5%] w-[20%]"
-        } bg-[#081A51] md:h-full h-[98%] p-4 duration-500 md:relative absolute z-10 rounded-2xl shadow-2xl ${
+        } bg-[#081A51] md:h-full h-[98%] p-4 duration-500 md:relative absolute z-10  shadow-2xl ${
           isOpen && "md:block hidden"
         }`}
       >
@@ -117,7 +117,7 @@ export default function DashboardTemp({ children, type = "buissness" }) {
           <Link
             to="../"
             className={`cursor-pointer duration-500 text-white gap-5 p-2 font-semibold w-full ${
-              open ? "rotate-[360deg] text-3xl flex" : " text-xl"
+              open ? " text-3xl flex" : " text-xl"
             }`}
           >
             <img
