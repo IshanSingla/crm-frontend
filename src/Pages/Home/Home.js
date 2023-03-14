@@ -18,20 +18,28 @@ export default function Home() {
             <div className="flex items-center flex-col md:flex-row justify-center gap-4 p-4 sm:p-2 lg:p-4 h-full w-full lg:w-[95%] xl:w-[85%]">
               <div className="flex items-start justify-center gap-6 sm:w-[80%] md:w-1/2 flex-col xs:p-4 md:p-3">
                 <div className="flex items-center justify-center gap-4 h-full">
-                  <h1 className="text-3xl lg:text-4xl xl:text-[5rem] font-extrabold text-white xl:leading-[5.5rem]">
-                    Remarkable Product as a Service
+                  <h1 className="text-xl lg:text-2xl xl:text-[4rem] font-bold text-white xl:leading-[5.5rem]">
+                    Unleash the Power of Customer Relationships with CRM
                   </h1>
                 </div>
                 <div className="flex items-center justify-center gap-4 w-full sm:w-[80%] md:w-[90%]">
                   <p className="font-normal text-white leading-normal md:leading-6 text-xs sm:text-sm md:text-xl">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et
-                    massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                    sapien fringilla, mattis ligula consectetur, ultrices
-                    mauris.
+                    Vollmax- Our CRM product, is designed to streamline your
+                    customer relationship management by providing a centralized
+                    platform for managing interactions, tracking leads, and
+                    automating processes. Our powerful automation tools allow
+                    you to automate repetitive tasks, freeing up time to focus
+                    on building strong relationships with your customers. Our
+                    CRM product is fully customizable to meet the unique needs
+                    of your business, allowing you to tailor the solution to fit
+                    your specific workflows and processes. With our CRM product,
+                    you'll have everything you need to build stronger customer
+                    relationships and drive business growth.
                   </p>
                 </div>
                 <div className="flex items-center justify-start gap-2 w-full xl:w-[50%] h-full">
-                  <Link to="/business"
+                  <Link
+                    to="/auth/login"
                     className={`flex items-center h-full justify-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-2 sm:p-4 rounded-3xl cursor-pointer`}
                   >
                     <p
