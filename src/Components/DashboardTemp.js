@@ -4,7 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../Api";
 import { auth } from "../Config/firebase";
-import { BellIcon, ForwardArrow, MenuIcon, ProfileIcon } from "./Icons";
+import {
+  BellIcon,
+  DarkModeIcon,
+  ForwardArrow,
+  LightModeIcon,
+  MenuIcon,
+  ProfileIcon,
+} from "./Icons";
 
 export default function DashboardTemp({
   children,
@@ -17,6 +24,9 @@ export default function DashboardTemp({
   const [isOpen, setIsOpen] = useState(true);
   const [open, setOpen] = useState(true);
   const [data, setData] = useState();
+  const [theme, setTheme] = useState(
+    localStorage.getItem("isDark") ? localStorage.getItem("isDark") : false
+  );
   // const Menus = [
   //   { title: "Dashboard", icon: <HomeIcon />, route: "dashboard" },
   //   { title: "Analytics", icon: <AnalyticsIcon />, route: "analytics" },
@@ -28,8 +38,6 @@ export default function DashboardTemp({
   //   },
   //   { title: "Expenses", icon: <MoneyIcon />, route: "expense" },
   // ];
-
-  const isDark = localStorage.getItem("isDark");
 
   useEffect(() => {
     if (type === "buissness") {
@@ -58,6 +66,14 @@ export default function DashboardTemp({
       }
     });
   }, [route]);
+
+  const handleTheme = (which) => {
+    console.log(which);
+    setTheme(which);
+    localStorage.setItem("isDark", which);
+
+    console.log(which);
+  };
 
   const handleLogout = () => {
     auth
@@ -97,21 +113,22 @@ export default function DashboardTemp({
   return (
     <div
       className={`flex flex-row h-screen w-screen p-4 
-        ${isDark === true ? "bg-primBlack" : "bg-white"} 
+        ${theme === true ? "bg-primBlack" : "bg-white"} 
       `}
     >
       <div
         className={`
-          h-full p-4 duration-500 md:relative absolute z-10 rounded-md bg-primWhite
+          h-full p-4 duration-500 md:relative absolute z-10 rounded-md
           ${open ? "md:w-52 w-52" : "w-[4.8rem]"}
           ${isOpen && "md:block hidden"}
-          ${isDark === true ? "bg-primBlack" : ""}
+          ${theme === true ? "bg-secBlack" : "bg-primWhite"}
         `}
       >
         <ForwardArrow
           onClick={() => setOpen(!open)}
           className={`absolute cursor-pointer -right-2 top-20 bg-white border-2 rounded-full duration-500 text-black 
             ${!open && ""}
+            ${theme ? "" : ""}
           `}
         />
 
@@ -138,7 +155,13 @@ export default function DashboardTemp({
                   to={`./${data.route}`}
                   key={index}
                   className={`flex rounded-xl p-2 cursor-pointer transition-all ease-out text-sm items-center space-x-4 
-                ${index === newindex && "bg-white font-medium"}
+                    ${
+                      index === newindex
+                        ? `font-medium ${theme ? "bg-orange" : "bg-white"}`
+                        : "text-grey fill-grey"
+                    }
+                    ${theme ? "" : ""}
+
               `}
                 >
                   {data.icon}
@@ -165,7 +188,11 @@ export default function DashboardTemp({
       {/* Right Side */}
 
       <div className="relative w-full px-4 flex flex-col items-center">
-        <nav className="w-full flex justify-between items-center fix rounded-md border-1 px-6 py-3">
+        <nav
+          className={`w-full flex justify-between items-center fix rounded-md border-1 px-6 py-3
+            ${theme ? "text-white" : "text-black"}
+          `}
+        >
           <MenuIcon
             className="md:hidden block cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
@@ -175,8 +202,21 @@ export default function DashboardTemp({
             <p className="font-black text-3xl">{route}</p>
           </div>
           <div className="flex items-center gap-5">
+            <div className="flex items-center">
+              {theme ? (
+                <button onClick={() => handleTheme(false)}>
+                  <LightModeIcon className="w-7" />
+                </button>
+              ) : (
+                <button onClick={() => handleTheme(true)}>
+                  <DarkModeIcon className="w-7" />
+                </button>
+              )}
+            </div>
+            <Link to="./settings">
+              <ProfileIcon />
+            </Link>
             <BellIcon />
-            <ProfileIcon />
           </div>
         </nav>
         <div
