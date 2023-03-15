@@ -157,7 +157,7 @@ export default function DashboardTemp({
                   className={`flex rounded-xl p-2 cursor-pointer transition-all ease-out text-sm items-center space-x-4 
                     ${
                       index === newindex
-                        ? `font-medium ${theme ? "bg-orange" : "bg-white"}`
+                        ? `font-medium ${theme ? "bg-oran" : "bg-white"}`
                         : "text-grey fill-grey"
                     }
                     ${theme ? "" : ""}

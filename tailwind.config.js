@@ -15,7 +15,7 @@ module.exports = {
         secBlack: "#21222D",
         primWhite: "#F6F6FB",
         secWhite: "#FFFFFF",
-        orange: "#FEB95A",
+        oran: "#FEB95A",
         grey: "#87888C",
       },
     },
