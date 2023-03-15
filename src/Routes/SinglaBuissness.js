@@ -10,12 +10,16 @@ import {
   CalculatorIcon,
   HomeIcon,
   MoneyIcon,
+  SalesIcon,
+  SettingIcons,
 } from "../Components/Icons";
+import Sales from "../Pages/Buissness/Sales";
 
 export default function SinglaBuissness() {
   const param = useParams();
   const { id } = param;
   localStorage.setItem("buissnessId", id);
+  localStorage.setItem("isDark", false);
   const Menus = [
     { title: "Dashboard", icon: <HomeIcon />, route: "dashboard" },
     { title: "Analytics", icon: <AnalyticsIcon />, route: "analytics" },
@@ -23,9 +27,14 @@ export default function SinglaBuissness() {
       title: "Inventory",
       icon: <CalculatorIcon />,
       route: "inventory",
-      gap: true,
     },
     { title: "Expenses", icon: <MoneyIcon />, route: "expense" },
+    {
+      title: "Sales",
+      icon: <SalesIcon />,
+      route: "sales",
+    },
+    { title: "Settings", icon: <SettingIcons />, route: "settings" },
   ];
   return (
     <DashboardTemp route={param["*"]} Menus={Menus}>
@@ -34,6 +43,7 @@ export default function SinglaBuissness() {
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/expense" element={<Expense />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/sales" element={<Sales />} />
         <Route path="*" element={<Navigate to="./dashboard" />} />
       </Routes>
     </DashboardTemp>

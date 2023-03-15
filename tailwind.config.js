@@ -13,6 +13,8 @@ module.exports = {
       colors: {
         primBlack: "#171821",
         secBlack: "#21222D",
+        primWhite: "#F6F6FB",
+        secWhite: "#FFFFFF",
       },
     },
   },

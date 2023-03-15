@@ -8,14 +8,14 @@ export default function Navbar({ className }) {
   return (
     <section className={`font-inter ${className}`}>
       <nav className="flex w-[97%] sm:w-[90%] mx-auto justify-between items-center leading-7">
-        <Link to="/" className="flex items-center ">
+        <Link to="/" className="flex items-center">
           <img
             src={logo}
             alt=""
             className="xs:h-[6.438rem] xs:w-[14.25rem] w-[8rem] h-[4rem] sm:mb-2"
           />
           <ArrowIcons />
-          <h1 className=" text-white ml-2 font-semibold sm:text-xl text-xs tracking-widest">
+          <h1 className=" text-white ml-2 font-semibold sm:text-md text-[15px] tracking-widest">
             SERVICES
           </h1>
         </Link>
@@ -35,7 +35,7 @@ export default function Navbar({ className }) {
             />
           </svg>
         </div>
-        <div className="xl:flex hidden justify-between gap-10 text-xl items-center">
+        <div className="xl:flex hidden justify-between gap-10 text-[16px] items-center">
           <Link>
             <h1 className="text-white font-medium tracking-widest">About</h1>
           </Link>
@@ -46,14 +46,14 @@ export default function Navbar({ className }) {
           </Link>
           {auth.currentUser ? (
             <button
-              className="rounded-xl tracking-widest p-2 px-3 text-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] text-white border-none"
+              className="rounded-xl tracking-widest p-2 px-3 text-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] text-black border-none"
               onClick={() => auth.signOut()}
             >
               Logout
             </button>
           ) : (
             <Link to="/login">
-              <button className="rounded-xl tracking-widest p-2 px-3 text-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] text-white border-none">
+              <button className="rounded-xl tracking-widest p-2 px-3 text-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] text-black border-none">
                 Login/Signup
               </button>
             </Link>

@@ -5,13 +5,11 @@ import SinglaBuissness from "./SinglaBuissness";
 
 export default function Business({ currentUser }) {
   return currentUser ? (
-    <>
-      <Routes>
-        <Route path="/" element={<AllBusiness currentUser={currentUser} />} />
-        <Route path="/:id/*" element={<SinglaBuissness />} />
-        <Route path="*" element={<Navigate to="./" />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<AllBusiness currentUser={currentUser} />} />
+      <Route path="/:id/*" element={<SinglaBuissness />} />
+      <Route path="*" element={<Navigate to="./" />} />
+    </Routes>
   ) : (
     <Navigate to="/auth/login" />
   );

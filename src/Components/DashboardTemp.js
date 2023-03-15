@@ -4,16 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../Api";
 import { auth } from "../Config/firebase";
-import {
-  BellIcon,
-  ForwardArrow,
-  MenuIcon,
-  ProfileIcon,
-  LogoutIcon,
-  DeleteIcons,
-  SetingIcons,
-  SupportIcon,
-} from "./Icons";
+import { BellIcon, ForwardArrow, MenuIcon, ProfileIcon } from "./Icons";
 
 export default function DashboardTemp({
   children,
@@ -37,6 +28,9 @@ export default function DashboardTemp({
   //   },
   //   { title: "Expenses", icon: <MoneyIcon />, route: "expense" },
   // ];
+
+  const isDark = localStorage.getItem("isDark");
+
   useEffect(() => {
     if (type === "buissness") {
       BuissnessApi()
@@ -101,135 +95,96 @@ export default function DashboardTemp({
   };
 
   return (
-    <div className="flex flex-row  bg-primBlack h-screen w-screen">
+    <div
+      className={`flex flex-row h-screen w-screen p-4 
+        ${isDark === true ? "bg-primBlack" : "bg-white"} 
+      `}
+    >
       <div
-        className={`${
-          open ? "md:w-52 w-52" : "w-[4.8rem]"
-        } h-full p-4 duration-500 md:relative absolute z-10 bg-primBlack border-r border-zinc-400 shadow-2xl ${
-          isOpen && "md:block hidden"
-        }`}
+        className={`
+          h-full p-4 duration-500 md:relative absolute z-10 rounded-md bg-primWhite
+          ${open ? "md:w-52 w-52" : "w-[4.8rem]"}
+          ${isOpen && "md:block hidden"}
+          ${isDark === true ? "bg-primBlack" : ""}
+        `}
       >
         <ForwardArrow
           onClick={() => setOpen(!open)}
-          className={`absolute cursor-pointer -right-2 top-20 bg-[#081A51] border-2 rounded-full duration-500 text-white ${
-            !open && ""
-          }`}
+          className={`absolute cursor-pointer -right-2 top-20 bg-white border-2 rounded-full duration-500 text-black 
+            ${!open && ""}
+          `}
         />
-        {/* <div className="flex space-x-4 items-center border-b-2 border-gray-500">
-          <Link
-            to="../"
-            className={`cursor-pointer duration-500 text-white gap-5 p-2 font-semibold w-full ${
-              open ? " text-3xl flex" : " text-xl"
-            }`}
-          >
-            <img
-              className="h-10"
-              src={
-                type === "buissness"
-                  ? data?.buissnessLogo
-                  : "https://ishansingla.me/images/avatar.jpg"
-              }
-              alt=""
-            />
 
-            {open && (type === "buissness" ? data?.buissnessName : "Vollmax")}
-          </Link>
-        </div> */}
-        <div className="overflow-auto h-[78%] text-white flex flex-col space-y-1">
-          <div className="flex items-center justify-center">
-            <MenuIcon
-              className="md:hidden block cursor-pointer"
-              onClick={() => setIsOpen(!isOpen)}
-            />
+        <div className="h-full flex flex-col justify-between">
+          <div className="overflow-auto flex flex-col space-y-1">
+            <div className="flex items-center justify-center">
+              <MenuIcon
+                className="md:hidden block cursor-pointer"
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            </div>
+            <div>
+              <Link>
+                <img
+                  className=""
+                  src={require("../Assets/logoFull.png")}
+                  alt=""
+                />
+              </Link>
+            </div>
+            <div className="flex flex-col space-y-3">
+              {Menus.map((data, index) => (
+                <Link
+                  to={`./${data.route}`}
+                  key={index}
+                  className={`flex rounded-xl p-2 cursor-pointer transition-all ease-out text-sm items-center space-x-4 
+                ${index === newindex && "bg-white font-medium"}
+              `}
+                >
+                  {data.icon}
+                  {open && (
+                    <span className="origin-left duration-200 text-[16px]">
+                      {data.title}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
           </div>
-          {Menus.map((data, index) => (
-            <Link
-              to={`./${data.route}`}
-              key={index}
-              className={`flex rounded-md p-2 cursor-pointer hover:bg-secBlack hover:text-white transition-all ease-out text-sm items-center space-x-4 ${
-                data.gap && "flex mt-[10%]"
-              } ${
-                index === newindex &&
-                "bg-teal-300 hover:bg-teal-300 text-black hover:text-black"
-              }`}
-            >
-              {data.icon}
-              {open && (
-                <span className="origin-left duration-200 text-[16px]">
-                  {data.title}
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
-        <div className="h-[13%] w-full flex flex-col justify-start">
-          <Link
-            to="./settings"
-            className={`flex rounded-md p-2 cursor-pointer hover:bg-secBlack hover:text-white transition-all ease-out text-white text-sm items-center space-x-4 `}
-          >
-            <SetingIcons />
-            {open && (
-              <span className="origin-left duration-200 text-[16px]">
-                Settings
-              </span>
-            )}
-          </Link>
-          <Link
-            to="/support"
-            className="flex rounded-md p-2 cursor-pointer hover:bg-secBlack hover:text-white transition-all ease-out text-white text-sm items-center space-x-4"
-          >
-            <SupportIcon />
-            {open && (
-              <span className="origin-left duration-200 text-[16px]">Help</span>
-            )}
-          </Link>
-          {type === "buissness" ? (
-            <button
-              onClick={handleDelete}
-              className="flex rounded-md p-2 cursor-pointer hover:bg-secBlack hover:text-white transition-all ease-out text-white text-sm items-center space-x-4"
-            >
-              <DeleteIcons className="bg-white rounded-full" />
-              {open && (
-                <span className="origin-left duration-200 text-[16px]">
-                  Delete
-                </span>
-              )}
-            </button>
-          ) : (
-            <button
-              onClick={handleLogout}
-              className="flex rounded-md p-2 cursor-pointer hover:bg-red-500 text-gray-300 text-sm items-center space-x-4 border-b-2"
-            >
-              <LogoutIcon />
-              {open && (
-                <span className="origin-left duration-200 text-xl">LogOut</span>
-              )}
-            </button>
-          )}
+          <div className="border text-center">help and support</div>
         </div>
       </div>
+
       <div
         onClick={() => setIsOpen(!isOpen)}
         className={
           !isOpen && "md:hidden block h-[98%] w-[97%] bg-black/20 absolute"
         }
       ></div>
-      <div className="relative w-full pt-4 px-4 flex flex-col items-center">
-        <nav className="w-full flex justify-between fix rounded-md border-1 px-6 shadow-c items-center py-3 shadow-md bg-secBlack text-white">
+
+      {/* Right Side */}
+
+      <div className="relative w-full px-4 flex flex-col items-center">
+        <nav className="w-full flex justify-between items-center fix rounded-md border-1 px-6 py-3">
           <MenuIcon
             className="md:hidden block cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           />
 
           <div className="flex flex-col items-center capitalize">
-            <p className="font-medium text-zinc-100">{route}</p>
+            <p className="font-black text-3xl">{route}</p>
           </div>
           <div className="flex items-center gap-5">
             <BellIcon />
             <ProfileIcon />
           </div>
         </nav>
-        <div className="mt-3 w-full  overflow-auto  scroll">{children}</div>
+        <div
+          className="mt-3 w-full overflow-auto 
+            scroll"
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
