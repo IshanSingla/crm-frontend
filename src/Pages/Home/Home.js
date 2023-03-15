@@ -1,45 +1,51 @@
 import React from "react";
 import Footer from "../../Components/Footer";
-import { ArrowIcons } from "../../Components/Icons";
+import { ArrowIcons, ForwardArrow } from "../../Components/Icons";
 import Navbar from "../../Components/Navbar";
 import one from "../../Assets/1.png";
 import two from "../../Assets/2.png";
 import three from "../../Assets/3.png";
 import four from "../../Assets/4.png";
 import { Link } from "react-router-dom";
+import { auth } from "../../Config/firebase";
 
 export default function Home() {
   return (
     <main className="bg-[#1E1E1E] overflow-x-hidden">
       <Navbar />
       <section className="w-screen h-full md:h-screen">
-        <div className="flex items-center justify-center  relative w-screen h-full sm:p-6">
+        <div className="flex items-center justify-center relative w-screen h-full sm:p-6">
           <div className="flex items-center justify-center w-full h-full mt-20 sm:mt-20 sm:p-4  md:mt-0">
             <div className="flex items-center flex-col md:flex-row justify-center gap-4 p-4 sm:p-2 lg:p-4 h-full w-full lg:w-[95%] xl:w-[85%]">
-              <div className="flex items-start justify-center gap-6 sm:w-[80%] md:w-1/2 flex-col xs:p-4 md:p-3">
+              <div className="flex items-start justify-center space-y-8 sm:w-[80%] md:w-[80%] flex-col xs:p-4 md:p-3">
                 <div className="flex items-center justify-center gap-4 h-full">
-                  <h1 className="text-3xl lg:text-4xl xl:text-[5rem] font-extrabold text-white xl:leading-[5.5rem]">
+                  <h1 className="text-xl lg:text-2xl xl:text-[80px] font-semibold text-white xl:leading-[84px]">
                     Remarkable Product as a Service
                   </h1>
                 </div>
                 <div className="flex items-center justify-center gap-4 w-full sm:w-[80%] md:w-[90%]">
-                  <p className="font-normal text-white leading-normal md:leading-6 text-xs sm:text-sm md:text-xl">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et
-                    massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                    sapien fringilla, mattis ligula consectetur, ultrices
-                    mauris.
+                  <p className="font-normal text-white leading-normal md:leading-8 text-xs sm:text-sm md:text-xl">
+                    Our CRM software offers a consolidated platform for handling
+                    conversations, following up on leads, and automating
+                    procedures in order to simplify your customer relationship
+                    management. Because our CRM package is completely adaptable
+                    to your company's particular requirements, you can modify it
+                    to fit your own workflows and processes. You'll have all you
+                    need with our CRM system to foster deeper client
+                    interactions and promote company expansion.
                   </p>
                 </div>
-                <div className="flex items-center justify-start gap-2 w-full xl:w-[50%] h-full">
-                  <Link to="/business"
-                    className={`flex items-center h-full justify-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-2 sm:p-4 rounded-3xl cursor-pointer`}
+                <div className="flex items-center justify-start w-full xl:w-[50%] h-full">
+                  <Link
+                    to={auth.currentUser ? "/business" : "/auth/signup"}
+                    className={`flex items-center space-x-3 h-full justify-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-2 sm:p-4 rounded-3xl cursor-pointer`}
                   >
                     <p
-                      className={`lg:text-[1.5rem] text-white font-medium whitespace-nowrap text-xl`}
+                      className={`lg:text-md text-black font-medium whitespace-nowrap text-xl`}
                     >
-                      Subscribe Now
+                      Connet Now
                     </p>
-                    <ArrowIcons />
+                    <ForwardArrow className="text-black" />
                   </Link>
                 </div>
               </div>

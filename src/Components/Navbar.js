@@ -16,7 +16,7 @@ export default function Navbar({ className }) {
           />
           <ArrowIcons />
           <h1 className=" text-white ml-2 font-semibold sm:text-md text-[15px] tracking-widest">
-            SERVICES
+            CRM SERVICES
           </h1>
         </Link>
         <div className="xl:hidden block">
@@ -52,7 +52,7 @@ export default function Navbar({ className }) {
               Logout
             </button>
           ) : (
-            <Link to="/login">
+            <Link to="/auth/login">
               <button className="rounded-xl tracking-widest p-2 px-3 text-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] text-black border-none">
                 Login/Signup
               </button>
