@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../Components/Footer";
-import { ArrowIcons, ForwardArrow } from "../../Components/Icons";
+import { ForwardArrow } from "../../Components/Icons";
 import Navbar from "../../Components/Navbar";
 import one from "../../Assets/1.png";
 import two from "../../Assets/2.png";
