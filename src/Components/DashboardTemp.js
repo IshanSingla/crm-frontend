@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../Api";
-import { auth } from "../Config/firebase";
 import {
   BellIcon,
   DarkModeIcon,
@@ -12,32 +11,27 @@ import {
   MenuIcon,
   ProfileIcon,
 } from "./Icons";
-
+import blurCircle from "../Assets/blurCircle.svg";
 export default function DashboardTemp({
   children,
   type = "buissness",
   Menus = [],
 }) {
-  const navigator = useNavigate();
   const route = useLocation().pathname.split("/").pop();
   const [newindex, setIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
   const [open, setOpen] = useState(true);
-  const [data, setData] = useState();
-  const [theme, setTheme] = useState(
-    localStorage.getItem("isDark") ? localStorage.getItem("isDark") : false
-  );
-  // const Menus = [
-  //   { title: "Dashboard", icon: <HomeIcon />, route: "dashboard" },
-  //   { title: "Analytics", icon: <AnalyticsIcon />, route: "analytics" },
-  //   {
-  //     title: "Inventory",
-  //     icon: <CalculatorIcon />,
-  //     route: "inventory",
-  //     // gap: true,
-  //   },
-  //   { title: "Expenses", icon: <MoneyIcon />, route: "expense" },
-  // ];
+  // const [data, setData] = useState();
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    let dark = localStorage.getItem("isDark") ?? false;
+    if (dark === "true") {
+      setTheme(true);
+    } else {
+      setTheme(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (type === "buissness") {
@@ -46,7 +40,7 @@ export default function DashboardTemp({
           publicApi
             .get("/one")
             .then((res) => {
-              setData(res.data.buissness);
+              // setData(res.data.buissness);
             })
             .catch((err) => {
               console.log(err);
@@ -69,50 +63,13 @@ export default function DashboardTemp({
 
   const handleTheme = (which) => {
     console.log(which);
-    setTheme(which);
     localStorage.setItem("isDark", which);
-
-    console.log(which);
-  };
-
-  const handleLogout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        toast.success("Logged Out");
-        navigator("/auth");
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
-  };
-
-  const handleDelete = () => {
-    if (window.confirm("Do you want to delete this business?")) {
-      BuissnessApi()
-        .then((publicApi) => {
-          publicApi
-            .delete("/delete")
-            .then((res) => {
-              toast.success(res.data.message);
-              navigator("/business");
-            })
-            .catch((err) => {
-              if (err.request.status) {
-                return toast.error(err.response.data.message);
-              }
-              return toast.error(err.message);
-            });
-        })
-        .catch((err) => {
-          toast.error(err.message);
-        });
-    }
+    setTheme(which);
   };
 
   return (
     <div
-      className={`flex flex-row h-screen w-screen p-4 
+      className={`flex flex-row h-screen w-screen p-4 relative
         ${theme === true ? "bg-primBlack" : "bg-white"} 
       `}
     >
@@ -187,22 +144,26 @@ export default function DashboardTemp({
 
       {/* Right Side */}
 
-      <div className="relative w-full px-4 flex flex-col items-center">
+      <div className="relative w-full px-2 sm:px-4 flex flex-col items-center ">
         <nav
-          className={`w-full flex justify-between items-center fix rounded-md border-1 px-6 py-3
-            ${theme ? "text-white" : "text-black"}
+          className={`w-full flex justify-between items-center fix rounded-md border-1 px-4 sm:px-6 py-3 z-[2]
+            ${theme ? "text-white bg-secBlack" : "text-black bg-primWhite"}
           `}
         >
-          <MenuIcon
-            className="md:hidden block cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
-          />
+          <div className="flex items-center justify-center gap-2">
+            <MenuIcon
+              className="md:hidden block cursor-pointer"
+              onClick={() => setIsOpen(!isOpen)}
+            />
 
-          <div className="flex flex-col items-center capitalize">
-            <p className="font-black text-3xl">{route}</p>
+            <div className="flex flex-col items-center capitalize">
+              <p className="font-black text-lg xs:text-xl sm:text-3xl">
+                {route}
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-5">
-            <div className="flex items-center">
+          <div className="flex items-center justify-center gap-3 xs:gap-5">
+            <div className="flex items-center justify-center">
               {theme ? (
                 <button onClick={() => handleTheme(false)}>
                   <LightModeIcon className="w-7" />
@@ -216,15 +177,25 @@ export default function DashboardTemp({
             <Link to="./settings">
               <ProfileIcon />
             </Link>
-            <BellIcon />
+            <BellIcon className="xs:flex hidden"/>
           </div>
         </nav>
         <div
           className="mt-3 w-full overflow-auto 
-            scroll"
+            scroll z-[2]"
         >
           {children}
         </div>
+      </div>
+      <div className="flex items-center justify-center absolute top-0 right-0">
+        <img src={blurCircle} alt="blured svg" className="w-24 h-24" />
+      </div>
+      <div className="flex items-center justify-center absolute bottom-0 left-0">
+        <img
+          src={blurCircle}
+          alt="blured svg"
+          className="w-24 h-24 rotate-[180deg]"
+        />
       </div>
     </div>
   );
