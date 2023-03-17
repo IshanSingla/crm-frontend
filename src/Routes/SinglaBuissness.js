@@ -19,7 +19,6 @@ export default function SinglaBuissness() {
   const param = useParams();
   const { id } = param;
   localStorage.setItem("buissnessId", id);
-  localStorage.setItem("isDark", false);
   const Menus = [
     { title: "Dashboard", icon: <HomeIcon />, route: "dashboard" },
     { title: "Analytics", icon: <AnalyticsIcon />, route: "analytics" },

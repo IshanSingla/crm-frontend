@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FirebaseAnalytics } from "./Config/analytics.util";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+localStorage.setItem("isDark", false);
 
 root.render(
   <React.StrictMode>

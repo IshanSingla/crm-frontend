@@ -23,7 +23,7 @@ export default function CustomChart({ data, type }) {
   };
 
   return (
-    <div className="bg-secBlack rounded-md p-2">
+    <div className="bg-primWhite rounded-xl p-2">
       <select
         className="rounded-md"
         onChange={(e) => {

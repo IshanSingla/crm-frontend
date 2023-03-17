@@ -24,20 +24,8 @@ export default function DashboardTemp({
   const [isOpen, setIsOpen] = useState(true);
   const [open, setOpen] = useState(true);
   const [data, setData] = useState();
-  const [theme, setTheme] = useState(
-    localStorage.getItem("isDark") ? localStorage.getItem("isDark") : false
-  );
-  // const Menus = [
-  //   { title: "Dashboard", icon: <HomeIcon />, route: "dashboard" },
-  //   { title: "Analytics", icon: <AnalyticsIcon />, route: "analytics" },
-  //   {
-  //     title: "Inventory",
-  //     icon: <CalculatorIcon />,
-  //     route: "inventory",
-  //     // gap: true,
-  //   },
-  //   { title: "Expenses", icon: <MoneyIcon />, route: "expense" },
-  // ];
+  const [theme, setTheme] = useState(localStorage.getItem("isDark"));
+  console.log(theme);
 
   useEffect(() => {
     if (type === "buissness") {
@@ -71,8 +59,6 @@ export default function DashboardTemp({
     console.log(which);
     setTheme(which);
     localStorage.setItem("isDark", which);
-
-    console.log(which);
   };
 
   const handleLogout = () => {
@@ -112,7 +98,7 @@ export default function DashboardTemp({
 
   return (
     <div
-      className={`flex flex-row h-screen w-screen p-4 
+      className={`flex flex-row h-screen w-screen p-4 transition-all ease-out
         ${theme === true ? "bg-primBlack" : "bg-white"} 
       `}
     >
@@ -157,7 +143,9 @@ export default function DashboardTemp({
                   className={`flex rounded-xl p-2 cursor-pointer transition-all ease-out text-sm items-center space-x-4 
                     ${
                       index === newindex
-                        ? `font-medium ${theme ? "bg-oran" : "bg-white"}`
+                        ? `font-medium ${
+                            theme === true ? "bg-oran" : "bg-white"
+                          }`
                         : "text-grey fill-grey"
                     }
                     ${theme ? "" : ""}
@@ -189,8 +177,8 @@ export default function DashboardTemp({
 
       <div className="relative w-full px-4 flex flex-col items-center">
         <nav
-          className={`w-full flex justify-between items-center fix rounded-md border-1 px-6 py-3
-            ${theme ? "text-white" : "text-black"}
+          className={`w-full flex justify-between items-center fix rounded-md border-1 px-4 py-2
+            ${theme === true ? "text-white" : "text-black"}
           `}
         >
           <MenuIcon
@@ -203,7 +191,7 @@ export default function DashboardTemp({
           </div>
           <div className="flex items-center gap-5">
             <div className="flex items-center">
-              {theme ? (
+              {theme === true ? (
                 <button onClick={() => handleTheme(false)}>
                   <LightModeIcon className="w-7" />
                 </button>
