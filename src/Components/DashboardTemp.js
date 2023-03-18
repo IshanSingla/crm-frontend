@@ -22,16 +22,7 @@ export default function DashboardTemp({
   const [isOpen, setIsOpen] = useState(true);
   const [open, setOpen] = useState(true);
   // const [data, setData] = useState();
-  const [theme, setTheme] = useState(false);
-
-  useEffect(() => {
-    let dark = localStorage.getItem("isDark") ?? false;
-    if (dark === "true") {
-      setTheme(true);
-    } else {
-      setTheme(false);
-    }
-  }, []);
+  const [theme, setTheme] = useState(localStorage.getItem("isDark") === "true");
 
   useEffect(() => {
     if (type === "buissness") {
@@ -43,7 +34,6 @@ export default function DashboardTemp({
               // setData(res.data.buissness);
             })
             .catch((err) => {
-              console.log(err);
               if (err.request.status) {
                 return toast.error(err.response.data.message);
               }
@@ -62,7 +52,6 @@ export default function DashboardTemp({
   }, [route]);
 
   const handleTheme = (which) => {
-    console.log(which);
     localStorage.setItem("isDark", which);
     setTheme(which);
   };
