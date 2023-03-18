@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { ThemeContext } from "@emotion/react";
+import React, { useContext, useEffect, useState } from "react";
 import Expense from "../../Components/Charts/Expense";
 import Inventry from "../../Components/Charts/Inventry";
 import SummaryCard from "./Components/SummaryCard";
@@ -11,16 +12,11 @@ export default function Dashboard() {
     { icon: 4, title: "12", subHead: "Employees" },
   ];
 
-  const [theme, setTheme] = useState(null);
+  const { theme } = useContext(ThemeContext);
   const handleClick = () => {
     console.log("theme: ", theme);
     console.log("local: ", localStorage.getItem("isDark"));
   };
-
-  useEffect(() => {
-    let local = localStorage.getItem("isDark");
-    setTheme(local);
-  });
 
   return (
     <div className="w-full border border-black px-4 flex flex-col gap-3">
@@ -33,8 +29,7 @@ export default function Dashboard() {
           className={`${theme === true ? "text-white" : "text-black"}`}
           onClick={handleClick}
         >
-          {" "}
-          click me{" "}
+          click me
         </button>
         <select
           name=""

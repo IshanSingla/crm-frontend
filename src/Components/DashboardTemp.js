@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../Api";
@@ -12,6 +12,7 @@ import {
   ProfileIcon,
 } from "./Icons";
 import blurCircle from "../Assets/blurCircle.svg";
+import { ThemeContext } from "@emotion/react";
 export default function DashboardTemp({
   children,
   type = "buissness",
@@ -21,17 +22,8 @@ export default function DashboardTemp({
   const [newindex, setIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
   const [open, setOpen] = useState(true);
-  // const [data, setData] = useState();
-  const [theme, setTheme] = useState(false);
 
-  useEffect(() => {
-    let dark = localStorage.getItem("isDark") ?? false;
-    if (dark === "true") {
-      setTheme(true);
-    } else {
-      setTheme(false);
-    }
-  }, []);
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (type === "buissness") {
@@ -64,7 +56,7 @@ export default function DashboardTemp({
   const handleTheme = (which) => {
     console.log(which);
     localStorage.setItem("isDark", which);
-    setTheme(which);
+    changeTheme(which);
   };
 
   return (
@@ -167,11 +159,11 @@ export default function DashboardTemp({
           <div className="flex items-center justify-center gap-3 xs:gap-5">
             <div className="flex items-center justify-center">
               {theme ? (
-                <button onClick={() => handleTheme(false)}>
+                <button onClick={() => changeTheme(false)}>
                   <LightModeIcon className="w-7" />
                 </button>
               ) : (
-                <button onClick={() => handleTheme(true)}>
+                <button onClick={() => changeTheme(true)}>
                   <DarkModeIcon className="w-7" />
                 </button>
               )}

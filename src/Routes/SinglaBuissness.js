@@ -14,6 +14,7 @@ import {
   SettingIcons,
 } from "../Components/Icons";
 import Sales from "../Pages/Buissness/Sales";
+import { ThemeContextProvider } from "../Contexts/ThemeContext";
 
 export default function SinglaBuissness() {
   const param = useParams();
@@ -36,16 +37,18 @@ export default function SinglaBuissness() {
     { title: "Settings", icon: <SettingIcons />, route: "settings" },
   ];
   return (
-    <DashboardTemp route={param["*"]} Menus={Menus}>
-      <Routes>
-        <Route path="/dashboard/*" element={<DashboardRoute />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/expense" element={<Expense />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/sales" element={<Sales />} />
-        <Route path="*" element={<Navigate to="./dashboard" />} />
-      </Routes>
-    </DashboardTemp>
+    <ThemeContextProvider>
+      <DashboardTemp route={param["*"]} Menus={Menus}>
+        <Routes>
+          <Route path="/dashboard/*" element={<DashboardRoute />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/expense" element={<Expense />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/sales" element={<Sales />} />
+          <Route path="*" element={<Navigate to="./dashboard" />} />
+        </Routes>
+      </DashboardTemp>
+    </ThemeContextProvider>
   );
 }
 
