@@ -12,7 +12,7 @@ import {
   ProfileIcon,
 } from "./Icons";
 import blurCircle from "../Assets/blurCircle.svg";
-import { ThemeContext } from "@emotion/react";
+import { ThemeContext } from "../Contexts/ThemeContext";
 export default function DashboardTemp({
   children,
   type = "buissness",
@@ -35,7 +35,6 @@ export default function DashboardTemp({
               // setData(res.data.buissness);
             })
             .catch((err) => {
-              console.log(err);
               if (err.request.status) {
                 return toast.error(err.response.data.message);
               }
@@ -53,16 +52,10 @@ export default function DashboardTemp({
     });
   }, [route]);
 
-  const handleTheme = (which) => {
-    console.log(which);
-    localStorage.setItem("isDark", which);
-    changeTheme(which);
-  };
-
   return (
     <div
       className={`flex flex-row h-screen w-screen p-4 transition-all ease-out
-        ${theme === true ? "bg-primBlack" : "bg-white"} 
+        ${theme ? "bg-primBlack" : "bg-white"} 
       `}
     >
       <div
@@ -70,7 +63,7 @@ export default function DashboardTemp({
           h-full p-4 duration-500 md:relative absolute z-10 rounded-md
           ${open ? "md:w-52 w-52" : "w-[4.8rem]"}
           ${isOpen && "md:block hidden"}
-          ${theme === true ? "bg-secBlack" : "bg-primWhite"}
+          ${theme ? "bg-secBlack" : "bg-primWhite"}
         `}
       >
         <ForwardArrow
@@ -106,9 +99,7 @@ export default function DashboardTemp({
                   className={`flex rounded-xl p-2 cursor-pointer transition-all ease-out text-sm items-center space-x-4 
                     ${
                       index === newindex
-                        ? `font-medium ${
-                            theme === true ? "bg-oran" : "bg-white"
-                          }`
+                        ? `font-medium ${theme ? "bg-oran" : "bg-white"}`
                         : "text-grey fill-grey"
                     }
                     ${theme ? "" : ""}
@@ -141,7 +132,7 @@ export default function DashboardTemp({
       <div className="relative w-full px-2 sm:px-4 flex flex-col items-center ">
         <nav
           className={`w-full flex justify-between items-center fix rounded-md border-1 px-4 sm:px-6 py-3 z-[2]
-            ${theme ? "text-white bg-secBlack" : "text-black bg-primWhite"}
+            ${theme ? "text-white " : "text-black"}
           `}
         >
           <div className="flex items-center justify-center gap-2">

@@ -9,9 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FirebaseAnalytics } from "./Config/analytics.util";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-if (localStorage.getItem("isDark")) {
-  console.log(localStorage);
-} else {
+if (!localStorage.getItem("isDark")) {
   localStorage.setItem("isDark", false);
 }
 

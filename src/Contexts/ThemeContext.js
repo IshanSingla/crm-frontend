@@ -3,21 +3,15 @@ import { createContext, useEffect, useState } from "react";
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = (props) => {
-  const [theme, setTheme] = useState();
+  const [theme, setTheme] = useState(localStorage.getItem("isDark"));
   const changeTheme = (which) => {
     setTheme(which);
+    localStorage.setItem("isDark", which);
   };
-  useEffect(() => {
-    let dark = localStorage.getItem("isDark") ?? false;
-    console.log("isDark: ", dark);
-    if (dark === "true") {
-      setTheme(true);
-    } else {
-      setTheme(false);
-    }
-  }, []);
+
+  const value = { theme, setTheme, changeTheme };
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
+    <ThemeContext.Provider value={value}>
       {props.children}
     </ThemeContext.Provider>
   );

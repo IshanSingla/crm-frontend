@@ -2,7 +2,6 @@ import React from "react";
 import { Sale1, Sale2, Sale3, Sale4 } from "../../../Components/Icons";
 
 export default function SummaryCard({ model, theme }) {
-  console.log(theme);
   return (
     <div
       className={`p-5 rounded-xl w-full min-w-[180px]

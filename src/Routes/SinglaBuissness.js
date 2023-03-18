@@ -36,6 +36,7 @@ export default function SinglaBuissness() {
     },
     { title: "Settings", icon: <SettingIcons />, route: "settings" },
   ];
+
   return (
     <ThemeContextProvider>
       <DashboardTemp route={param["*"]} Menus={Menus}>
