@@ -54,7 +54,7 @@ export default function DashboardTemp({
 
   return (
     <div
-      className={`flex flex-row h-screen w-screen p-4 transition-all ease-out
+      className={`flex flex-row h-screen w-full p-4 transition-all ease-out
         ${theme ? "bg-primBlack" : "bg-white"} 
       `}
     >
@@ -75,7 +75,7 @@ export default function DashboardTemp({
         />
 
         <div className="h-full flex flex-col justify-between">
-          <div className="overflow-auto flex flex-col space-y-1">
+          <div className="overflow-hidden flex flex-col space-y-1">
             <div className="flex items-center justify-center">
               <MenuIcon
                 className="md:hidden block cursor-pointer"
@@ -173,13 +173,13 @@ export default function DashboardTemp({
         </div>
       </div>
       <div className="flex items-center justify-center absolute top-0 right-0">
-        <img src={blurCircle} alt="blured svg" className="w-24 h-24" />
+        <img src={blurCircle} alt="blured svg" className="w-28 h-28 " />
       </div>
       <div className="flex items-center justify-center absolute bottom-0 left-0">
         <img
           src={blurCircle}
           alt="blured svg"
-          className="w-24 h-24 rotate-[180deg]"
+          className="w-28 h-28 rotate-[180deg]"
         />
       </div>
     </div>

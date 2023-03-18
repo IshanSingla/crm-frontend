@@ -23,9 +23,9 @@ export default function CustomChart({ data, type }) {
   };
 
   return (
-    <div className="bg-primWhite rounded-xl p-2">
+    <div className="rounded-xl">
       <select
-        className="rounded-md"
+        className="rounded-md bg-transparent"
         onChange={(e) => {
           setChart(e.target.value);
         }}
@@ -34,9 +34,31 @@ export default function CustomChart({ data, type }) {
         <option value="Line">Line</option>
       </select>
       {chart === "Bar" ? (
-        <Bar ref={chartRef} onClick={click} data={data} />
+        <Bar
+          ref={chartRef}
+          onClick={click}
+          options={{
+            plugins: {
+              legend: {
+                position: "bottom",
+              },
+            },
+          }}
+          data={data}
+        />
       ) : (
-        <Line ref={chartRef} onClick={click} data={data} />
+        <Line
+          ref={chartRef}
+          onClick={click}
+          options={{
+            plugins: {
+              legend: {
+                position: "bottom",
+              },
+            },
+          }}
+          data={data}
+        />
       )}
     </div>
   );

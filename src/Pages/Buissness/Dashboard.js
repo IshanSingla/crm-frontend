@@ -37,10 +37,10 @@ export default function Dashboard() {
       </div>
 
       {/* Phase 1 */}
-      <div className="flex gap-3">
+      <div className="flex flex-col md:flex-row gap-3">
         {/* total sales */}
         <div
-          className={`w-[72%]  rounded-xl p-4 ${
+          className={`w-full md:w-[72%]  rounded-xl p-4 ${
             theme ? "bg-secBlack text-white" : "bg-primWhite"
           }`}
         >
@@ -59,17 +59,23 @@ export default function Dashboard() {
 
         {/* chart */}
         <div
-          className={`rounded-xl w-[28%] p-4
+          className={`rounded-xl md:w-[28%] p-4 flex flex-col justify-center items-center
           ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
         `}
-        ></div>
+        >
+          <div className="w-full flex items-center justify-between">
+            <p className="text-xl font-semibold"> 2.568 </p>
+            <h1 className="text-2xl font-semibold"> SALES </h1>
+          </div>
+          <Inventry />
+        </div>
       </div>
 
       {/* Phase 2 */}
-      <div className="flex gap-3">
+      <div className="flex flex-col md:flex-row gap-3">
         {/* total margin */}
         <div
-          className={`w-[72%]  rounded-xl p-4 
+          className={`w-full md:w-[72%]  rounded-xl p-4 
             ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
         ></div>
@@ -83,7 +89,7 @@ export default function Dashboard() {
       </div>
 
       {/* Phase 3 */}
-      <div className="flex gap-3">
+      <div className="flex flex-col md:flex-row gap-3">
         {/* Expense 1 */}
         <div
           className={`rounded-xl w-[28%] p-4

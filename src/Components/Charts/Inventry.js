@@ -34,20 +34,24 @@ export default function Inventry() {
               labels: res.data.inventory.map((data) => data.inventoryName),
               datasets: [
                 {
-                  label: "sellingPrice",
+                  label: "Selling Price",
                   data: res.data.inventory.map(
                     (data) => data.inventoryCost.sellingPrice
                   ),
                   ids: res.data.inventory.map((data) => data._id),
-                  backgroundColor: "#00ff00",
+                  backgroundColor: "#FEB95A",
+                  tension: 0.3,
+                  borderColor: "#FEB95A",
                 },
                 {
-                  label: "buyingPrice",
+                  label: "Buying Price",
                   data: res.data.inventory.map(
                     (data) => data.inventoryCost.buyingPrice
                   ),
                   ids: res.data.inventory.map((data) => data._id),
-                  backgroundColor: "#ff0000",
+                  backgroundColor: "#D8D9DB",
+                  tension: 0.3,
+                  borderColor: "#D8D9DB",
                 },
               ],
             });
@@ -61,18 +65,18 @@ export default function Inventry() {
       });
   }, []);
   return (
-    <div className="p-6">
-      <div className="flex justify-center items-center text-4xl mb-9 text-white -mt-6 font-semibold">
+    <div className="w-full">
+      {/* <div className="flex justify-center items-center text-4xl mb-9 text-white -mt-6 font-semibold">
         Inventory
-      </div>
-      <div className="grid md:grid-cols-12 grid-cols-6 gap-6">
-        <div className="col-span-6">
+      </div> */}
+      {/* <div className="grid md:grid-cols-12 grid-cols-6 gap-6"> */}
+      {/* <div className="col-span-6">
           <CustomChart data={Quantity} type="inventory" />
-        </div>
-        <div className="col-span-6">
-          <CustomChart data={Cost} type="inventory" />
-        </div>
+        </div> */}
+      <div className="col-span-6 ">
+        <CustomChart data={Cost} type="inventory" />
       </div>
+      {/* </div> */}
     </div>
   );
 }
