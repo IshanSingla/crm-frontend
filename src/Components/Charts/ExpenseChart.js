@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut, Pie } from "react-chartjs-2";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../../Api";
 
@@ -48,12 +48,16 @@ export default function ExpenseChart() {
                   data: res.data.inventory.map((data) =>
                     data.expensetype === "CR" ? data.expenseAmount.count : null
                   ),
+                  backgroundColor: ["#0194EB", "#FB8832", "#2FFC8D", "#944CEE"],
+                  borderWidth: 0,
                 },
                 {
                   label: "DR",
                   data: res.data.inventory.map((data) =>
                     data.expensetype === "DR" ? data.expenseAmount.count : null
                   ),
+                  backgroundColor: ["#0194EB", "#FB8832", "#2FFC8D", "#944CEE"],
+                  borderWidth: 0,
                 },
               ],
             });
@@ -67,7 +71,7 @@ export default function ExpenseChart() {
       });
   }, []);
   return (
-    <Doughnut
+    <Pie
       data={Cost}
       options={{
         responsive: true,

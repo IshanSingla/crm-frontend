@@ -3,6 +3,8 @@ import React from "react";
 import { toast } from "react-toastify";
 import { Api } from "../Api";
 import { auth } from "../Config/firebase";
+import loading from "../Assets/Lotties/loading.json";
+import Lottie from "lottie-react";
 
 export default function Loader({ changeUser, changeLoding }) {
   onAuthStateChanged(auth, async (user) => {
@@ -49,11 +51,14 @@ export default function Loader({ changeUser, changeLoding }) {
   });
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-[#25282B] text-4xl font-bold">
-      <img
+      {/* <img
         className="w-[15%] h-[15%]"
         src={require("../Assets/logoFull.png")}
         alt=""
-      />
+      /> */}
+      <div className="w-32 h-32">
+        <Lottie animationData={loading} loop={true} />
+      </div>
     </div>
   );
 }

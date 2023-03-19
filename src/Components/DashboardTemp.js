@@ -60,7 +60,7 @@ export default function DashboardTemp({
     >
       <div
         className={`
-          h-full p-4 duration-500 md:relative absolute z-10 rounded-xl
+          h-full p-4 duration-500 xl:relative absolute z-10 rounded-xl
           ${open ? "md:w-52 w-52" : "w-[4.8rem]"}
           ${isOpen && "md:block hidden"}
           ${theme ? "bg-secBlack" : "bg-primWhite"}
@@ -83,7 +83,7 @@ export default function DashboardTemp({
               />
             </div>
 
-            <Link>
+            <Link to="/business">
               <img
                 className=""
                 src={require("../Assets/Logos/logo1.png")}
@@ -115,7 +115,13 @@ export default function DashboardTemp({
               ))}
             </div>
           </div>
-          <div className="border text-center">help and support</div>
+          <div
+            className={`py-1 text-center rounded-full
+            ${theme ? "bg-gray-600 text-zinc-300 " : "text-black bg-secWhite"}
+          `}
+          >
+            ? Help & support
+          </div>
         </div>
       </div>
 
