@@ -7,7 +7,7 @@ import { auth } from "../Config/firebase";
 export default function Navbar({ className }) {
   return (
     <section className={`font-inter ${className}`}>
-      <nav className="flex w-full max-w-[98%] mx-auto justify-between items-center p-4 leading-6">
+      <nav className="w-[97%] sm:w-[90%] mx-auto justify-between items-center leading-7 p-4">
         <div className="flex items-center justify-between w-full">
         <Link to="/" className="flex items-center justify-center">
           <div className="flex items-center justify-center">

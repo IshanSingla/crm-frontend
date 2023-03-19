@@ -39,3 +39,9 @@ html {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
+/* div{
+  border:1px solid red;
+} */
+.overlay{
+  background-image: url(./Assets/lines.svg);
+}

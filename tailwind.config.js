@@ -37,7 +37,11 @@ module.exports = {
         oran: "#FEB95A",
         grey: "#87888C",
       },
+      backgroundImage: { 
+        'overlay': `url('./Assets/lines.svg')`,
+       }
     },
+    
   },
   plugins: [],
 };

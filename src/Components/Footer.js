@@ -93,8 +93,10 @@ export default function Footer() {
             <h1>Privacy Cookies</h1>
             <h1>Policy</h1>
           </div>
-
-          <div className="absolute -bottom-12 -right-2 flex flex-row items-center gap-2 mt-2">
+        
+          
+        </div>
+        <div className="flex flex-row items-center w-full flex-1 justify-end gap-2 mt-2">
             <h1 className="font-extrabold sm:text-2xl text-lg leading-8">
               Powered By
             </h1>
@@ -106,7 +108,6 @@ export default function Footer() {
               />
             </span>
           </div>
-        </div>
       </div>
     </section>
   );
