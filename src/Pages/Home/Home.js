@@ -79,43 +79,47 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full h-full p-4 sm:p-6 mb-[4rem]">
+        <div className="flex items-center justify-center w-full h-full">
         <div className="flex items-start justify-center gap-4 w-full h-full flex-col mt-10 p-2">
           <div className="p-2 flex items-start justify-center flex-col gap-3">
         <h1 className="text-white text-3xl s:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold ">
           Why Us?
         </h1>
-        <p className="font-normal text-gray-300 text-sm sm:text-base md:text-xl ">
+        <p className="font-normal text-gray-300 text-sm sm:text-base md:text-xl md:ml-2">
           Best Accounting software for your business.
         </p>
         </div>
-        <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6 justify-between p-2">
+        <div className="flex items-center justify-center w-full">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6 justify-between max-w-[95%]">
           {[
             {
-              para: "Customized Software for Your Retail Business",
+              para: "Inventory Management",
             },
             {
-              para: "Instant and Effortless Grocery Store Billing Service",
+              para: "Accounting Management",
             },
             {
-              para: "Invoicing is a breeze with Vollmx Billing Software.",
+              para: "Invoice Management",
             },
           ].map((data, index) => (
             <div
               key={`CustomDivs${index}`}
-              className="bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-4 md:p-6 h-[10rem] md:h-[12rem] lg:h-[20rem] xl:h-[15rem] w-full relative rounded-xl"
+              className="bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-4 md:px-8 md:py-6 h-full  w-full relative rounded-xl"
             >
               <div className="flex items-center justify-start p-2">
               <p className="text-white font-bold text-lg s:text-xl sm:text-lg md:text-xl lg:text-3xl">
                 {data.para}
               </p>
               </div>
-              <div className="flex items-center absolute bottom-2 sm:bottom-4 right-2 sm:right-4 justify-end p-2">
+              <div className="flex items-center bottom-2 sm:bottom-4 right-2 sm:right-4 justify-end p-2">
               <div className="flex bg-white right-10 bottom-10 lg:h-[3.5rem] lg:w-[3.5rem] sm:h-[3rem] sm:w-[3rem] w-[2.5rem] h-[2.5rem] rounded-full  text-4xl  items-center justify-center">
-                <div>+</div>
+                <div className="flex items-center justify-center h-4 w-4 text-lg rounded">▶</div>
               </div>
               </div>
             </div>
           ))}
+        </div>
+        </div>
         </div>
         </div>
       </section>
