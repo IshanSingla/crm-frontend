@@ -1,6 +1,5 @@
 import { ThemeContext } from "../../Contexts/ThemeContext";
-import React, { useContext, useEffect, useState } from "react";
-import Expense from "../../Components/Charts/Expense";
+import React, { useContext} from "react";
 import Inventry from "../../Components/Charts/Inventry";
 import SummaryCard from "./Components/SummaryCard";
 import { More2 } from "../../Components/Icons";

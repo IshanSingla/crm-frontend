@@ -12,7 +12,6 @@ import CreateDg from "./Components/CreateDg";
 import adddarrk from "../../Assets/adddark.svg";
 import add from "../../Assets/Vector.svg";
 
-
 export default function Business() {
   const [isDark, setDark] = useState(true);
   const [name, setName] = useState("");
@@ -121,14 +120,16 @@ export default function Business() {
           BUSINESS
         </h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:w-[85%] lg:w-[60%] w-[90%] mx-auto my-auto pb-4"> 
-      <div
-     className={`${
-       isDark ? "bg-[#001A43] text-white" : "bg-white text-black"
-     }bg-[#001A43] w-full md:w-[16rem]  flex flex-row max-w-full h-[10rem] rounded-xl relative`}
-     onClick={() => setIsShow(true)}
-   >
-             <h1 className="ml-3 mt-3  font-extrabold leading-3 h-[10rem] text-xl text-white">ADD</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:w-[85%] lg:w-[60%] w-[90%] mx-auto my-auto pb-4">
+        <button
+          className={`${
+            isDark ? "bg-[#001A43] text-white" : "bg-white text-black"
+          }bg-[#001A43] w-full md:w-[16rem]  flex flex-row max-w-full h-[10rem] rounded-xl relative`}
+          onClick={() => setIsShow(true)}
+        >
+          <h1 className="ml-3 mt-3  font-extrabold leading-3 h-[10rem] text-xl text-white">
+            ADD
+          </h1>
           <img
             src={add}
             alt=""
@@ -143,20 +144,19 @@ export default function Business() {
               isDark ? "invisible" : "visible"
             } absolute md:left-[42%] left-[47%] top-[38%] `}
           />
-            </div>
-        {data ? (
-              data.map((val) => {
-                return <BusinessCard key={val.id} val={val} />;
-              })
-            ) : (
-              <div className="w-full md:w-56 h-56 rounded-md bg-white flex justify-center items-center shadow-2xl">
-                {/* <Lottie
-                  className="w-20 h-20"
-                  animationData={loading}
-                  loop={true}
-                /> */}
-              </div>
-            )}
+        </button>
+        {data
+          ? data.map((val) => {
+              return (
+                <BusinessCard
+                  updater={updater}
+                  setUpdater={setUpdater}
+                  key={val.id}
+                  val={val}
+                />
+              );
+            })
+          : ""}
         {isShow && (
           <CreateDg
             setIsShow={setIsShow}
@@ -167,16 +167,16 @@ export default function Business() {
         )}
       </div>
       <div className="flex items-center justify-center bottom-4 left-0 absolute z-[-1]">
-        <img src={pink} />
+        <img src={pink} alt="" />
       </div>
       <div className="flex items-center justify-center bottom-0 left-0 absolute z-[-1]">
-        <img src={purple} />
+        <img src={purple} alt="" />
       </div>
       <div className="flex items-center right-0 bottom-4 justify-center absolute z-[-1]">
-        <img src={blue} />
+        <img src={blue} alt="" />
       </div>
       <div className="flex items-center left-0 bottom-4 bg-overlay mix-blend-overlay justify-center absolute z-[-1]">
-        <img src={lines} className="mix-blend-overlay"/>
+        <img src={lines} alt="" className="mix-blend-overlay" />
       </div>
     </section>
   );
