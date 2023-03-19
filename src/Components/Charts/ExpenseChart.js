@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Doughnut, Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../../Api";
 

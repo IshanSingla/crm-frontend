@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import logo from "../../Assets/logoFull 3.svg";
+
+import pink from "../../Assets/pink.svg";
+import blue from "../../Assets/blue.svg";
+import purple from "../../Assets/purple.svg";
+import lines from "../../Assets/lines.svg";
 import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
 import BusinessCard from "./Components/BusinessCard";
-import Lottie from "lottie-react";
-import loading from "../../Assets/Lotties/loading.json";
 import CreateDg from "./Components/CreateDg";
-import Navbar from "../../Components/Navbar";
+import adddarrk from "../../Assets/adddark.svg";
+import add from "../../Assets/Vector.svg";
 
-function AllBusiness() {
+export default function Business() {
+  const [isDark, setDark] = useState(true);
   const [name, setName] = useState("");
   const [data, setData] = useState();
   const [updater, setUpdater] = useState(true);
@@ -62,73 +68,95 @@ function AllBusiness() {
         toast.error(err.message);
       });
   }, [updater]);
-
   return (
-    <div className="relative">
-      <Navbar className="bg-orange-400" />
-      {/* CRM Background */}
-      <div className="top-0 -z-20 flex justify-between items-center md:items-end w-full h-60 md:h-80 bg-orange-400">
-        <div className="w-[25rem] hidden md:flex justify-start ">
-          <img
-            className="w-[12rem]"
-            src={
-              require("../../Assets/Business Illustrations/business-analysis.svg")
-                .default
-            }
-            alt=""
-          />
-        </div>
-
-        <div className="h-36 md:h-64 w-full text-center">
-          <h1 className="text-6xl text-white font-black font-mon">Business</h1>
-        </div>
-
-        <div className="hidden w-[25rem] md:flex justify-end">
-          <img
-            className="w-[20rem]"
-            src={
-              require("../../Assets/Business Illustrations/headerRight.svg")
-                .default
-            }
-            alt="header"
-          />
-        </div>
-      </div>
-
-      {/* Main */}
-      <main className="flex justify-center items-center -mt-24 mb-16">
-        <div className="w-[20rem] md:w-[30rem] lg:w-[45rem] flex flex-col space-y-10">
-          <div className="flex flex-wrap gap-5">
-            {/* add */}
-            <button
-              onClick={() => setIsShow(true)}
-              className="w-full md:w-56 h-56 rounded-md bg-white hover:bg-orange-100 transition-all ease-out shadow-md shadow-zinc-300"
+    <section
+      className={`${
+        isDark
+          ? "bg-gradient-to-tr from-[#000] to-[#011E4C]"
+          : "bg-gradient-to-tr from-[#FF9400] to-[#FFCB84]"
+      } w-screen h-full box-border m-0 p-0 fixed overflow-x-hidden overflow-y-auto bg-no-repeat `}
+    >
+      <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1">
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center justify-center">
+            {" "}
+            <img
+              src={logo}
+              alt=""
+              className="xs:h-auto w-[6rem] sm:w-[8rem] h-auto sm:mb-2"
+            />
+          </div>
+          <div className="block md:hidden items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="white"
+              className="w-6 h-6"
             >
-              <div className="flex flex-col items-center">
-                <img
-                  className="w-10"
-                  src={require("../../Assets/plus.svg").default}
-                  alt=""
-                />
-                <p> Add </p>
-              </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </div>
+          <div className="hidden md:flex items-center gap-4 justify-between">
+            <h1 className="font-extrabold text-base text-white leading-5 cursor-pointer">
+              About
+            </h1>
+            <h1 className="font-extrabold text-base leading-5  text-white cursor-pointer">
+              Contact Us
+            </h1>
+            <button className="bg-white rounded-lg border-none py-3 px-6 flex justify-center items-center text-[#F2383A] font-semibold text-xs leading-3">
+              LOGOUT
             </button>
-            {data ? (
-              data.map((val) => {
-                return <BusinessCard key={val.id} val={val} />;
-              })
-            ) : (
-              <div className="w-full md:w-56 h-56 rounded-md bg-white flex justify-center items-center shadow-2xl">
-                <Lottie
-                  className="w-20 h-20"
-                  animationData={loading}
-                  loop={true}
-                />
-              </div>
-            )}
           </div>
         </div>
-
+      </nav>
+      <div className="flex items-center justify-center">
+        <h1 className="text-white my-4 s:my-6 sm:my-8 md:my-12 lg:my-14 sm:text-left text-center mx-auto sm:w-[75%] w-full font-extrabold text-[2rem] sm:text-[3rem] leading-[4.3rem]">
+          BUSINESS
+        </h1>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:w-[85%] lg:w-[60%] w-[90%] mx-auto my-auto pb-4">
+        <button
+          className={`${
+            isDark ? "bg-[#001A43] text-white" : "bg-white text-black"
+          }bg-[#001A43] w-full md:w-[16rem]  flex flex-row max-w-full h-[10rem] rounded-xl relative`}
+          onClick={() => setIsShow(true)}
+        >
+          <h1 className="ml-3 mt-3  font-extrabold leading-3 h-[10rem] text-xl text-white">
+            ADD
+          </h1>
+          <img
+            src={add}
+            alt=""
+            className={`${
+              isDark ? "visible" : "invisible"
+            } absolute md:left-[42%] left-[47%] top-[38%] `}
+          />
+          <img
+            src={adddarrk}
+            alt=""
+            className={`${
+              isDark ? "invisible" : "visible"
+            } absolute md:left-[42%] left-[47%] top-[38%] `}
+          />
+        </button>
+        {data
+          ? data.map((val) => {
+              return (
+                <BusinessCard
+                  updater={updater}
+                  setUpdater={setUpdater}
+                  key={val.id}
+                  val={val}
+                />
+              );
+            })
+          : ""}
         {isShow && (
           <CreateDg
             setIsShow={setIsShow}
@@ -137,9 +165,19 @@ function AllBusiness() {
             setName={setName}
           />
         )}
-      </main>
-    </div>
+      </div>
+      <div className="flex items-center justify-center bottom-4 left-0 absolute z-[-1]">
+        <img src={pink} alt="" />
+      </div>
+      <div className="flex items-center justify-center bottom-0 left-0 absolute z-[-1]">
+        <img src={purple} alt="" />
+      </div>
+      <div className="flex items-center right-0 bottom-4 justify-center absolute z-[-1]">
+        <img src={blue} alt="" />
+      </div>
+      <div className="flex items-center left-0 bottom-4 bg-overlay mix-blend-overlay justify-center absolute z-[-1]">
+        <img src={lines} alt="" className="mix-blend-overlay" />
+      </div>
+    </section>
   );
 }
-
-export default AllBusiness;

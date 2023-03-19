@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../../../Api";
-import { DeleteIcons } from "../../../Components/Icons";
+import deletedark from "../../../Assets/deletedark.svg";
 
-export default function BusinessCard({ val }) {
+export default function BusinessCard({ val, updater, setUpdater }) {
+  const [isDark, setDark] = useState(true);
   const handleDelete = (e) => {
     e.preventDefault();
     BuissnessApi()
@@ -12,6 +13,7 @@ export default function BusinessCard({ val }) {
         publicApi
           .delete(`/delete`, { headers: { buissnessid: val._id } })
           .then((res) => {
+            setUpdater(!updater);
             toast.success("Deleted Successfully");
           })
           .catch((err) => {
@@ -26,23 +28,34 @@ export default function BusinessCard({ val }) {
       });
   };
   return (
-    <Link
-      className="w-full md:w-56 h-56 rounded-md bg-white hover:bg-zinc-100 transition-all ease-out shadow-md shadow-zinc-300"
-      to={`/business/${val._id}`}
-    >
-      <div className="flex flex-col justify-between w-full h-full p-2">
-        <div>
-          <p className="text-xl p-2 break-words font-medium">
+    <Link className="w-full h-full" to={`/business/${val._id}`}>
+      <div
+        className={`${
+          isDark ? "bg-[#001A43] text-white" : "bg-white text-black"
+        }bg-[#001A43] w-full md:w-[16rem] place-self-center flex flex-row max-w-full h-[10rem] rounded-xl relative`}
+      >
+        <div className="flex flex-col justify-start ml-3 mt-3 items-start">
+          <h1
+            className={`${
+              isDark ? "text-white" : "text-black"
+            } font-extrabold text-base leading-6`}
+          >
             {val.buissnessName}
-          </p>
-          <p className="text-[12px] text-zinc-500 px-2"> {val.createdAt} </p>
+          </h1>
+          <h2 className="text-[#87888C] font-normal text-[0.4rem] leading-[0.7rem]">
+            {val.createdAt}
+          </h2>
         </div>
-        <button
+        <div
+          className="flex gap-1 place-self-end justify-end absolute right-2"
           onClick={handleDelete}
-          className="rounded-full w-[max-content] bg-zinc-100 hover:bg-zinc-300 p-2 transition-all ease-linear"
         >
-          <DeleteIcons />
-        </button>
+          <img
+            src={isDark ? deletedark : deletedark}
+            alt=""
+            className={`${isDark ? "inline" : "hidden"}`}
+          />
+        </div>
       </div>
     </Link>
   );
