@@ -7,16 +7,16 @@ export default function Footer() {
   return (
     <section className="bg-gradient-to-r mt-10 from-[#D9D9D9] py-10 to-[#4a4848] max-w-full">
       <div className="max-w-[90%] mx-auto w-full mb-4 flex flex-col relative">
-        <div className="flex flex-row justify-between items-center w-full bg-[#1E1E1E] px-5">
-          <div>
+        <div className="flex flex-row justify-between items-center w-full bg-[#1E1E1E] px-5 py-2 rounded-xl">
+          <div className="invisible sm:visible ">
             <img
               src={logo}
               alt=""
-              className="invisible sm:visible xs:h-[6.438rem] xs:w-[14.25rem] w-[8rem] h-[4rem]"
+              className=" xs:h-auto xs:w-[8rem] sm:w-[12rem] w-[8rem] h-auto sm:mb-2"
             />
           </div>
           <Link to="/auth" className="flex justify-center gap-4 items-center">
-            <h1 className="font-Poppins font-bold text-lg sm:text-2xl leading-9 text-white">
+            <h1 className="font-Poppins font-bold text-lg sm:text-xl text-white">
               Start Collaborating
             </h1>
             <ForwardArrow className="bg-white rounded-full"/>
