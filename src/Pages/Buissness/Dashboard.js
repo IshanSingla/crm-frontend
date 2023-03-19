@@ -3,6 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import Expense from "../../Components/Charts/Expense";
 import Inventry from "../../Components/Charts/Inventry";
 import SummaryCard from "./Components/SummaryCard";
+import { More2 } from "../../Components/Icons";
+import CostChart from "../../Components/Charts/CostChart";
+import QuantityChart from "../../Components/Charts/QuantityChart";
+import ExpenseChart from "../../Components/Charts/ExpenseChart";
 
 export default function Dashboard() {
   const cardDetails = [
@@ -15,10 +19,7 @@ export default function Dashboard() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="w-full border border-black px-4 flex flex-col gap-3">
-      {/* <Inventry /> */}
-      {/* <Expense /> */}
-
+    <div className="w-full pl-2 pr-1 flex flex-col gap-3 overflow-auto">
       {/* Date */}
       <div className="flex justify-end">
         <select
@@ -59,7 +60,7 @@ export default function Dashboard() {
 
         {/* chart */}
         <div
-          className={`rounded-xl md:w-[28%] p-4 flex flex-col justify-center items-center
+          className={`rounded-xl md:w-[28%] p-4 flex flex-col justify-between items-center
           ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
         `}
         >
@@ -75,34 +76,110 @@ export default function Dashboard() {
       <div className="flex flex-col md:flex-row gap-3">
         {/* total margin */}
         <div
-          className={`w-full md:w-[72%]  rounded-xl p-4 
+          className={`w-full md:w-[72%]  rounded-xl p-4 flex flex-col gap-6
             ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
-        ></div>
+        >
+          <div className="w-full flex items-center justify-between">
+            <p className="text-xl font-semibold"> Total Margin </p>
+            <div className="flex items-center space-x-5">
+              <select
+                name=""
+                id=""
+                className="bg-transparent border border-zinc-600 py-1 px-2 rounded-md outline-none cursor-pointer text-[13px]"
+              >
+                <option value="products">Products</option>
+              </select>
+              <button>
+                <More2 />
+              </button>
+            </div>
+          </div>
+          <div className="h-60 ">
+            <CostChart />
+          </div>
+        </div>
 
         {/* Quantity */}
         <div
-          className={`rounded-xl w-[28%] p-4
+          className={`rounded-xl w-full md:w-[28%] p-4 flex flex-col gap-6
               ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
-        ></div>
+        >
+          <div className="w-full flex items-center justify-between">
+            <p className="text-xl font-semibold"> Quantity </p>
+            <div className="flex items-center space-x-5">
+              <select
+                name=""
+                id=""
+                className="bg-transparent border border-zinc-600 py-1 px-2 rounded-md outline-none cursor-pointer text-[13px]"
+              >
+                <option value="products">Categories</option>
+              </select>
+              <button>
+                <More2 className={`${theme ? "text-white" : "text-black"}`} />
+              </button>
+            </div>
+          </div>
+          <div className="h-60">
+            <QuantityChart />
+          </div>
+        </div>
       </div>
 
       {/* Phase 3 */}
       <div className="flex flex-col md:flex-row gap-3">
         {/* Expense 1 */}
         <div
-          className={`rounded-xl w-[28%] p-4
-          ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
+          className={`rounded-xl w-full md:w-[28%] p-4 flex flex-col gap-6
+              ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
-        ></div>
+        >
+          <div className="w-full flex items-center justify-between">
+            <p className="text-xl font-semibold"> Quantity </p>
+            <div className="flex items-center space-x-5">
+              <select
+                name=""
+                id=""
+                className="bg-transparent border border-zinc-600 py-1 px-2 rounded-md outline-none cursor-pointer text-[13px]"
+              >
+                <option value="products">Categories</option>
+              </select>
+              <button>
+                <More2 className={`${theme ? "text-white" : "text-black"}`} />
+              </button>
+            </div>
+          </div>
+          <div className="h-60">
+            <ExpenseChart />
+          </div>
+        </div>
 
         {/* Expense 2 */}
         <div
-          className={`w-[72%]  rounded-xl p-4 
-              ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
-            `}
-        ></div>
+          className={`w-full md:w-[72%]  rounded-xl p-4  flex flex-col gap-6
+            ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
+          `}
+        >
+          <div className="w-full flex items-center justify-between">
+            <p className="text-xl font-semibold"> Total Margin </p>
+            <div className="flex items-center space-x-5">
+              <select
+                name=""
+                id=""
+                className="bg-transparent border border-zinc-600 py-1 px-2 rounded-md outline-none cursor-pointer text-[13px]"
+              >
+                <option value="products">Products</option>
+              </select>
+              <button>
+                <More2 />
+              </button>
+            </div>
+          </div>
+          <div className="h-60 ">
+            <CostChart />
+          </div>
+        </div>
       </div>
     </div>
   );

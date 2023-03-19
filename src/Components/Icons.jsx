@@ -197,26 +197,35 @@ export function LogoutIcon({ className = "", onClick = () => {} }) {
 export function DeleteIcons({ className = "", onClick = () => {} }) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       className={`w-6 h-6 ${className}`}
       onClick={onClick}
     >
-      <path
-        d="M8 6V4.41421C8 3.63317 8.63317 3 9.41421 3H14.5858C15.3668 3 16 3.63317 16 4.41421V6"
-        stroke="#DF1463"
-        stroke-width="1.7"
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
         stroke-linecap="round"
-      />
-      <path
-        d="M5.7372 6.54395V18.9857C5.7372 19.7449 6.35269 20.3604 7.11194 20.3604H16.8894C17.6487 20.3604 18.2642 19.7449 18.2642 18.9857V6.54395M2.90918 6.54395H21.091"
-        stroke="#1C1C1C"
-        stroke-width="1.7"
-        stroke-linecap="round"
-      />
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
+          stroke="#FEB95A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+        <path
+          d="M15 16L17.5 18.5M20 21L17.5 18.5M17.5 18.5L20 16M17.5 18.5L15 21"
+          stroke="#FEB95A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>{" "}
+      </g>
     </svg>
   );
 }
@@ -589,6 +598,111 @@ export function Sale4({ className = "", onClick = () => {} }) {
         stroke-width="2.48507"
         stroke-linecap="round"
         stroke-linejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function More2({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      width="17"
+      height="4"
+      viewBox="0 0 17 4"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
+    >
+      <path
+        d="M2.17077 0.489052C3.03528 0.489052 3.7361 1.18988 3.7361 2.05439C3.7361 2.91889 3.03528 3.61972 2.17077 3.61972C1.30626 3.61972 0.605438 2.91889 0.605438 2.05439C0.605438 1.18988 1.30626 0.489052 2.17077 0.489052Z"
+        fill="white"
+      />
+      <path
+        d="M8.4321 0.489052C9.29661 0.489052 9.99743 1.18988 9.99743 2.05438C9.99743 2.91889 9.29661 3.61972 8.4321 3.61972C7.56759 3.61972 6.86677 2.91889 6.86677 2.05438C6.86677 1.18988 7.56759 0.489052 8.4321 0.489052Z"
+        fill="white"
+      />
+      <path
+        d="M16.2588 2.05438C16.2588 1.18988 15.5579 0.489052 14.6934 0.489052C13.8289 0.489052 13.1281 1.18988 13.1281 2.05438C13.1281 2.91889 13.8289 3.61972 14.6934 3.61972C15.5579 3.61972 16.2588 2.91889 16.2588 2.05438Z"
+        fill="white"
+      />
+    </svg>
+  );
+}
+
+export function Reload({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      fill="#000000"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="#000000"
+      stroke-width="0.00024000000000000003"
+      className={`${className}`}
+      onClick={onClick}
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <path d="M1,12A11,11,0,0,1,17.882,2.7l1.411-1.41A1,1,0,0,1,21,2V6a1,1,0,0,1-1,1H16a1,1,0,0,1-.707-1.707l1.128-1.128A8.994,8.994,0,0,0,3,12a1,1,0,0,1-2,0Zm21-1a1,1,0,0,0-1,1,9.01,9.01,0,0,1-9,9,8.9,8.9,0,0,1-4.42-1.166l1.127-1.127A1,1,0,0,0,8,17H4a1,1,0,0,0-1,1v4a1,1,0,0,0,.617.924A.987.987,0,0,0,4,23a1,1,0,0,0,.707-.293L6.118,21.3A10.891,10.891,0,0,0,12,23,11.013,11.013,0,0,0,23,12,1,1,0,0,0,22,11Z"></path>
+      </g>
+    </svg>
+  );
+}
+export function Search({ className = "", onClick = () => {}, stroke = "" }) {
+  return (
+    <svg
+      width="19"
+      height="19"
+      viewBox="0 0 19 19"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${className}`}
+      onClick={onClick}
+    >
+      <g opacity="0.5">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M8.31508 14.4767C11.9328 14.4767 14.8655 11.5438 14.8655 7.92586C14.8655 4.30792 11.9328 1.375 8.31508 1.375C4.69738 1.375 1.76465 4.30792 1.76465 7.92586C1.76465 11.5438 4.69738 14.4767 8.31508 14.4767Z"
+          stroke={`${stroke}`}
+          stroke-width="2.15625"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M13.3901 13.0002L17.5073 17.1177"
+          stroke={`${stroke}`}
+          stroke-width="2.15625"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    </svg>
+  );
+}
+export function Cross({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      width="800"
+      height="800"
+      viewBox="0 0 800 800"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
+    >
+      <path
+        d="M533.333 266.667L266.667 533.333M266.667 266.667L533.333 533.333"
+        stroke="#71717A"
+        stroke-width="50"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        className={`${className}`}
       />
     </svg>
   );

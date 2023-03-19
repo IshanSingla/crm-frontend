@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Doughnut } from "react-chartjs-2";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../../Api";
-import CustomChart from "./CustomChart";
 
-export default function Expense() {
+export default function ExpenseChart() {
   const [Quantity, setQuantity] = useState({
     labels: [],
     datasets: [],
@@ -67,13 +67,17 @@ export default function Expense() {
       });
   }, []);
   return (
-    <div className="grid md:grid-cols-12 grid-cols-6 gap-6">
-      {/* <div className="col-span-6">
-        <CustomChart data={Quantity} type="expenses" />
-      </div> */}
-      <div className="col-span-6">
-        <CustomChart data={Cost} type="expenses" />
-      </div>
-    </div>
+    <Doughnut
+      data={Cost}
+      options={{
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "bottom",
+          },
+        },
+      }}
+    />
   );
 }
