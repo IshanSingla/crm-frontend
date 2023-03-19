@@ -25,6 +25,8 @@ export default function DashboardTemp({
 
   const { theme, changeTheme } = useContext(ThemeContext);
 
+  console.log(theme);
+
   useEffect(() => {
     if (type === "buissness") {
       BuissnessApi()

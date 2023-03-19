@@ -8,6 +8,7 @@ export const ThemeContextProvider = (props) => {
     setTheme(which);
     localStorage.setItem("isDark", which);
   };
+  console.log(theme);
 
   const value = { theme, setTheme, changeTheme };
   return (

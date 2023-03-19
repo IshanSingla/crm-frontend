@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import InventryTrans from "./InventryTrans";
 import { DeleteIcons, EditIcons } from "../../Components/Icons";
 import Cart from "./Cart";
+import TagList from "./Components/TagList";
 
 function Inventory() {
   const [body, setBody] = useState([]);
@@ -56,7 +57,7 @@ function Inventory() {
   };
 
   return (
-    <div className="flex flex-col  overflow-auto h-full w-full">
+    <div className="flex md:flex-row flex-col gap-3 overflow-auto h-full w-full">
       <CustomTable
         popupScreenFields={
           <div className="flex flex-col space-y-3">
@@ -162,9 +163,10 @@ function Inventory() {
           );
         })}
       />
-      <Routes>
+      {/* <Routes>
         <Route path="/:inventoryid" element={<InventryTrans />} />
-      </Routes>
+      </Routes> */}
+      <TagList />
     </div>
   );
 }

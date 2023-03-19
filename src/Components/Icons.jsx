@@ -707,3 +707,31 @@ export function Cross({ className = "", onClick = () => {} }) {
     </svg>
   );
 }
+
+export function User2({ className = "", onClick = () => {} }) {
+  return (
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 13 13"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`w-5 h-5 ${className}`}
+    >
+      <path
+        d="M6.91383 6.42311C8.28605 6.42311 9.39845 5.31071 9.39845 3.93848C9.39845 2.56626 8.28605 1.45386 6.91383 1.45386C5.5416 1.45386 4.4292 2.56626 4.4292 3.93848C4.4292 5.31071 5.5416 6.42311 6.91383 6.42311Z"
+        stroke="#87898E"
+        stroke-width="0.745388"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M11.1822 11.3924C11.1822 9.46927 9.26903 7.91389 6.91361 7.91389C4.55818 7.91389 2.64502 9.46927 2.64502 11.3924"
+        stroke="#87898E"
+        stroke-width="0.745388"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+}
