@@ -60,7 +60,7 @@ export default function DashboardTemp({
     >
       <div
         className={`
-          h-full p-4 duration-500 md:relative absolute z-10 rounded-md
+          h-full p-4 duration-500 xl:relative absolute z-10 rounded-xl
           ${open ? "md:w-52 w-52" : "w-[4.8rem]"}
           ${isOpen && "md:block hidden"}
           ${theme ? "bg-secBlack" : "bg-primWhite"}
@@ -82,16 +82,15 @@ export default function DashboardTemp({
                 onClick={() => setIsOpen(!isOpen)}
               />
             </div>
-            <div>
-              <Link>
-                <img
-                  className=""
-                  src={require("../Assets/logoFull.png")}
-                  alt=""
-                />
-              </Link>
-            </div>
-            <div className="flex flex-col space-y-3">
+
+            <Link to="/business">
+              <img
+                className=""
+                src={require("../Assets/Logos/logo1.png")}
+                alt=""
+              />
+            </Link>
+            <div className="flex flex-col space-y-3 pt-8">
               {Menus.map((data, index) => (
                 <Link
                   to={`./${data.route}`}
@@ -116,7 +115,13 @@ export default function DashboardTemp({
               ))}
             </div>
           </div>
-          <div className="border text-center">help and support</div>
+          <div
+            className={`py-1 text-center rounded-full
+            ${theme ? "bg-gray-600 text-zinc-300 " : "text-black bg-secWhite"}
+          `}
+          >
+            ? Help & support
+          </div>
         </div>
       </div>
 
@@ -129,9 +134,9 @@ export default function DashboardTemp({
 
       {/* Right Side */}
 
-      <div className="relative w-full px-2 sm:px-4 flex flex-col items-center ">
+      <div className="relative w-full pl-4 pr-1 flex flex-col items-center ">
         <nav
-          className={`w-full flex justify-between items-center fix rounded-md border-1 px-4 sm:px-6 py-3 z-[2]
+          className={`w-full flex justify-between items-center rounded-md border-1 px-4 sm:px-6 py-3 z-[2]
             ${theme ? "text-white " : "text-black"}
           `}
         >
@@ -166,7 +171,7 @@ export default function DashboardTemp({
           </div>
         </nav>
         <div
-          className="mt-3 w-full overflow-auto 
+          className="mt-3 w-full overflow-auto
             scroll z-[2]"
         >
           {children}

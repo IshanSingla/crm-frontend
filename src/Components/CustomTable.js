@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../Api";
+import { ThemeContext } from "../Contexts/ThemeContext";
+import Cart from "../Pages/Buissness/Cart";
+import { Cross, Reload, Search } from "./Icons";
 
 export default function CustomTable({
   popupScreenFields = <></>,
@@ -54,9 +57,14 @@ export default function CustomTable({
     setFrom(from - gap);
   };
 
+  const { theme } = useContext(ThemeContext);
   return (
     <div className="flex justify-center items-center h-full w-full">
-      <div className="flex flex-col justify-between py-2 shadow-md bg-white rounded-xl w-full ">
+      <div
+        className={`flex flex-col justify-between py-2 shadow-md rounded-xl w-full
+          ${theme ? "bg-secBlack" : "bg-primWhite"}
+        `}
+      >
         {popup && (
           <>
             <div className="w-72 md:w-80 bg-white rounded-md absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-20 p-3">
@@ -92,85 +100,136 @@ export default function CustomTable({
           <input
             type="text"
             placeholder="Search..."
-            className="w-[70%] bg-zinc-100 rounded-md outline-none py-1 px-2"
+            className={`w-[70%]  rounded-md outline-none py-2 px-3
+              ${theme ? "bg-[#2E3033] text-white" : "bg-zinc-100"}
+            `}
           />
-          <button
-            onClick={() => {
-              setPopup(true);
-            }}
-            className="px-3 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
-          >
-            Add data
-          </button>
-          <button
-            onClick={() => {
-              setReload(!reload);
-            }}
-          >
-            <img
-              className="w-4"
-              src={require("../Assets/reload.svg").default}
-              alt=""
-            />
-          </button>
+          <div className="flex space-x-5">
+            <button
+              onClick={() => {
+                setReload(!reload);
+              }}
+            >
+              <Reload className="w-5 h-5 fill-oran" />
+            </button>
+            <button
+              onClick={() => {
+                setPopup(true);
+              }}
+              className={`px-4 rounded-md text-[13px] font-semibold text-oran
+                  ${theme ? "bg-oran bg-opacity-20 " : "border bg-secWhite"}
+              `}
+            >
+              Add data
+            </button>
+          </div>
         </div>
-        <div className="overflow-auto h-[29rem] scroll">
+        <div className="overflow-auto min-h-[29rem] h-full scroll">
           <table className="w-full border-space font-pop text-zinc-500">
             <thead className="">
-              <tr className="font-semibold text-[13px] h-auto border-b border-zinc-200">
+              <tr
+                className={`font-semibold text-[14px] h-auto ${
+                  theme ? "text-white" : "text-black"
+                }`}
+              >
                 {headings.split(",").map((head, headID) => (
                   <td key={head}>
-                    <div className="px-4 pb-2 ">{head}</div>
+                    <div className="px-4 py-2 text-center">{head}</div>
                   </td>
                 ))}
               </tr>
             </thead>
-            <tbody className="text-[12px] text-center">{tableData}</tbody>
+            <tbody
+              className={`text-[16px] text-center ${
+                theme ? "text-secWhite" : "text-black"
+              }`}
+            >
+              {tableData}
+            </tbody>
           </table>
         </div>
 
         {/* Table Down Bar */}
-        <div className="flex flex-row justify-between px-4 py-2 font-pop text-[12px] border-t border-zinc-200">
-          <div className="flex flex-row items-center space-x-1 ">
-            <div>Rows per page</div>
-            <div>
-              <select
-                value={gap}
-                onChange={(e) => setGap(parseInt(e.target.value))}
-                className="bg-zinc-100 p-1 rounded-md cursor-pointer outline-none border-none"
+        <div>
+          <div className="flex flex-row justify-between px-4 py-2 font-pop text-[12px] ">
+            <div className="flex flex-row items-center space-x-2 ">
+              <div className={`${theme ? "text-white" : "text-black"}`}>
+                Rows per page
+              </div>
+              <div>
+                <select
+                  value={gap}
+                  onChange={(e) => setGap(parseInt(e.target.value))}
+                  className="bg-zinc-100 p-1 rounded-md cursor-pointer outline-none border-none"
+                >
+                  <option value={10}> 10 </option>
+                  <option value={20}> 20 </option>
+                  <option value={30}> 30 </option>
+                </select>
+              </div>
+            </div>
+
+            {/* Arrows */}
+            <div className="flex flex-row">
+              <button
+                onClick={handlePrev}
+                className="hover:bg-zinc-100 rounded-full transition-all"
               >
-                <option value={10}> 10 </option>
-                <option value={20}> 20 </option>
-                <option value={30}> 30 </option>
-              </select>
+                <img
+                  className="w-8"
+                  src={require("../Assets/leftArr2.svg").default}
+                  alt=""
+                />
+              </button>
+              <button
+                onClick={handleNext}
+                className="hover:bg-zinc-100 rounded-full transition-all"
+              >
+                <img
+                  className="w-8"
+                  src={require("../Assets/rightArr2.svg").default}
+                  alt=""
+                />
+              </button>
             </div>
           </div>
-
-          {/* Arrows */}
-          <div className="flex flex-row">
-            <button
-              onClick={handlePrev}
-              className="hover:bg-zinc-100 rounded-full transition-all"
+          <div className="flex items-center justify-between px-4 py-4">
+            <div
+              className={`flex items-center rounded-md px-4 w-[40%]
+              ${theme ? "bg-oran bg-opacity-5 " : "bg-secWhite"}
+            `}
             >
-              <img
-                className="w-8"
-                src={require("../Assets/leftArr2.svg").default}
-                alt=""
+              <div className="flex space-x-1 pr-2 border-r border-[#161515]">
+                <CategoryBox theme={theme} category="Amazon" />
+              </div>
+              <input
+                type="text"
+                className={`rounded-md text-xl py-2 px-3 bg-transparent w-full outline-none`}
               />
-            </button>
-            <button
-              onClick={handleNext}
-              className="hover:bg-zinc-100 rounded-full transition-all"
-            >
-              <img
-                className="w-8"
-                src={require("../Assets/rightArr2.svg").default}
-                alt=""
+              <Search
+                className="w-6 h-6"
+                stroke={`${theme ? "white" : "#161515 "}`}
               />
-            </button>
+            </div>
+            <Cart />
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+export function CategoryBox({ category, theme }) {
+  return (
+    <div
+      className={`flex space-x-1  rounded-sm p-1 pl-2 text-[13px] items-center text-oran
+      ${theme ? " bg-secBlack" : "bg-primWhite"}
+    `}
+    >
+      <p className="">{category}</p>
+      <button>
+        <Cross className="stroke-oran" />
+      </button>
     </div>
   );
 }

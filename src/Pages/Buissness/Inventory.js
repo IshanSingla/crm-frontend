@@ -56,8 +56,7 @@ function Inventory() {
   };
 
   return (
-    <div className="flex lg:flex-col flex-col overflow-auto h-full w-full">
-      <Cart />
+    <div className="flex flex-col  overflow-auto h-full w-full">
       <CustomTable
         popupScreenFields={
           <div className="flex flex-col space-y-3">
@@ -132,7 +131,7 @@ function Inventory() {
             `${item.inventoryCost.sellingPrice}/ ${item.inventoryCost.buyingPrice}`,
             item.inventoryQuantity,
             <Link
-              className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+              className="px-2 text-oran text-[13px] font-semibold"
               to={`./${item._id}`}
             >
               Details
@@ -142,14 +141,14 @@ function Inventory() {
               onClick={() => {
                 handleAdd(item._id);
               }}
-              className="px-2 rounded-md bg-[#1967D2] text-white text-[13px] font-semibold"
+              className="px-2 text-oran text-[13px] font-semibold"
             >
               Add to cart
             </button>,
             <div className="flex justify-center gap-[12px]">
               <EditIcons className="cursor-pointer" />
               <DeleteIcons
-                className="cursor-pointer"
+                className="cursor-pointer stroke-white"
                 onClick={() => handleDelete(item._id)}
               />
             </div>,

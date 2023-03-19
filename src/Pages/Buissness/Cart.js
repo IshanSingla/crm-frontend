@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { BuissnessApi } from "../../Api";
+import { ThemeContext } from "../../Contexts/ThemeContext";
 
 function CartCard({ item, setFlag }) {
   const [loader, setLoader] = useState(false);
@@ -109,6 +110,8 @@ function Cart() {
     setFlag(false);
   }
 
+  const { theme } = useContext(ThemeContext);
+
   return (
     <>
       <div className="flex justify-center">
@@ -116,9 +119,11 @@ function Cart() {
           onClick={() => {
             setPopup(true);
           }}
-          className="bg-[#ff1243] w-[max-content] text-white p-[8px] rounded-[10px]"
+          className={`px-4 rounded-md text-[13px] font-semibold py-3 text-oran
+                  ${theme ? "bg-oran bg-opacity-20 " : "border bg-secWhite"}
+              `}
         >
-          Trans
+          Transactions
         </button>
       </div>
       {popup && (
