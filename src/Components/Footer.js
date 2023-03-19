@@ -2,24 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../Assets/logoFull.png";
 import { ForwardArrow, Instagram, Linkedin, Twitter, WhatsApp } from "./Icons";
-
+import mainLogo from '../Assets/mainLogo.png';
+import { auth } from "../Config/firebase";
 export default function Footer() {
   return (
     <section className="bg-gradient-to-r mt-10 from-[#D9D9D9] py-10 to-[#4a4848] max-w-full">
       <div className="max-w-[90%] mx-auto w-full mb-4 flex flex-col relative">
-        <div className="flex flex-row justify-between items-center w-full bg-[#1E1E1E] px-5">
-          <div>
+        <div className="flex flex-row justify-between items-center w-full bg-[#1E1E1E] px-5 py-2 rounded-xl">
+          <div className="hidden sm:flex">
             <img
               src={logo}
               alt=""
-              className="invisible sm:visible xs:h-[6.438rem] xs:w-[14.25rem] w-[8rem] h-[4rem]"
+              className=" xs:h-auto xs:w-[8rem] sm:w-[12rem] w-[8rem] h-auto sm:mb-2"
             />
           </div>
-          <Link to="/auth" className="flex justify-center gap-4 items-center">
-            <h1 className="font-Poppins font-bold text-lg sm:text-2xl leading-9 text-white">
+          
+          <Link
+                    to={auth.currentUser ? "/business" : "/auth/signup"}
+                    className="flex justify-center gap-4 items-center"  >
+            <h1 className="font-Poppins font-bold text-lg sm:text-xl text-white">
               Start Collaborating
             </h1>
-            <ForwardArrow className="bg-white rounded-full"/>
+            <div className="flex bg-white right-10 bottom-10 sm:w-[2.5rem] w-[1.8rem] h-[1.8rem] sm:h-[2.5rem] rounded-full  text-4xl  items-center justify-center">
+                <div className="flex items-center justify-center text-sm sm:text-lg rounded">▶</div>
+              </div>
           </Link>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 my-5 w-full font-Poppins">
@@ -32,7 +38,7 @@ export default function Footer() {
                 +91 83034 36455
               </h1>
               <h1 className="font-semibold text-xl text-[#25282B] leading-8">
-                +91 83034 36455
+                +91 74391 16102
               </h1>
             </div>
             <div className="flex flex-col mt-3 gap-4 text-[#25282B] opacity-40">
@@ -88,7 +94,7 @@ export default function Footer() {
             <h1>Policy</h1>
           </div>
 
-          <div className="absolute -bottom-10 right-10 flex flex-row items-center gap-2 ">
+          <div className="absolute -bottom-12 -right-2 flex flex-row items-center gap-2 mt-2">
             <h1 className="font-extrabold sm:text-2xl text-lg leading-8">
               Powered By
             </h1>
@@ -96,7 +102,7 @@ export default function Footer() {
               <img
                 src="https://www.indusianassist.com/static/media/logo.ecb2caa3d338e614ce4a.png"
                 alt=""
-                className="w-[4rem] h-[4rem]"
+                className="w-[3rem] h-[3rem]"
               />
             </span>
           </div>

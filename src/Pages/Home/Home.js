@@ -13,18 +13,18 @@ export default function Home() {
   return (
     <main className="bg-[#1E1E1E] overflow-x-hidden">
       <Navbar />
-      <section className="w-screen h-full md:h-screen">
+      <section className="w-screen h-full lg:h-screen">
         <div className="flex items-center justify-center relative w-screen h-full sm:p-6">
-          <div className="flex items-center justify-center w-full h-full mt-20 sm:mt-20 sm:p-4  md:mt-0">
-            <div className="flex items-center flex-col md:flex-row justify-center gap-4 p-4 sm:p-2 lg:p-4 h-full w-full lg:w-[95%] xl:w-[85%]">
-              <div className="flex items-start justify-center space-y-8 sm:w-[80%] md:w-[80%] flex-col xs:p-4 md:p-3">
-                <div className="flex items-center justify-center gap-4 h-full">
-                  <h1 className="text-xl lg:text-2xl xl:text-[80px] font-semibold text-white xl:leading-[84px]">
-                    Remarkable Product as a Service
+          <div className="flex items-center justify-center w-full h-full mt-12 p-2  md:mt-0">
+            <div className="flex items-center flex-col lg:flex-row justify-center gap-4 h-full w-full p-2">
+              <div className="flex items-start justify-center gap-8 w-full md:w-[80%] flex-col xs:p-4 md:p-3">
+                <div className="flex items-center justify-center gap-4 h-full w-full">
+                  <h1 className="text-2xl xs:text-3xl s:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white w-full">
+                    Remarkable Product as a Service<span className="text-[#E67C3B] text-xs s:text-base ml-2">Beta</span>
                   </h1>
                 </div>
                 <div className="flex items-center justify-center gap-4 w-full sm:w-[80%] md:w-[90%]">
-                  <p className="font-normal text-white leading-normal md:leading-8 text-xs sm:text-sm md:text-xl">
+                  <p className="font-normal text-gray-300  text-xs sm:text-base md:text-xl">
                     Our CRM software offers a consolidated platform for handling
                     conversations, following up on leads, and automating
                     procedures in order to simplify your customer relationship
@@ -38,20 +38,20 @@ export default function Home() {
                 <div className="flex items-center justify-start w-full xl:w-[50%] h-full">
                   <Link
                     to={auth.currentUser ? "/business" : "/auth/signup"}
-                    className={`flex items-center space-x-3 h-full justify-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-2 sm:p-4 rounded-3xl cursor-pointer`}
+                    className={`flex items-center gap-2 h-full justify-center bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-2 s:p-3 sm:p-[.8rem] text-center rounded-lg cursor-pointer`}
                   >
                     <p
-                      className={`lg:text-md text-black font-medium whitespace-nowrap text-xl`}
+                      className={`text-white font-semibold whitespace-nowrap text-xs s:text-sm sm:text-base`}
                     >
                       Connet Now
                     </p>
-                    <ForwardArrow className="text-black" />
+                    <ForwardArrow className="text-white" />
                   </Link>
                 </div>
               </div>
-              <div className="flex items-center justify-center  w-3/4 md:w-1/2 p-4">
+              <div className="flex items-center justify-center md:visible invisible w-3/4 md:w-1/2 p-4">
                 <div className="bg-gradient-to-r from-[#D9D9D9] to-[#4a4848] absolute -right-16 rotate-45  rounded-[10rem] xl:h-[25rem] xl:w-[40rem] md:w-[35rem] md:h-[20rem]"></div>
-                <div className="bg-transparent md:visible invisible relative h-full w-full">
+                <div className="bg-transparent  relative h-full w-full">
                   <img
                     src={one}
                     className=" absolute xl:w-[14.875rem] xl:h-[17rem] h-[14rem] w-[12rem] right-[12rem] -top-[22rem]"
@@ -78,37 +78,49 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="max-w-[90%] w-full mx-auto mb-[20rem] mt-10">
-        <h1 className="text-white font-bold text-[5rem] leading-[6.5rem]">
+      <section className="w-full h-full p-4 sm:p-6 mb-[4rem]">
+        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex items-start justify-center gap-4 w-full h-full flex-col mt-10 p-2">
+          <div className="p-2 flex items-start justify-center flex-col gap-3">
+        <h1 className="text-white text-3xl s:text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold ">
           Why Us?
         </h1>
-        <p className="text-[1.7rem] font-normal leading-9 text-white opacity-40 mt-4">
-          Best Accounting software for your business
+        <p className="font-normal text-gray-300 text-sm sm:text-base md:text-xl md:ml-2">
+          Best Accounting software for your business.
         </p>
-        <div className="grid w-full grid-cols-1 lg:grid-cols-3 gap-20 my-6 justify-between ">
+        </div>
+        <div className="flex items-center justify-center w-full">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-6 justify-between max-w-[95%]">
           {[
             {
-              para: "Customized Software for Your Retail Business",
+              para: "Inventory Management",
             },
             {
-              para: "Instant and Effortless Grocery Store Billing Service",
+              para: "Accounting Management",
             },
             {
-              para: "Invoicing is a breeze with Vollmx Billing Software.",
+              para: "Invoice Management",
             },
           ].map((data, index) => (
             <div
               key={`CustomDivs${index}`}
-              className="bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] py-9 px-6 lg:h-[25rem] relative rounded-3xl"
+              className="bg-gradient-to-r from-[#E67C3B] to-[#F3CF6D] p-4 md:px-8 md:py-6 h-full  w-full relative rounded-xl"
             >
-              <p className="text-white font-bold leading-[3.5rem] text-[2rem]">
+              <div className="flex items-center justify-start p-2">
+              <p className="text-white font-bold text-lg s:text-xl sm:text-lg md:text-xl lg:text-3xl">
                 {data.para}
               </p>
-              <div className="hidden md:flex absolute right-10 bottom-10 lg:h-[4.5rem] lg:w-[4.5rem] h-[3rem] w-[3rem] border-2 rounded-full border-black text-4xl  items-center justify-center">
-                <div>+</div>
+              </div>
+              <div className="flex items-center bottom-2 sm:bottom-4 right-2 sm:right-4 justify-end p-2">
+              <div className="flex bg-white right-10 bottom-10 lg:h-[3.5rem] lg:w-[3.5rem] sm:h-[3rem] sm:w-[3rem] w-[2.5rem] h-[2.5rem] rounded-full  text-4xl  items-center justify-center">
+                <div className="flex items-center justify-center h-4 w-4 text-lg rounded">▶</div>
+              </div>
               </div>
             </div>
           ))}
+        </div>
+        </div>
+        </div>
         </div>
       </section>
       <Footer />

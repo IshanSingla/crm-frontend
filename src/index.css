@@ -31,3 +31,11 @@ code {
   border-radius: 10px;
   background-color: #21222D;
 }
+html::-webkit-scrollbar{
+  width:0px;
+  display: none;
+}
+html {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
