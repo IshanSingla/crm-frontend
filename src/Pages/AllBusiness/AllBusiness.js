@@ -11,6 +11,7 @@ import BusinessCard from "./Components/BusinessCard";
 import CreateDg from "./Components/CreateDg";
 import adddarrk from "../../Assets/adddark.svg";
 import add from "../../Assets/Vector.svg";
+import { auth } from "../../Config/firebase";
 
 export default function Business() {
   const [isDark, setDark] = useState(true);
@@ -68,6 +69,7 @@ export default function Business() {
         toast.error(err.message);
       });
   }, [updater]);
+
   return (
     <section
       className={`${
@@ -109,7 +111,10 @@ export default function Business() {
             <h1 className="font-extrabold text-base leading-5  text-white cursor-pointer">
               Contact Us
             </h1>
-            <button className="bg-white rounded-lg border-none py-3 px-6 flex justify-center items-center text-[#F2383A] font-semibold text-xs leading-3">
+            <button
+              onClick={() => auth.signOut()}
+              className="bg-white rounded-lg border-none py-3 px-6 flex justify-center items-center text-[#F2383A] font-semibold text-xs leading-3"
+            >
               LOGOUT
             </button>
           </div>
