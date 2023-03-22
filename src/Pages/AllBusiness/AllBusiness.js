@@ -14,7 +14,7 @@ import add from "../../Assets/Vector.svg";
 import { auth } from "../../Config/firebase";
 
 export default function Business() {
-  const [isDark, setDark] = useState(true);
+  const [isDark, setDark] = useState(false);
   const [name, setName] = useState("");
   const [data, setData] = useState();
   const [updater, setUpdater] = useState(true);
@@ -76,16 +76,16 @@ export default function Business() {
         isDark
           ? "bg-gradient-to-tr from-[#000] to-[#011E4C]"
           : "bg-gradient-to-tr from-[#FF9400] to-[#FFCB84]"
-      } w-screen h-full box-border m-0 p-0 fixed overflow-x-hidden overflow-y-auto bg-no-repeat `}
+      } w-screen h-full  m-0 p-0 bg-no-repeat`}
     >
-      <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1">
-        <div className="flex items-center justify-between w-full">
+      <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1 z-[2]">
+        <div className="flex items-center justify-between w-full z-[2]">
           <div className="flex items-center justify-center">
             {" "}
             <img
               src={logo}
-              alt=""
-              className="xs:h-auto w-[6rem] sm:w-[8rem] h-auto sm:mb-2"
+              alt="logo"
+              className="xs:h-auto w-[6rem] sm:w-[8rem] h-auto"
             />
           </div>
           <div className="block md:hidden items-center">
@@ -104,51 +104,64 @@ export default function Business() {
               />
             </svg>
           </div>
-          <div className="hidden md:flex items-center gap-4 justify-between">
-            <h1 className="font-extrabold text-base text-white leading-5 cursor-pointer">
+          <div className="hidden md:flex items-center gap-4 justify-between p-2">
+            <div className="flex items-center justify-center">
+            <h1 className="font-black text-sm text-white  cursor-pointer">
               About
             </h1>
-            <h1 className="font-extrabold text-base leading-5  text-white cursor-pointer">
+            </div>
+            <div className="flex items-center justify-center">
+            <h1 className="font-black text-sm  text-white cursor-pointer">
               Contact Us
             </h1>
+            </div>
+            <div className="flex items-center justify-center border-white">
             <button
               onClick={() => auth.signOut()}
-              className="bg-white rounded-lg border-none py-3 px-6 flex justify-center items-center text-[#F2383A] font-semibold text-xs leading-3"
+              className="bg-white rounded-lg  px-4 py-2 flex justify-center items-center text-red-500 font-bold text-xs"
             >
               LOGOUT
             </button>
+            </div>
           </div>
         </div>
       </nav>
-      <div className="flex items-center justify-center">
-        <h1 className="text-white my-4 s:my-6 sm:my-8 md:my-12 lg:my-14 sm:text-left text-center mx-auto sm:w-[75%] w-full font-extrabold text-[2rem] sm:text-[3rem] leading-[4.3rem]">
+      <div className="w-screen flex items-center justify-center z-[2]">
+      <div className="max-w-[90rem] w-full md:w-auto flex items-start justify-center flex-col py-4">
+      <div className="flex items-center justify-center w-full">
+       
+        <h1 className="text-white mb-6 mt-2 s:mt-4 sm:mt-6 md:mt-8 lg:mt-10 sm:text-left px-4 text-center  w-full font-extrabold text-[2rem] sm:text-[3rem]">
           BUSINESS
         </h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:w-[85%] lg:w-[60%] w-[90%] mx-auto my-auto pb-4">
+      <div className="grid grid-cols-1 s:grid-cols-2 md:grid-cols-3 gap-6 w-full h-full p-4 z-[2]">
         <button
           className={`${
-            isDark ? "bg-[#001A43] text-white" : "bg-white text-black"
-          }bg-[#001A43] w-full md:w-[16rem]  flex flex-row max-w-full h-[10rem] rounded-xl relative`}
+            isDark ? "bg-[#001A43] text-white border-zinc-500" : "bg-white text-black border-gray-200"
+          }bg-[#001A43] w-full md:w-[16rem]  flex flex-row max-w-full h-[10rem] rounded-lg relative border shadow-lg`}
           onClick={() => setIsShow(true)}
         >
-          <h1 className="ml-3 mt-3  font-extrabold leading-3 h-[10rem] text-xl text-white">
+          <h1 className={`${ isDark ? "text-white" : "text-black"} ml-3 mt-3  font-extrabold leading-3 p-1 text-base`}>
             ADD
           </h1>
+          <div className="absolute top-0 bottom-0 right-0 left-0 w-full h-full flex items-center justify-center">
           <img
             src={add}
             alt=""
             className={`${
               isDark ? "visible" : "invisible"
-            } absolute md:left-[42%] left-[47%] top-[38%] `}
+            } `}
           />
+          </div>
+          <div className="absolute top-0 bottom-0 right-0 left-0 w-full h-full flex items-center justify-center">
           <img
             src={adddarrk}
             alt=""
             className={`${
               isDark ? "invisible" : "visible"
-            } absolute md:left-[42%] left-[47%] top-[38%] `}
+            } `}
           />
+          </div>
         </button>
         {data
           ? data.map((val) => {
@@ -171,18 +184,21 @@ export default function Business() {
           />
         )}
       </div>
-      <div className="flex items-center justify-center bottom-4 left-0 absolute z-[-1]">
-        <img src={pink} alt="" />
       </div>
-      <div className="flex items-center justify-center bottom-0 left-0 absolute z-[-1]">
-        <img src={purple} alt="" />
+      <div className={`${isDark ? "inline" : "hidden"} flex items-center justify-center bottom-4 left-0 fixed `}>
+        <img src={pink} alt="pink" className="blur-md" />
       </div>
-      <div className="flex items-center right-0 bottom-4 justify-center absolute z-[-1]">
-        <img src={blue} alt="" />
+      <div className={`${isDark ? "inline" : "hidden"} flex items-center justify-center bottom-4 left-0 fixed `}>
+        <img src={purple} alt="purple" className="blur-md"/>
       </div>
-      <div className="flex items-center left-0 bottom-4 bg-overlay mix-blend-overlay justify-center absolute z-[-1]">
-        <img src={lines} alt="" className="mix-blend-overlay" />
+      <div className="flex items-center right-0 bottom-4  justify-center fixed ">
+        <img src={blue} alt="blue" className="blur-md"/>
       </div>
+      <div className="flex items-center left-0 bottom-0 top-0 mix-blend-overlay justify-center fixed ">
+        <img src={lines} alt="lines" className="mix-blend-overlay h-full" />
+      </div>
+      </div>
+      
     </section>
   );
 }
