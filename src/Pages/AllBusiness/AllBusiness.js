@@ -83,12 +83,12 @@ export default function Business() {
       <header className="w-full flex items-center justify-center ">
       <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1 z-[2]">
         <div className="flex items-center justify-between w-full z-[2]">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center drop-shadow-2xl">
             {" "}
             <img
               src={logo}
               alt="logo"
-              className="xs:h-auto w-[6rem] sm:w-[8rem] h-auto"
+              className="xs:h-auto w-[6rem] sm:w-[8rem] h-auto drop-shadow-xl"
             />
           </div>
           <div className="block md:hidden items-center">
