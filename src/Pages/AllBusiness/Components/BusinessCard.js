@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { BuissnessApi } from "../../../Api";
 import deletedark from "../../../Assets/trash.png";
 
+
 export default function BusinessCard({ val, updater, setUpdater,key, isDark }) {
 
   const handleDelete = (e) => {

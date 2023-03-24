@@ -14,7 +14,7 @@ import add from "../../Assets/Vector.svg";
 import { auth } from "../../Config/firebase";
 
 export default function Business() {
-  const [isDark, setDark] = useState(false);
+  const [isDark, setDark] = useState(true);
   const [name, setName] = useState("");
   const [data, setData] = useState();
   const [updater, setUpdater] = useState(true);
@@ -76,7 +76,9 @@ export default function Business() {
         isDark
           ? "bg-gradient-to-tr from-[#000] to-[#011E4C]"
           : "bg-gradient-to-tr from-[#FF9400] to-[#FFCB84]"
+
       } w-screen min-h-screen bg-no-repeat m-0 p-0`}
+
     >
       <header className="w-full flex items-center justify-center ">
       <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1 z-[2]">
