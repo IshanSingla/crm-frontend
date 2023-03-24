@@ -14,7 +14,7 @@ import add from "../../Assets/Vector.svg";
 import { auth } from "../../Config/firebase";
 
 export default function Business() {
-  const [isDark, setDark] = useState(true);
+  const [isDark, setDark] = useState(false);
   const [name, setName] = useState("");
   const [data, setData] = useState();
   const [updater, setUpdater] = useState(true);
