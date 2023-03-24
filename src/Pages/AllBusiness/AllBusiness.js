@@ -76,7 +76,7 @@ export default function Business() {
         isDark
           ? "bg-gradient-to-tr from-[#000] to-[#011E4C]"
           : "bg-gradient-to-tr from-[#FF9400] to-[#FFCB84]"
-      } w-screen h-full  m-0 p-0 bg-no-repeat`}
+      } w-screen min-h-screen m-0 p-0`}
     >
       <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1 z-[2]">
         <div className="flex items-center justify-between w-full z-[2]">
@@ -171,6 +171,7 @@ export default function Business() {
                   setUpdater={setUpdater}
                   key={val.id}
                   val={val}
+                  isDark={isDark}
                 />
               );
             })
@@ -195,7 +196,7 @@ export default function Business() {
         <img src={blue} alt="blue" className="blur-md"/>
       </div>
       <div className="flex items-center left-0 bottom-0 top-0 mix-blend-overlay justify-center fixed ">
-        <img src={lines} alt="lines" className="mix-blend-overlay h-full" />
+        <img src={lines} alt="lines" className="" />
       </div>
       </div>
       

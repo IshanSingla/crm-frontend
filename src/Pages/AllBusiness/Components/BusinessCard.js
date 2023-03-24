@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { BuissnessApi } from "../../../Api";
 import deletedark from "../../../Assets/trash.png";
 
-export default function BusinessCard({ val, updater, setUpdater }) {
-  const [isDark, setDark] = useState(false);
+export default function BusinessCard({ val, updater, setUpdater,key, isDark }) {
+
   const handleDelete = (e) => {
     e.preventDefault();
     BuissnessApi()
@@ -28,7 +28,7 @@ export default function BusinessCard({ val, updater, setUpdater }) {
       });
   };
   return (
-    <Link className="w-full h-full" to={`/business/${val._id}`}>
+    <Link className="w-full h-full" to={`/business/${val._id}`} key={key}>
       <div
         className={`${
           isDark ? "bg-[#001A43] text-white border-zinc-500" : "bg-white text-black border-gray-200"
