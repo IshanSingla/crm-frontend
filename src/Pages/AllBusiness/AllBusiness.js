@@ -76,8 +76,9 @@ export default function Business() {
         isDark
           ? "bg-gradient-to-tr from-[#000] to-[#011E4C]"
           : "bg-gradient-to-tr from-[#FF9400] to-[#FFCB84]"
-      } w-screen min-h-screen m-0 p-0`}
+      } w-screen min-h-screen bg-no-repeat m-0 p-0`}
     >
+      <header className="w-full flex items-center justify-center ">
       <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1 z-[2]">
         <div className="flex items-center justify-between w-full z-[2]">
           <div className="flex items-center justify-center">
@@ -126,6 +127,7 @@ export default function Business() {
           </div>
         </div>
       </nav>
+      </header>
       <div className="w-screen flex items-center justify-center z-[2]">
       <div className="max-w-[90rem] w-full md:w-auto flex items-start justify-center flex-col py-4">
       <div className="flex items-center justify-center w-full">
@@ -141,7 +143,7 @@ export default function Business() {
           }bg-[#001A43] w-full md:w-[16rem]  flex flex-row max-w-full h-[10rem] rounded-lg relative border shadow-lg`}
           onClick={() => setIsShow(true)}
         >
-          <h1 className={`${ isDark ? "text-white" : "text-black"} ml-3 mt-3  font-extrabold leading-3 p-1 text-base`}>
+          <h1 className={`${ isDark ? "text-white" : "text-black"} ml-3 mt-2  font-bold p-1 text-lg`}>
             ADD
           </h1>
           <div className="absolute top-0 bottom-0 right-0 left-0 w-full h-full flex items-center justify-center">
@@ -196,7 +198,7 @@ export default function Business() {
         <img src={blue} alt="blue" className="blur-md"/>
       </div>
       <div className="flex items-center left-0 bottom-0 top-0 mix-blend-overlay justify-center fixed ">
-        <img src={lines} alt="lines" className="" />
+        <img src={lines} alt="lines" className="h-full" />
       </div>
       </div>
       

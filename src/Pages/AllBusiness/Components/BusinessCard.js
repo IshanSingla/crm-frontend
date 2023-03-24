@@ -34,15 +34,15 @@ export default function BusinessCard({ val, updater, setUpdater,key, isDark }) {
           isDark ? "bg-[#001A43] text-white border-zinc-500" : "bg-white text-black border-gray-200"
         }bg-[#001A43] w-full md:w-[16rem] place-self-center flex flex-row max-w-full h-[10rem] rounded-lg relative border `}
       >
-        <div className="flex flex-col justify-start ml-3 mt-3 items-start">
+        <div className="flex flex-col justify-start ml-3 mt-3 items-start gap-1">
           <h1
             className={`${
               isDark ? "text-white" : "text-black"
-            } font-extrabold text-base leading-6 capitalize`}
+            } font-bold text-base capitalize`}
           >
             {val.buissnessName}
           </h1>
-          <h2 className="text-[#87888C] font-normal text-[0.5rem] leading-[0.7rem]">
+          <h2 className="text-[#87888C] font-normal text-xs sm:text-sm leading-[0.7rem]">
             {val.createdAt}
           </h2>
         </div>
@@ -52,7 +52,7 @@ export default function BusinessCard({ val, updater, setUpdater,key, isDark }) {
         >
           <img
             src={isDark ? deletedark : deletedark}
-            alt=""
+            alt="delete"
             className={`w-4 h-4`}
           />
         </div>
