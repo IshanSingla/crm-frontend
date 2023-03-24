@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { BuissnessApi } from "../../../Api";
 import deletedark from "../../../Assets/trash.png";
 
-export default function BusinessCard({ val, updater, setUpdater }) {
-  const [isDark, setDark] = useState(false);
+export default function BusinessCard({ val, updater, setUpdater, isDark }) {
+  
   const handleDelete = (e) => {
     e.preventDefault();
     BuissnessApi()
