@@ -59,7 +59,7 @@ export default function CustomTable({
 
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="flex justify-center items-center h-full w-full">
+    <div className="flex justify-center h-full w-full">
       <div
         className={`flex flex-col justify-between py-2 shadow-md rounded-xl w-full
           ${theme ? "bg-secBlack" : "bg-primWhite"}

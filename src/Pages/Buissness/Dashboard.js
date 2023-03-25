@@ -1,5 +1,5 @@
 import { ThemeContext } from "../../Contexts/ThemeContext";
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import Inventry from "../../Components/Charts/Inventry";
 import SummaryCard from "./Components/SummaryCard";
 import { More2 } from "../../Components/Icons";
@@ -18,38 +18,22 @@ export default function Dashboard() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="w-full pl-2 pr-1 flex flex-col gap-3 overflow-auto">
-      {/* Date */}
-      <div className="flex justify-end">
-        <select
-          name=""
-          id=""
-          className={`py-2 px-3 rounded-md text-medium outline-none 
-            ${theme ? "bg-[#2E3033] text-[#D2D2D2]" : "bg-primWhite"}
-          `}
-        >
-          <option value="today"> Today </option>
-          <option value="30 days"> Last 30 days </option>
-          <option value="90 days"> Last 90 days </option>
-          <option value="365 days"> Last 365 days </option>
-          <option value="custom">Custom</option>
-        </select>
-      </div>
-
+    <div className="w-full h-full  pl- pr-1 flex flex-col gap-3">
       {/* Phase 1 */}
-      <div className="flex flex-col md:flex-row gap-3">
-        {/* total sales */}
+      {/* <div className="flex flex-col md:flex-row gap-3"> */}
+      {/* total sales */}
+      <div className="grid grid-cols-4 xl:grid-rows-[repeat(3,minmax(28.4%,_1fr))] overflow-auto grid-flow-row gap-4">
         <div
-          className={`w-full md:w-[72%]  rounded-xl p-4 ${
-            theme ? "bg-secBlack text-white" : "bg-primWhite"
-          }`}
+          className={`rounded-xl p-4 col-span-3 
+            ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
+          `}
         >
           <div className="flex flex-col space-y-5">
             <div>
               <h1 className="text-2xl font-semibold"> Today's Sales </h1>
               <p className="text-[#B6A3A3]"> Sales Summary</p>
             </div>
-            <div className="flex gap-5 overflow-auto pb-3">
+            <div className="flex gap-5 overflow-auto">
               {cardDetails.map((val) => {
                 return <SummaryCard key={val.icon} model={val} theme={theme} />;
               })}
@@ -59,7 +43,7 @@ export default function Dashboard() {
 
         {/* chart */}
         <div
-          className={`rounded-xl md:w-[28%] p-4 flex flex-col justify-between items-center
+          className={`rounded-xl p-4 flex flex-col justify-between items-center col-span-1
           ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
         `}
         >
@@ -69,13 +53,13 @@ export default function Dashboard() {
           </div>
           <Inventry />
         </div>
-      </div>
+        {/* </div> */}
 
-      {/* Phase 2 */}
-      <div className="flex flex-col md:flex-row gap-3">
+        {/* Phase 2 */}
+        {/* <div className="flex flex-col md:flex-row gap-3"> */}
         {/* total margin */}
         <div
-          className={`w-full md:w-[72%]  rounded-xl p-4 flex flex-col gap-6
+          className={`rounded-xl p-4 flex flex-col gap-6 col-span-3
             ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
         >
@@ -101,7 +85,7 @@ export default function Dashboard() {
 
         {/* Quantity */}
         <div
-          className={`rounded-xl w-full md:w-[28%] p-4 flex flex-col gap-6
+          className={`rounded-xl p-4 flex flex-col gap-6
               ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
         >
@@ -124,13 +108,13 @@ export default function Dashboard() {
             <QuantityChart />
           </div>
         </div>
-      </div>
+        {/* </div> */}
 
-      {/* Phase 3 */}
-      <div className="flex flex-col md:flex-row gap-3">
+        {/* Phase 3 */}
+        {/* <div className="flex flex-col md:flex-row gap-3"> */}
         {/* Expense 1 */}
         <div
-          className={`rounded-xl w-full md:w-[28%] p-4 flex flex-col gap-6
+          className={`rounded-xl p-4 flex flex-col gap-6
               ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
         >
@@ -156,7 +140,7 @@ export default function Dashboard() {
 
         {/* Expense 2 */}
         <div
-          className={`w-full md:w-[72%]  rounded-xl p-4  flex flex-col gap-6
+          className={`w-full rounded-xl p-4  flex flex-col gap-6 col-span-3
             ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
         >
@@ -179,6 +163,7 @@ export default function Dashboard() {
             <CostChart />
           </div>
         </div>
+        {/* </div> */}
       </div>
     </div>
   );
