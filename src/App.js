@@ -6,6 +6,7 @@ import Business from "./Routes/Business";
 import { auth } from "./Config/firebase";
 import AdminRoute from "./Routes/AdminRoute";
 import Home from "./Pages/Home/Home";
+import Contact from "./Pages/Contact/Contact";
 
 export default function App() {
   const [loding, changeLoding] = useState(false);
@@ -16,6 +17,7 @@ export default function App() {
       <Route path="/auth/*" element={<Auth currentUser={user} />} />
       <Route path="/business/*" element={<Business currentUser={user} />} />
       <Route path="/admin/*" element={<AdminRoute currentUser={user} />} />
+      <Route path="/contact" element={<Contact currentUser={user} />} />
     </Routes>
   ) : (
     <Loader changeLoding={changeLoding} changeUser={changeUser} />
