@@ -6,6 +6,8 @@ export default function Form() {
     lname: "",
     email: "",
     number: "",
+    subject: "",
+    message: "",
   });
 
   const handleSubmit = (e) => {
@@ -13,6 +15,22 @@ export default function Form() {
   };
 
   const handleFocus = () => {};
+
+  function onValueChange(e) {
+    setData({
+      subject: e.target.value,
+    });
+  }
+
+  function handleChange(e) {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setData({
+      [name]: value,
+    });
+  }
+
   return (
     <form onSubmit={handleSubmit} className="text-grey flex flex-col gap-9">
       <div className="flex gap-9">
@@ -25,6 +43,8 @@ export default function Form() {
             name="fname"
             id="fname"
             onFocus={handleFocus}
+            value={data.fname}
+            onChange={handleChange}
             className="bg-transparent outline-none border-b border-grey focus-within:border-white text-white transition-all ease-linear"
           />
         </div>
@@ -36,6 +56,8 @@ export default function Form() {
             type="text"
             name="lname"
             id="lname"
+            value={data.lname}
+            onChange={handleChange}
             className="bg-transparent outline-none border-b border-grey focus-within:border-white text-white transition-all ease-linear"
           />
         </div>
@@ -49,6 +71,8 @@ export default function Form() {
             type="email"
             name="email"
             id="email"
+            value={data.email}
+            onChange={handleChange}
             className="bg-transparent outline-none border-b border-grey focus-within:border-white text-white transition-all ease-linear"
           />
         </div>
@@ -60,6 +84,8 @@ export default function Form() {
             type="number"
             name="number"
             id="number"
+            value={data.number}
+            onChange={handleChange}
             className="bg-transparent outline-none border-b border-grey focus-within:border-white text-white transition-all ease-linear"
           />
         </div>
@@ -70,22 +96,50 @@ export default function Form() {
         <p className="font-semibold"> Select Subject? </p>
         <div className="flex flex-wrap w-full justify-between gap-4">
           <div className="flex items-center gap-2">
-            <input type="radio" name="sub1" id="s1" />
+            <input
+              type="radio"
+              name="sub1"
+              id="s1"
+              value="sub1"
+              checked={data.subject === "sub1"}
+              onChange={onValueChange}
+            />
             <label htmlFor="s1">General Inquiry</label>
           </div>
 
           <div className="flex items-center gap-2">
-            <input type="radio" name="sub1" id="s2" />
+            <input
+              type="radio"
+              name="sub1"
+              id="s2"
+              value="sub2"
+              checked={data.subject === "sub2"}
+              onChange={onValueChange}
+            />
             <label htmlFor="s2">General Inquiry</label>
           </div>
 
           <div className="flex items-center gap-2">
-            <input type="radio" name="sub1" id="s3" />
+            <input
+              type="radio"
+              name="sub1"
+              id="s3"
+              value="sub3"
+              checked={data.subject === "sub3"}
+              onChange={onValueChange}
+            />
             <label htmlFor="s3">General Inquiry</label>
           </div>
 
           <div className="flex items-center gap-2">
-            <input type="radio" name="sub1" id="s4" />
+            <input
+              type="radio"
+              name="sub1"
+              id="s4"
+              value="sub4"
+              checked={data.subject === "sub4"}
+              onChange={onValueChange}
+            />
             <label htmlFor="s4">General Inquiry</label>
           </div>
         </div>
@@ -93,12 +147,14 @@ export default function Form() {
 
       {/* Messagee */}
       <div className="flex flex-col flex-1 gap-2">
-        <label htmlFor="number" className="text-sm">
+        <label htmlFor="message" className="text-sm">
           Message
         </label>
         <textarea
-          name="number"
-          id="number"
+          name="message"
+          id="message"
+          value={data.message}
+          onChange={handleChange}
           placeholder="Write your message..."
           className="bg-transparent outline-none placeholder:text-grey border-b border-grey focus-within:border-white text-white transition-all ease-linear"
         />
