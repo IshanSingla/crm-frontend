@@ -5,6 +5,9 @@ import Expense from "../Pages/Buissness/Expense";
 import Settings from "../Pages/Buissness/Setting";
 import DashboardTemp from "../Components/DashboardTemp";
 import Dashboard from "../Pages/Buissness/Dashboard";
+import Analytics from "../Pages/Buissness/Analytics";
+import Sales from "../Pages/Buissness/Sales";
+
 import {
   AnalyticsIcon,
   CalculatorIcon,
@@ -13,10 +16,6 @@ import {
   SalesIcon,
   SettingIcons,
 } from "../Components/Icons";
-import Sales from "../Pages/Buissness/Sales";
-import { ThemeContextProvider } from "../Contexts/ThemeContext";
-import Analytics from "../Pages/Buissness/Analytics";
-import Maintainance from "../Pages/Buissness/Maintainance";
 
 export default function SinglaBuissness() {
   const param = useParams();
@@ -40,20 +39,17 @@ export default function SinglaBuissness() {
   ];
 
   return (
-    <ThemeContextProvider>
-      <DashboardTemp route={param["*"]} Menus={Menus}>
-        <Routes>
-          <Route path="/dashboard/*" element={<DashboardRoute />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/expense" element={<Expense />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/sales" element={<Sales />} />
-          <Route path="/maintainance" element={<Maintainance />} />
-          <Route path="*" element={<Navigate to="./dashboard" />} />
-        </Routes>
-      </DashboardTemp>
-    </ThemeContextProvider>
+    <DashboardTemp route={param["*"]} Menus={Menus}>
+      <Routes>
+        <Route path="/dashboard/*" element={<DashboardRoute />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/inventory" element={<Inventory />} />
+        <Route path="/expense" element={<Expense />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/sales" element={<Sales />} />
+        <Route path="*" element={<Navigate to="./dashboard" />} />
+      </Routes>
+    </DashboardTemp>
   );
 }
 
