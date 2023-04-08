@@ -33,14 +33,21 @@ module.exports = {
         primBlack: "#1A1B1E",
         secBlack: "#21222D",
 
+        primWhite: "#F6F6FB",
+        secWhite: "#FFFFFF",
+
         mainBlue: "#060B27",
         secBlue: "#0E1330",
         threeblue: "#090D27",
+        fourblue: "#181D38",
 
-        primWhite: "#F6F6FB",
-        secWhite: "#FFFFFF",
         oran: "#FEB95A",
+        oranGrad1: "#FF9A61",
+        oranGrad2: "#FFC654",
+
         grey: "#87888C",
+        grey2: "#282D45",
+        grey3: "#8F9BB7",
       },
       backgroundImage: {
         overlay: `url('./Assets/lines.svg')`,

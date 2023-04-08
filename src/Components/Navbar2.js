@@ -18,7 +18,7 @@ export default function Navbar2({ currentUser }) {
     auth.signOut();
   };
   return (
-    <div className="sticky flex justify-between items-center md:px-20 border-b border-[#20222F]">
+    <div className="sticky flex justify-between items-center px-10 md:px-16 border-b border-[#20222F]">
       <Link to="/">
         <img
           className="w-32"

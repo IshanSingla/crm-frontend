@@ -18,13 +18,13 @@ export default function Dashboard() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="w-full h-full  pl- pr-1 flex flex-col gap-3">
+    <div className="w-full h-full overflow-y-auto pl- pr-1 flex flex-col gap-3">
       {/* Phase 1 */}
       {/* <div className="flex flex-col md:flex-row gap-3"> */}
       {/* total sales */}
-      <div className="grid grid-cols-4 xl:grid-rows-[repeat(3,minmax(28.4%,_1fr))] overflow-auto grid-flow-row gap-4">
+      <div className="grid xl:grid-cols-4 xl:grid-rows-[repeat(3,minmax(28.4%,_1fr))] overflow-auto grid-flow-row gap-4">
         <div
-          className={`rounded-xl p-4 col-span-3 
+          className={`rounded-xl p-4 col-span-3
             ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
           `}
         >
@@ -43,7 +43,7 @@ export default function Dashboard() {
 
         {/* chart */}
         <div
-          className={`rounded-xl p-4 flex flex-col justify-between items-center col-span-1
+          className={`rounded-xl p-4 w-full flex flex-col justify-between items-center xl:col-span-1
           ${theme ? "bg-secBlack text-white" : "bg-primWhite"}
         `}
         >
