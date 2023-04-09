@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import useSystemTheme from "react-use-system-theme";
 import Loader from "./Components/Loader";
 import Auth from "./Routes/Auth";
 import Business from "./Routes/Business";
@@ -13,11 +12,10 @@ import { ThemeContextProvider } from "./Contexts/ThemeContext";
 
 
 export default function App() {
-  const systemTheme = useSystemTheme("light");
   const [loding, changeLoding] = useState(false);
   const [user, changeUser] = useState(auth.currentUser);
   return loding ? (
-    <ThemeContextProvider systemTheme={systemTheme}>
+    <ThemeContextProvider systemTheme={"light"}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth/*" element={<Auth currentUser={user} />} />

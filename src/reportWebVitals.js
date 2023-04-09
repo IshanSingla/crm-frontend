@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 const reportWebVitals = (onPerfEntry) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
     import("web-vitals")
@@ -10,9 +8,6 @@ const reportWebVitals = (onPerfEntry) => {
         getLCP(onPerfEntry);
         getTTFB(onPerfEntry);
       })
-      .catch((err) => {
-        toast.error(err.message);
-      });
   }
 };
 

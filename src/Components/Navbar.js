@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../Assets/logoFull.png";
+import logo from "../Assets/logoFull 3.svg";
 import { auth } from "../Config/firebase";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
