@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CustomTable from "../../Components/CustomTable";
 import { BuissnessApi } from "../../Api";
 import { toast } from "react-toastify";
-import InventryTrans from "./InventryTrans";
 import { DeleteIcons, EditIcons } from "../../Components/Icons";
-import Cart from "./Cart";
 import TagList from "./Components/TagList";
 
 function Inventory() {

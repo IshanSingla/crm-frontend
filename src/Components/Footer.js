@@ -1,22 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../Assets/Logos/logo1.png";
-import {
-  Facebook,
-  ForwardArrow,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Twitter2,
-  WhatsApp,
-} from "./Icons";
+import { Facebook, Instagram, Linkedin, Twitter2 } from "./Icons";
 export default function Footer() {
   return (
     <div className="md:px-20 border-t border-[#20222F] text-white font-pop flex flex-col gap-10 py-20">
       <div>
         <img src={logo} alt="logo" className="w-44" />
       </div>
-
       <div className="flex gap-20">
         <div className="flex-1">
           <form className="rounded-xl border border-grey2 p-10 flex flex-col gap-5">
@@ -66,18 +58,30 @@ export default function Footer() {
         </div>
 
         <div className="flex gap-4">
-          <div className="border border-grey2 w-[max-content] p-3 rounded-xl">
+          <a
+            href=""
+            className="border border-grey2 w-[max-content] p-3 rounded-xl"
+          >
             <Facebook className="w-5 h-5" />
-          </div>
-          <div className="border border-grey2 w-[max-content] p-3 rounded-xl">
+          </a>
+          <a
+            href="https://twitter.com/IndusianAssist"
+            className="border border-grey2 w-[max-content] p-3 rounded-xl"
+          >
             <Twitter2 className="w-5 h-5" fill="white" />
-          </div>
-          <div className="border border-grey2 w-[max-content] p-3 rounded-xl">
+          </a>
+          <a
+            href="https://www.linkedin.com/company/indusianassist"
+            className="border border-grey2 w-[max-content] p-3 rounded-xl"
+          >
             <Linkedin className="w-5 h-5" fill="white" />
-          </div>
-          <div className="border border-grey2 w-[max-content] p-3 rounded-xl">
+          </a>
+          <a
+            href="https://www.instagram.com/indusianassist/"
+            className="border border-grey2 w-[max-content] p-3 rounded-xl"
+          >
             <Instagram className="w-5 h-5" />
-          </div>
+          </a>
         </div>
       </div>
     </div>

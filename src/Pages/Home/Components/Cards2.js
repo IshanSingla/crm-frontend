@@ -1,5 +1,4 @@
 import React from "react";
-import Cards from "./Cards";
 
 const src = [
   require("../../../Assets/search_problem.svg").default,

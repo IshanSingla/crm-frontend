@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../Assets/logoFull.png";
-import { ArrowIcons } from "./Icons";
 import { auth } from "../Config/firebase";
 
 export default function Navbar({ className }) {

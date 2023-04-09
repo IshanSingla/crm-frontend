@@ -1,8 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { BuissnessApi } from "../../Api";
-import { toast } from "react-toastify";
-import CustomTable from "../../Components/CustomTable";
-import { DeleteIcons, EditIcons } from "../../Components/Icons";
+/* eslint-disable no-unused-vars */
+import { useContext, useState } from "react";
 import loading from "../../Assets/Lotties/loading.json";
 import Lottie from "lottie-react";
 import SettingMenus from "./Components/SettingMenus";
@@ -12,7 +9,6 @@ import SettingHome from "./Components/SettingHome";
 
 export default function Settings() {
   const [data, setData] = useState(true);
-  const [update, setUpdate] = useState(false);
 
   const { theme } = useContext(ThemeContext);
   // useEffect(() => {

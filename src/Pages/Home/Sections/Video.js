@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Video() {
   return (
-    <div className="bg-black bg-opacity-30 h-[70vh] flex flex-col space-y-4 justify-center items-center border border-grey2">
+    <section className="bg-black bg-opacity-30 h-[70vh] flex flex-col space-y-4 justify-center items-center border border-grey2">
       <h1 className="text-xl font-bold">
         {" "}
         We are a leading Service Based Company.{" "}
@@ -14,6 +14,6 @@ export default function Video() {
           className="pl-[1px]"
         />
       </button>
-    </div>
+    </section>
   );
 }

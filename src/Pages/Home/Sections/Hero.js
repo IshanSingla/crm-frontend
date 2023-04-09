@@ -1,7 +1,10 @@
 import React from "react";
 import Gallery from "../Components/Gallery";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../../Config/firebase";
 
 export default function Hero() {
+  const navigator = useNavigate();
   return (
     <section className="w-full bg  min-h-[90vh] lg:min-h-[90vh]  flex flex-col xl:flex-row h-full items-center">
       {/* Left */}
@@ -29,10 +32,20 @@ export default function Hero() {
           </p>
 
           <div className="flex gap-2 w-[80%] font-bold text-white text-xl">
-            <button className="rounded-full py-3 bg-oranGrad1 hover:bg-oranGrad2 transition-all ease-linear w-44">
-              Get a demo
+            <button
+              onClick={() => {
+                navigator(auth.currentUser ? "/business" : "/auth/login");
+              }}
+              className="rounded-full py-3 bg-oranGrad1 hover:bg-oranGrad2 transition-all ease-linear w-44"
+            >
+              Get Started
             </button>
-            <button className="rounded-full w-44 py-3 border border-zinc-700  transition-all">
+            <button
+              onClick={() => {
+                navigator("/pricing");
+              }}
+              className="rounded-full w-44 py-3 border border-zinc-700  transition-all"
+            >
               View pricing
             </button>
           </div>

@@ -14,11 +14,11 @@ export default function App() {
   const [user, changeUser] = useState(auth.currentUser);
   return loding ? (
     <Routes>
-      <Route path="/" element={<Home currentUser={user} />} />
+      <Route path="/" element={<Home />} />
       <Route path="/auth/*" element={<Auth currentUser={user} />} />
       <Route path="/business/*" element={<Business currentUser={user} />} />
       <Route path="/admin/*" element={<AdminRoute currentUser={user} />} />
-      <Route path="/contact" element={<Contact currentUser={user} />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   ) : (

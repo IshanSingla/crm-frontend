@@ -1,13 +1,15 @@
 import React from "react";
 import Footer from "../../Components/Footer";
 import Navbar2 from "../../Components/Navbar2";
-import Goal from "./Sections/Goal";
-import Hero from "./Sections/Hero";
-import Video from "./Sections/Video";
-import Services from "./Sections/Services";
-import Works from "./Sections/Works";
-import ProductDev from "./Sections/ProductDev";
-import Testimonials from "./Sections/Testimonials";
+import {
+  Goal,
+  Hero,
+  Video,
+  Services,
+  Works,
+  ProductDev,
+  Testimonials,
+} from "./Sections";
 
 export default function Home() {
   return (

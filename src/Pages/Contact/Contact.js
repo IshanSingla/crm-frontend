@@ -1,5 +1,4 @@
 import React from "react";
-import { Twitter, Twitter2 } from "../../Components/Icons";
 import Navbar2 from "../../Components/Navbar2";
 import Form from "./Components/Form";
 

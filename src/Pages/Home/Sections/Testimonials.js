@@ -9,7 +9,7 @@ import {
 
 export default function Testimonials() {
   return (
-    <div className="bg-secBlue relative py-20 md:px-[15%] min-h-screen flex gap-10 items-center justify-center rounded-md border border-grey2 overflow-hidden">
+    <section className="bg-secBlue relative py-20 md:px-[15%] min-h-screen flex gap-10 items-center justify-center rounded-md border border-grey2 overflow-hidden">
       <div className="w-[40%]">
         <div className="w-full px-10">
           <div className="h-[18rem]  relative flex justify-center bg-gradient-to-b from-mainBlue via-secBlue to-mainBlue rounded-xl">
@@ -63,6 +63,6 @@ export default function Testimonials() {
       {/* Circles */}
       <div className="absolute w-[151px] h-[151px] left-0 top-0 bg-[#FF5E00] blur-[156px]"></div>
       <div className="absolute w-[140px] h-[132px] right-10 bottom-10 bg-[#FEA900] blur-[156px]"></div>
-    </div>
+    </section>
   );
 }
