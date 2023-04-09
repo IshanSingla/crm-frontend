@@ -7,22 +7,16 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FirebaseAnalytics } from "./Config/analytics.util";
-import { ThemeContextProvider } from "./Contexts/ThemeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-if (!localStorage.getItem("isDark")) {
-  localStorage.setItem("isDark", false);
-}
 
 root.render(
   <React.StrictMode>
-    <ThemeContextProvider>
-      <BrowserRouter>
-        <FirebaseAnalytics />
-        <ToastContainer />
-        <App />
-      </BrowserRouter>
-    </ThemeContextProvider>
+    <BrowserRouter>
+      <FirebaseAnalytics />
+      <ToastContainer />
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 reportWebVitals();

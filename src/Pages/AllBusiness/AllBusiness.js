@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import logo from "../../Assets/logoFull 3.svg";
 
 import pink from "../../Assets/pink.svg";
 import blue from "../../Assets/blue.svg";
@@ -11,8 +10,8 @@ import BusinessCard from "./Components/BusinessCard";
 import CreateDg from "./Components/CreateDg";
 import adddarrk from "../../Assets/adddark.svg";
 import add from "../../Assets/Vector.svg";
-import { auth } from "../../Config/firebase";
 import { ThemeContext } from "../../Contexts/ThemeContext";
+import { Navbar2 } from "../../Components/Navbar";
 
 export default function Business() {
   const { theme } = useContext(ThemeContext);
@@ -48,55 +47,8 @@ export default function Business() {
           : "bg-gradient-to-tr from-[#FF9400] to-[#FFCB84]"
       } w-screen min-h-screen bg-no-repeat m-0 p-0`}
     >
-      <header className="w-full flex items-center justify-center ">
-        <nav className="flex max-w-[90%] w-full mx-auto justify-between items-center p-1 z-[2]">
-          <div className="flex items-center justify-between w-full z-[2]">
-            <div className="flex items-center justify-center drop-shadow-2xl">
-              <img
-                src={logo}
-                alt="logo"
-                className="xs:h-auto w-[6rem] sm:w-[8rem] h-auto drop-shadow-xl"
-              />
-            </div>
-            <div className="block md:hidden items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="white"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            </div>
-            <div className="hidden md:flex items-center gap-4 justify-between p-2">
-              <div className="flex items-center justify-center">
-                <h1 className="font-black text-sm text-white  cursor-pointer">
-                  About
-                </h1>
-              </div>
-              <div className="flex items-center justify-center">
-                <h1 className="font-black text-sm  text-white cursor-pointer">
-                  Contact Us
-                </h1>
-              </div>
-              <div className="flex items-center justify-center border-white">
-                <button
-                  onClick={() => auth.signOut()}
-                  className="bg-white rounded-lg  px-4 py-2 flex justify-center items-center text-red-500 font-bold text-xs"
-                >
-                  LOGOUT
-                </button>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+      
+      <Navbar2/>
       <div className="w-screen flex items-center justify-center z-[2]">
         <div className="max-w-[90rem] w-full md:w-auto flex items-start justify-center flex-col py-4">
           <div className="flex items-center justify-center w-full">

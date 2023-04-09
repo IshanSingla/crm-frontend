@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar2 from "../../Components/Navbar2";
+import {Navbar2} from "../../Components/Navbar";
 import Form from "./Components/Form";
 
 export default function Contact() {
