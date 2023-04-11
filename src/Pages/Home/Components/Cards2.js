@@ -12,7 +12,7 @@ export default function Cards2() {
   return (
     <div className="flex justify-evenly flex-col 2xl:flex-row gap-20">
       {/* Card 1 */}
-      <div className="p-10 w-[22rem] min-h-[22rem] relative rounded-xl border border-fourblue flex flex-col space-y-10">
+      <div className="p-10 w-full md:w-[22rem] min-h-[22rem] relative rounded-xl border border-fourblue flex flex-col space-y-10">
         <div>
           <img src={src[0]} alt="play_button" className="w-16" />
         </div>
@@ -39,7 +39,7 @@ export default function Cards2() {
       </div>
 
       {/* Card 2 */}
-      <div className="p-10 w-[22rem] min-h-[22rem] relative rounded-xl border border-fourblue flex flex-col space-y-10">
+      <div className="p-10 w-full md:w-[22rem] min-h-[22rem] relative rounded-xl border border-fourblue flex flex-col space-y-10">
         <div>
           <img src={src[1]} alt="play_button" className="w-16" />
         </div>
@@ -66,7 +66,7 @@ export default function Cards2() {
       </div>
 
       {/* Card 3 */}
-      <div className="p-10 w-[22rem] min-h-[22rem] relative rounded-xl border border-fourblue flex flex-col space-y-10">
+      <div className="p-10 w-full md:w-[22rem] min-h-[22rem] relative rounded-xl border border-fourblue flex flex-col space-y-10">
         <div>
           <img src={src[2]} alt="play_button" className="w-16" />
         </div>

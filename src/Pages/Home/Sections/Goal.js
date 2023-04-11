@@ -3,7 +3,7 @@ import React from "react";
 export default function Goal() {
   return (
     <section className="bg-secBlue relative py-24 2xl:py-28 flex items-center justify-center rounded-md border border-grey2 overflow-hidden">
-      <p className="text-3xl font-bold text-white w-[55%] text-center">
+      <p className="text-3xl font-bold text-white px-5 md:w-[55%] text-center">
         Our goal is to give everyone the opportunity to take advantage of the
         most cutting-edge technology on the market.
       </p>

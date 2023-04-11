@@ -5,7 +5,10 @@ import Cards2 from "../Components/Cards2";
 
 export default function Works() {
   return (
-    <section id="works" className="bg-secBlue relative py-20 px-16 min-h-screen flex flex-col space-y-10 items-center justify-center rounded-md border border-grey2 overflow-hidden">
+    <section
+      id="works"
+      className="bg-secBlue relative py-20 px-5 md:px-16 min-h-screen flex flex-col space-y-10 items-center justify-center rounded-md border border-grey2 overflow-hidden"
+    >
       <div className="text-center flex flex-col justify-center items-center space-y-4">
         <h1 className="text-transparent bg-clip-text bg-gradient-to-b from-white to-[#7E808F] font-bold text-5xl">
           How it Works
@@ -13,7 +16,7 @@ export default function Works() {
       </div>
 
       {/* Cards */}
-      <div className="flex gap-10">
+      <div className="flex gap-10 flex-wrap">
         <Cards2 />
       </div>
 

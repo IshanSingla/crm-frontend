@@ -48,7 +48,7 @@ const details = [
 
 export default function Services() {
   return (
-    <section className="bg-secBlue relative py-20 px-10 min-h-screen flex flex-col space-y-10 items-center justify-center rounded-md border border-grey2 overflow-hidden">
+    <section className="bg-secBlue relative py-20 px-5 md:px-10 min-h-screen flex flex-col space-y-10 items-center justify-center rounded-md border border-grey2 overflow-hidden">
       <div className="text-center flex flex-col justify-center items-center space-y-4">
         <h1 className="text-transparent bg-clip-text bg-gradient-to-b from-white to-[#7E808F] font-bold text-5xl">
           Services & Technologies

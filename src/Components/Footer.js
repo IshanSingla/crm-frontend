@@ -5,11 +5,11 @@ import logo from "../Assets/Logos/logo1.png";
 import { Facebook, Instagram, Linkedin, Twitter2 } from "./Icons";
 export default function Footer() {
   return (
-    <div className="md:px-20 border-t border-[#20222F] text-white font-pop flex flex-col gap-10 py-20">
-      <div>
-        <img src={logo} alt="logo" className="w-44" />
+    <div className="md:px-20 border-t border-[#20222F] text-white font-pop flex flex-col gap-10 py-10 md:py-20 px-5">
+      <div className="">
+        <img src={logo} alt="logo" className="md:w-44" />
       </div>
-      <div className="flex gap-20">
+      <div className="flex flex-col md:flex-row gap-20">
         <div className="flex-1">
           <form className="rounded-xl border border-grey2 p-10 flex flex-col gap-5">
             <h1 className="text-xl font-bold"> Subscribe to our newsletter</h1>
@@ -50,7 +50,7 @@ export default function Footer() {
       <div className="border-b border-grey2"></div>
 
       {/* Copyright */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-wrap gap-10 md:gap-0 justify-center md:justify-between items-center">
         <div>
           <p className="text-grey3">
             Copyright © All Right Reserved | Powered By Indusian Assist

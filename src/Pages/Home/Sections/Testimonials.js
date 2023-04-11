@@ -9,8 +9,8 @@ import {
 
 export default function Testimonials() {
   return (
-    <section className="bg-secBlue relative py-20 md:px-[15%] min-h-screen flex gap-10 items-center justify-center rounded-md border border-grey2 overflow-hidden">
-      <div className="w-[40%]">
+    <section className="bg-secBlue relative py-20 px-7 md:px-[15%] md:min-h-screen flex flex- gap-10 items-center justify-center rounded-md border border-grey2 overflow-hidden">
+      <div className="w-[40%] xl:block hidden">
         <div className="w-full px-10">
           <div className="h-[18rem]  relative flex justify-center bg-gradient-to-b from-mainBlue via-secBlue to-mainBlue rounded-xl">
             <img src={lady} alt="lady" className="absolute -bottom-16" />
@@ -18,7 +18,7 @@ export default function Testimonials() {
         </div>
       </div>
 
-      <div className="w-[60%] flex flex-col gap-12">
+      <div className="xl:w-[60%] flex flex-col gap-12">
         <div className="flex flex-col gap-4">
           <h1 className="font-semibold text-3xl">What they say about us</h1>
           <p>
