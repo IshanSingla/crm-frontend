@@ -694,7 +694,7 @@ export function Search({ className = "", onClick = () => {}, stroke = "" }) {
     </svg>
   );
 }
-export function Cross({ className = "", onClick = () => {} }) {
+export function Cross({ className, stroke, onClick = () => {} }) {
   return (
     <svg
       width="800"
@@ -707,11 +707,10 @@ export function Cross({ className = "", onClick = () => {} }) {
     >
       <path
         d="M533.333 266.667L266.667 533.333M266.667 266.667L533.333 533.333"
-        stroke="#71717A"
-        stroke-width="50"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        className={`${className}`}
+        stroke={stroke}
+        strokeWidth="50"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -794,6 +793,28 @@ export function RightArrow3({ className = "", onClick = () => {} }) {
       <path
         d="M15.9773 8.09746C15.9773 3.77555 12.4756 0.273865 8.15367 0.273865C3.83177 0.273865 0.330078 3.77555 0.330078 8.09746C0.330078 12.4194 3.83177 15.9211 8.15367 15.9211C12.4756 15.9211 15.9773 12.4194 15.9773 8.09746ZM1.84432 8.09746C1.84432 4.61154 4.66776 1.78811 8.15367 1.78811C11.6396 1.78811 14.463 4.61154 14.463 8.09746C14.463 11.5834 11.6396 14.4068 8.15367 14.4068C4.66776 14.4068 1.84432 11.5834 1.84432 8.09746ZM4.11569 8.7284V7.46653C4.11569 7.25832 4.28604 7.08796 4.49425 7.08796H8.15367V4.97433C8.15367 4.63678 8.56063 4.46958 8.80038 4.70618L11.9235 7.82931C12.0718 7.97758 12.0718 8.21734 11.9235 8.36561L8.80038 11.4887C8.56063 11.7285 8.15367 11.5581 8.15367 11.2206V9.10696H4.49425C4.28604 9.10696 4.11569 8.9366 4.11569 8.7284Z"
         // fill="none"
+      />
+    </svg>
+  );
+}
+
+export function Hamburger({ className, stroke, onClick = () => {} }) {
+  return (
+    <svg
+      width="534"
+      height="400"
+      viewBox="0 0 534 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`w-6 h-6 ${className}`}
+      onClick={onClick}
+    >
+      <path
+        d="M33.6667 366.667H500.333M33.6667 200H500.333M33.6667 33.3334H500.333"
+        stroke={`${stroke}`}
+        strokeWidth="66.6667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

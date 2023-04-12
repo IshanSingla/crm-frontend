@@ -6,7 +6,7 @@ import { auth } from "../../../Config/firebase";
 export default function Hero() {
   const navigator = useNavigate();
   return (
-    <section className="w-full bg  min-h-[90vh] lg:min-h-[90vh]  flex flex-col justify-center xl:flex-row h-full items-center">
+    <section className="w-full z-0 min-h-[90vh] lg:min-h-[90vh]  flex flex-col justify-center xl:flex-row h-full items-center">
       {/* Left */}
       <div className="flex-1 py-10 xl:py-0">
         <div className="flex-1 flex flex-col items-center md:items-start gap-10">

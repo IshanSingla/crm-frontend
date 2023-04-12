@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../Assets/logoFull 3.svg";
 import { auth } from "../Config/firebase";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { Cross, Hamburger } from "./Icons";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Navbar({ className }) {
   return (
@@ -90,18 +92,29 @@ export function Navbar2() {
     { name: "Pricing", link: "/pricing" },
     { name: "Contact Us", link: "/contact" },
   ];
+  const [isOpen, setIsOpen] = useState(false);
+
   const route = useLocation().pathname.split("/").pop();
 
   const navigate = useNavigate();
   const handleSignOut = () => {
     auth.currentUser ? auth.signOut() : navigate("/auth/login");
   };
+
+  const container = {
+    visible: {
+      transition: {
+        staggerChildren: 0.025,
+      },
+    },
+  };
+
   return (
-    <header className="sticky flex justify-between items-center px-10 md:px-16 border-b border-[#20222F]">
+    <header className=" flex justify-between items-center xs:px-10 md:px-5 xl:px-16 border-b border-[#20222F]">
       <Link to="/">
         <img className="w-40" src={logo} alt="" />
       </Link>
-      <div className="font-bold  flex gap-6">
+      <div className="font-bold hidden md:flex gap-6">
         {links.map((val, key) =>
           val.link === "#works" ? (
             <AnchorLink key={key} href={val.link} className={"text-[#8F9BB7]"}>
@@ -124,10 +137,66 @@ export function Navbar2() {
       </div>
       <button
         onClick={handleSignOut}
-        className="bg-gradient-to-r from-[#FF9A61] to-[#FFC654] hover:bg-red-600 transition-all ease-linear px-5 py-1 rounded-full text-white"
+        className="hidden md:block bg-gradient-to-r from-[#FF9A61] to-[#FFC654] hover:bg-red-600 transition-all ease-linear px-5 py-1 rounded-full text-white"
       >
         {auth.currentUser ? "Logout" : "Login"}
       </button>
+
+      {/* Hamburger */}
+      <div className="md:hidden block">
+        {!isOpen ? (
+          <button onClick={() => setIsOpen(true)}>
+            <Hamburger stroke="white" />
+          </button>
+        ) : (
+          <button
+            onClick={() => setIsOpen(false)}
+            className="z-[999] absolute right-8 top-6"
+          >
+            <Cross className="w-11 h-11" stroke="white" />
+          </button>
+        )}
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring" }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed z-50 h-screen w-screen text-white bg-black bg-opacity-[96%] top-0 left-0 bottom-0 right-0 overflow-hidden md:hidden"
+          >
+            <div className="h-full w-full flex flex-col items-center justify-center">
+              <div className="font-bold text-xl flex flex-col items-center gap-4">
+                {links.map((val, key) =>
+                  val.link === "#works" ? (
+                    <AnchorLink
+                      key={key}
+                      href={val.link}
+                      className={"text-[#8F9BB7]"}
+                    >
+                      {val.name}
+                    </AnchorLink>
+                  ) : (
+                    <Link
+                      key={key}
+                      to={val.link}
+                      className={`${
+                        route === val.link.split("/").pop()
+                          ? "text-white underline underline-offset-4"
+                          : "text-[#8F9BB7]"
+                      }`}
+                    >
+                      {val.name}
+                    </Link>
+                  )
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
