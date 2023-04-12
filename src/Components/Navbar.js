@@ -101,14 +101,6 @@ export function Navbar2() {
     auth.currentUser ? auth.signOut() : navigate("/auth/login");
   };
 
-  const container = {
-    visible: {
-      transition: {
-        staggerChildren: 0.025,
-      },
-    },
-  };
-
   return (
     <header className=" flex justify-between items-center xs:px-10 md:px-5 xl:px-16 border-b border-[#20222F]">
       <Link to="/">
