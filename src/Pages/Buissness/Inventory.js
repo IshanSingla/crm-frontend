@@ -10,6 +10,11 @@ function Inventory() {
   const [body, setBody] = useState([]);
   const [loader, setLoader] = useState(false);
 
+  const model = {
+    heading: "Category",
+    listing: "Categories listing",
+  };
+
   const handleAdd = async (inventoryId) => {
     setLoader(true);
     BuissnessApi()
@@ -164,7 +169,7 @@ function Inventory() {
       {/* <Routes>
         <Route path="/:inventoryid" element={<InventryTrans />} />
       </Routes> */}
-      <TagList />
+      <TagList model={model} />
     </div>
   );
 }
